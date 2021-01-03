@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import frappe, sys
 import erpnext
 import frappe.utils
-from erpnext.demo.setup import  healthcare
+from erpnext.demo.setup import healthcare
 """
 Make a demo
 
@@ -70,12 +70,7 @@ def simulate(domain='Healthcare', days=100):
 			current_date = frappe.utils.add_days(current_date, 1)
 			continue
 		try:
-			hr.work()
-			purchase.work()
-			stock.work()
-			accounts.work()
-			projects.run_projects(current_date)
-			sales.work(domain)
+			print("fehler in demo.py")
 			# run_messages()
 
 

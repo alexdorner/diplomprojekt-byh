@@ -1,17 +1,22 @@
 [
 	{
 		"doctype": "Healthcare Practitioner",
-		"first_name": "Eddie Jessup",
-		"department": "Pathology"
+		"first_name": "Alexandra",
+		"department": "Röntgen"
 	},
 	{
 		"doctype": "Healthcare Practitioner",
-		"first_name": "Deepshi Garg",
-		"department": "ENT"
+		"first_name": "Melanie",
+		"department": "CT"
 	},
 	{
 		"doctype": "Healthcare Practitioner",
-		"first_name": "Amit Jain",
-		"department": "Microbiology"
+		"first_name": "Cheyenne",
+		"department": "MRT"
+	},
+	{
+		"doctype": "Healthcare Practitioner",
+		"first_name": "Michelle",
+		"department": "Mammographie"
 	}
 ]
