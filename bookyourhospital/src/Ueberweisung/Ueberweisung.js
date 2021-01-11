@@ -13,13 +13,13 @@ class Ueberweisung extends Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Button variant="btn btn-success" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
+                        <Button variant="dark" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
                     </Col>
                     <Col>
-                        <Button variant="btn btn-success" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
+                        <Button variant="dark" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
                     </Col>
                     <Col>
-                        <Button variant="btn btn-success" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Ueberweisung?</Button>
+                        <Button variant="dark" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Ueberweisung?</Button>
                     </Col>
                 </Row>
             </Container>

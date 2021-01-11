@@ -11,7 +11,7 @@ export default class Home extends Component {
           <Image src = "./byh_logo.svg"></Image>
           <p>Willkommen bei BookYourHospital</p>
           <form>
-            <Button variant="btn btn-success" onClick={() => history.push('/Ueberweisung')}>Starten</Button>
+            <Button variant="dark" onClick={() => history.push('/Ueberweisung')}>Starten</Button>
           </form>
         </div>
       </div>

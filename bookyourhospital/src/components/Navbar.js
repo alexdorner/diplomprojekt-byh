@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 const Navigation = (props) => {
     console.log(props);
     return (
-        <Navbar bg="primary" variant="dark" sticky="top">
+        <Navbar  variant="dark" sticky="top">
             <Navbar.Brand href="/">BookYourHospital</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
