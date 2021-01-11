@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table, Container, Row, Col, Dropdown } from 'react-bootstrap';
 import history from "../history";
 
-class AuswahlBereich extends Component{
+class MedicalDepartment extends Component{
     render() {
         return (
             <Container>
@@ -25,4 +25,4 @@ class AuswahlBereich extends Component{
         );
     }
 }
-export default AuswahlBereich;
+export default MedicalDepartment;

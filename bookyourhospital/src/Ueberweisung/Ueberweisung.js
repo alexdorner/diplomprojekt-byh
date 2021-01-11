@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Table, Container, Row, Col } from 'react-bootstrap';
 import history from "../history";
+import { withRouter } from 'react-router-dom';
+
 
 class Ueberweisung extends Component {
     render() {
@@ -11,7 +13,7 @@ class Ueberweisung extends Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Button variant="btn btn-success" onClick={() => history.push('/AuswahlBereich')}>Ja</Button>
+                        <Button variant="btn btn-success" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
                     </Col>
                     <Col>
                         <Button variant="btn btn-success" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
@@ -25,4 +27,4 @@ class Ueberweisung extends Component {
     }
 }
 
-export default Ueberweisung;
+export default withRouter(Ueberweisung);
