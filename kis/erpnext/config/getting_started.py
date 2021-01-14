@@ -43,8 +43,8 @@ def get_data():
 		},
 
 		{
-			"label": _("Healthcare"),
-			"condition": "Healthcare" in active_domains,
+			"label": _("KIS"),
+			"condition": "KIS" in active_domains,
 			"items": [
 				{
 					"type": "doctype",

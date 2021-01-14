@@ -23,9 +23,9 @@ def get_data():
 
 
 		{
-			"module_name": "Healthcare",
+			"module_name": "KIS",
 			"category": "Domains",
-			"label": _("Healthcare"),
+			"label": _("KIS"),
 			"color": "#FF888B",
 			"icon": "fa fa-heartbeat",
 			"type": "module",

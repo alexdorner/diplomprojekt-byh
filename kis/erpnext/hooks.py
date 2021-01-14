@@ -1,19 +1,19 @@
 from __future__ import unicode_literals
 from frappe import _
 
-app_name = "erpnext"
-app_title = "ERPNext"
-app_publisher = "Frappe Technologies Pvt. Ltd."
-app_description = """ERP made simple"""
+app_name = "KIS"
+app_title = "KIS"
+app_publisher = "BYH"
+app_description = ""
 app_icon = "fa fa-th"
 app_color = "#e74c3c"
-app_email = "info@erpnext.com"
-app_license = "GNU General Public License (v3)"
+app_email = ""
+app_license = ""
 source_link = "https://github.com/frappe/erpnext"
 app_logo_url = '/assets/erpnext/images/erp-icon.svg'
 
 
-develop_version = '13.x.x-develop'
+develop_version = '0.0.1'
 
 app_include_js = "/assets/js/erpnext.min.js"
 app_include_css = "/assets/css/erpnext.css"
@@ -55,22 +55,14 @@ on_logout = "erpnext.shopping_cart.utils.clear_cart_count"
 
 treeviews = ['Account', 'Cost Center', 'Warehouse', 'Item Group', 'Customer Group', 'Sales Person', 'Territory', 'Assessment Group', 'Department']
 
-# website
-update_website_context = ["erpnext.shopping_cart.utils.update_website_context", "erpnext.education.doctype.education_settings.education_settings.update_website_context"]
-my_account_context = "erpnext.shopping_cart.utils.update_my_account_context"
+
 
 calendars = ["Task", "Work Order", "Leave Application", "Sales Order", "Holiday List", "Course Schedule"]
 
 domains = {
-	'Agriculture': 'erpnext.domains.agriculture',
-	'Distribution': 'erpnext.domains.distribution',
-	'Education': 'erpnext.domains.education',
-	'Healthcare': 'erpnext.domains.healthcare',
-	'Hospitality': 'erpnext.domains.hospitality',
-	'Manufacturing': 'erpnext.domains.manufacturing',
-	'Non Profit': 'erpnext.domains.non_profit',
-	'Retail': 'erpnext.domains.retail',
-	'Services': 'erpnext.domains.services',
+
+	'KIS': 'erpnext.domains.kis'
+
 }
 
 website_generators = ["Item Group", "Item", "BOM", "Sales Partner",
@@ -160,33 +152,17 @@ website_route_rules = [
 
 standard_portal_menu_items = [
 	{"title": _("Personal Details"), "route": "/personal-details", "reference_doctype": "Patient", "role": "Patient"},
-	{"title": _("Projects"), "route": "/project", "reference_doctype": "Project"},
-	{"title": _("Request for Quotations"), "route": "/rfq", "reference_doctype": "Request for Quotation", "role": "Supplier"},
-	{"title": _("Supplier Quotation"), "route": "/supplier-quotations", "reference_doctype": "Supplier Quotation", "role": "Supplier"},
-	{"title": _("Purchase Orders"), "route": "/purchase-orders", "reference_doctype": "Purchase Order", "role": "Supplier"},
-	{"title": _("Purchase Invoices"), "route": "/purchase-invoices", "reference_doctype": "Purchase Invoice", "role": "Supplier"},
-	{"title": _("Quotations"), "route": "/quotations", "reference_doctype": "Quotation", "role":"Customer"},
-	{"title": _("Orders"), "route": "/orders", "reference_doctype": "Sales Order", "role":"Customer"},
-	{"title": _("Invoices"), "route": "/invoices", "reference_doctype": "Sales Invoice", "role":"Customer"},
-	{"title": _("Shipments"), "route": "/shipments", "reference_doctype": "Delivery Note", "role":"Customer"},
-	{"title": _("Issues"), "route": "/issues", "reference_doctype": "Issue", "role":"Customer"},
-	{"title": _("Addresses"), "route": "/addresses", "reference_doctype": "Address"},
-	{"title": _("Timesheets"), "route": "/timesheets", "reference_doctype": "Timesheet", "role":"Customer"},
-	{"title": _("Lab Test"), "route": "/lab-test", "reference_doctype": "Lab Test", "role":"Patient"},
+
+
 	{"title": _("Prescription"), "route": "/prescription", "reference_doctype": "Patient Encounter", "role":"Patient"},
 	{"title": _("Patient Appointment"), "route": "/patient-appointments", "reference_doctype": "Patient Appointment", "role":"Patient"},
-	{"title": _("Fees"), "route": "/fees", "reference_doctype": "Fees", "role":"Student"},
-	{"title": _("Newsletter"), "route": "/newsletters", "reference_doctype": "Newsletter"},
-	{"title": _("Admission"), "route": "/admissions", "reference_doctype": "Student Admission", "role": "Student"},
-	{"title": _("Certification"), "route": "/certification", "reference_doctype": "Certification Application", "role": "Non Profit Portal User"},
-	{"title": _("Material Request"), "route": "/material-requests", "reference_doctype": "Material Request", "role": "Customer"},
+
 	{"title": _("Appointment Booking"), "route": "/book_appointment"},
 ]
 
 default_roles = [
-	{'role': 'Customer', 'doctype':'Contact', 'email_field': 'email_id'},
-	{'role': 'Supplier', 'doctype':'Contact', 'email_field': 'email_id'},
-	{'role': 'Student', 'doctype':'Student', 'email_field': 'student_email_id'},
+	{'role': 'Customer', 'doctype':'Contact', 'email_field': 'email_id'}
+
 ]
 
 sounds = [
@@ -205,10 +181,10 @@ has_website_permission = {
 	"Delivery Note": "erpnext.controllers.website_list_for_contact.has_website_permission",
 	"Issue": "erpnext.support.doctype.issue.issue.has_website_permission",
 	"Timesheet": "erpnext.controllers.website_list_for_contact.has_website_permission",
-	"Lab Test": "erpnext.healthcare.web_form.lab_test.lab_test.has_website_permission",
-	"Patient Encounter": "erpnext.healthcare.web_form.prescription.prescription.has_website_permission",
-	"Patient Appointment": "erpnext.healthcare.web_form.patient_appointments.patient_appointments.has_website_permission",
-	"Patient": "erpnext.healthcare.web_form.personal_details.personal_details.has_website_permission"
+	"Lab Test": "erpnext.kis.web_form.lab_test.lab_test.has_website_permission",
+	"Patient Encounter": "erpnext.kis.web_form.prescription.prescription.has_website_permission",
+	"Patient Appointment": "erpnext.kis.web_form.patient_appointments.patient_appointments.has_website_permission",
+	"Patient": "erpnext.kis.web_form.personal_details.personal_details.has_website_permission"
 }
 
 dump_report_map = "erpnext.startup.report_data_map.data_map"
@@ -217,7 +193,7 @@ before_tests = "erpnext.setup.utils.before_tests"
 
 standard_queries = {
 	"Customer": "erpnext.selling.doctype.customer.customer.get_customer_list",
-	"Healthcare Practitioner": "erpnext.healthcare.doctype.healthcare_practitioner.healthcare_practitioner.get_practitioner_list"
+	"Healthcare Practitioner": "erpnext.kis.doctype.kis_practitioner.kis_practitioner.get_practitioner_list"
 }
 
 doc_events = {
@@ -301,7 +277,7 @@ scheduler_events = {
 	},
 	"all": [
 		"erpnext.projects.doctype.project.project.project_status_update_reminder",
-		"erpnext.healthcare.doctype.patient_appointment.patient_appointment.send_appointment_reminder",
+		"erpnext.kis.doctype.patient_appointment.patient_appointment.send_appointment_reminder",
 		"erpnext.crm.doctype.social_media_post.social_media_post.process_scheduled_social_media_posts"
 	],
 	"hourly": [
@@ -339,7 +315,7 @@ scheduler_events = {
 		"erpnext.crm.doctype.email_campaign.email_campaign.send_email_to_leads_or_contacts",
 		"erpnext.crm.doctype.email_campaign.email_campaign.set_email_campaign_status",
 		"erpnext.selling.doctype.quotation.quotation.set_expired_status",
-		"erpnext.healthcare.doctype.patient_appointment.patient_appointment.update_appointment_status",
+		"erpnext.kis.doctype.patient_appointment.patient_appointment.update_appointment_status",
 		"erpnext.buying.doctype.supplier_quotation.supplier_quotation.set_expired_status",
 		"erpnext.accounts.doctype.process_statement_of_accounts.process_statement_of_accounts.send_auto_email"
 	],
