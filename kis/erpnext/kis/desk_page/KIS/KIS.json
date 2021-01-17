@@ -73,11 +73,7 @@
    "label": "KIS Practitioner",
    "link_to": "KIS Practitioner",
    "type": "DocType"
-  },
-  {
-   "label": "Dashboard",
-   "link_to": "KIS",
-   "type": "Dashboard"
   }
+
  ]
 }
