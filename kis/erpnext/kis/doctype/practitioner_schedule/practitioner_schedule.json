@@ -28,7 +28,7 @@
    "fieldname": "time_slots",
    "fieldtype": "Table",
    "label": "Time Slots",
-   "options": "Healthcare Schedule Time Slot"
+   "options": "KIS Schedule Time Slot"
   },
   {
    "default": "0",
@@ -46,7 +46,7 @@
  "links": [],
  "modified": "2020-09-18 17:26:09.703215",
  "modified_by": "Administrator",
- "module": "Healthcare",
+ "module": "KIS",
  "name": "Practitioner Schedule",
  "owner": "Administrator",
  "permissions": [
@@ -58,12 +58,12 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Healthcare Administrator",
+   "role": "KIS Administrator",
    "share": 1,
    "write": 1
   }
  ],
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",

@@ -119,8 +119,8 @@
    "fieldname": "practitioner",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Healthcare Practitioner",
-   "options": "Healthcare Practitioner",
+   "label": "KIS Practitioner",
+   "options": "KIS Practitioner",
    "reqd": 1
   },
   {
@@ -330,7 +330,7 @@
  "links": [],
  "modified": "2020-05-16 21:00:08.644531",
  "modified_by": "Administrator",
- "module": "Healthcare",
+ "module": "KIS",
  "name": "Patient Encounter",
  "owner": "Administrator",
  "permissions": [
@@ -350,7 +350,7 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "search_fields": "patient, practitioner, medical_department, encounter_date, encounter_time",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

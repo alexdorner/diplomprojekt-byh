@@ -11,7 +11,7 @@ import dateutil
 from frappe.model.naming import set_name_by_naming_series
 from frappe.utils.nestedset import get_root_of
 from erpnext import get_default_currency
-from erpnext.healthcare.doctype.healthcare_settings.healthcare_settings import get_receivable_account, get_income_account, send_registration_sms
+from erpnext.KIS.doctype.KIS_settings.KIS_settings import get_receivable_account, get_income_account, send_registration_sms
 
 class Patient(Document):
 	def validate(self):
@@ -24,9 +24,9 @@ class Patient(Document):
 	def after_insert(self):
 		self.add_as_website_user()
 		self.reload()
-		if frappe.db.get_single_value('Healthcare Settings', 'link_customer_to_patient') and not self.customer:
+		if frappe.db.get_single_value('KIS Settings', 'link_customer_to_patient') and not self.customer:
 			create_customer(self)
-		if frappe.db.get_single_value('Healthcare Settings', 'collect_registration_fee'):
+		if frappe.db.get_single_value('KIS Settings', 'collect_registration_fee'):
 			frappe.db.set_value('Patient', self.name, 'status', 'Disabled')
 		else:
 			send_registration_sms(self)
@@ -47,7 +47,7 @@ class Patient(Document):
 			customer.ignore_mandatory = True
 			customer.save(ignore_permissions=True)
 		else:
-			if frappe.db.get_single_value('Healthcare Settings', 'link_customer_to_patient'):
+			if frappe.db.get_single_value('KIS Settings', 'link_customer_to_patient'):
 				create_customer(self)
 
 	def set_full_name(self):
@@ -86,7 +86,7 @@ class Patient(Document):
 				user.add_roles('Patient')
 
 	def autoname(self):
-		patient_name_by = frappe.db.get_single_value('Healthcare Settings', 'patient_name_by')
+		patient_name_by = frappe.db.get_single_value('KIS Settings', 'patient_name_by')
 		if patient_name_by == 'Patient Name':
 			self.name = self.get_patient_name()
 		else:

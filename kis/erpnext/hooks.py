@@ -9,7 +9,7 @@ app_icon = "fa fa-th"
 app_color = "#e74c3c"
 app_email = ""
 app_license = ""
-source_link = "https://github.com/frappe/erpnext"
+source_link = "https://github.com/alexdorner/diplomprojekt-byh"
 app_logo_url = '/assets/erpnext/images/erp-icon.svg'
 
 

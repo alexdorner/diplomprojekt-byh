@@ -41,15 +41,7 @@ frappe.ui.form.on('Patient Appointment', {
 			};
 		});
 
-		frm.set_query('therapy_plan', function() {
-			return {
-				filters: {
-					'patient': frm.doc.patient
-				}
-			};
-		});
 
-		frm.trigger('set_therapy_type_filter');
 
 		if (frm.is_new()) {
 			frm.page.set_primary_action(__('Check Availability'), function() {
@@ -246,7 +238,7 @@ let check_and_set_availability = function(frm) {
 			fields: [
 				{ fieldtype: 'Link', options: 'Medical Department', reqd: 1, fieldname: 'department', label: 'Medical Department'},
 				{ fieldtype: 'Column Break'},
-				{ fieldtype: 'Link', options: 'Healthcare Practitioner', reqd: 1, fieldname: 'practitioner', label: 'Healthcare Practitioner'},
+				{ fieldtype: 'Link', options: 'KIS Practitioner', reqd: 1, fieldname: 'practitioner', label: 'KIS Practitioner'},
 				{ fieldtype: 'Column Break'},
 				{ fieldtype: 'Date', reqd: 1, fieldname: 'appointment_date', label: 'Date'},
 				{ fieldtype: 'Section Break'},
@@ -317,7 +309,7 @@ let check_and_set_availability = function(frm) {
 		if (d.get_value('appointment_date') && d.get_value('practitioner')) {
 			fd.available_slots.html('');
 			frappe.call({
-				method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.get_availability_data',
+				method: 'erpnext.KIS.doctype.patient_appointment.patient_appointment.get_availability_data',
 				args: {
 					practitioner: d.get_value('practitioner'),
 					date: d.get_value('appointment_date')
@@ -393,7 +385,7 @@ let check_and_set_availability = function(frm) {
 				freeze_message: __('Fetching records......')
 			});
 		} else {
-			fd.available_slots.html(__('Appointment date and Healthcare Practitioner are Mandatory').bold());
+			fd.available_slots.html(__('Appointment date and KIS Practitioner are Mandatory').bold());
 		}
 	}
 };
@@ -401,7 +393,7 @@ let check_and_set_availability = function(frm) {
 let get_prescribed_procedure = function(frm) {
 	if (frm.doc.patient) {
 		frappe.call({
-			method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.get_procedure_prescribed',
+			method: 'erpnext.KIS.doctype.patient_appointment.patient_appointment.get_procedure_prescribed',
 			args: {patient: frm.doc.patient},
 			callback: function(r) {
 				if (r.message && r.message.length) {
@@ -528,7 +520,7 @@ let update_status = function(frm, status){
 	frappe.confirm(__('Are you sure you want to cancel this appointment?'),
 		function() {
 			frappe.call({
-				method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.update_status',
+				method: 'erpnext.KIS.doctype.patient_appointment.patient_appointment.update_status',
 				args: {appointment_id: doc.name, status:status},
 				callback: function(data) {
 					if (!data.exc) {

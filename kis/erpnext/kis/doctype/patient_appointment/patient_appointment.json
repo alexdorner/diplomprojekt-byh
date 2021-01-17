@@ -98,7 +98,7 @@
    "fieldname": "service_unit",
    "fieldtype": "Link",
    "label": "Service Unit",
-   "options": "Healthcare Service Unit",
+   "options": "KIS Service Unit",
    "set_only_once": 1
   },
   {
@@ -111,8 +111,8 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "in_standard_filter": 1,
-   "label": "Healthcare Practitioner",
-   "options": "Healthcare Practitioner",
+   "label": "KIS Practitioner",
+   "options": "KIS Practitioner",
    "read_only": 1,
    "reqd": 1,
    "search_index": 1,
@@ -210,7 +210,7 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "label": "Referring Practitioner",
-   "options": "Healthcare Practitioner"
+   "options": "KIS Practitioner"
   },
   {
    "default": "0",
@@ -254,7 +254,7 @@
  "links": [],
  "modified": "2020-12-16 13:16:58.578503",
  "modified_by": "Administrator",
- "module": "Healthcare",
+ "module": "KIS",
  "name": "Patient Appointment",
  "owner": "Administrator",
  "permissions": [
@@ -266,7 +266,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Healthcare Administrator",
+   "role": "KIS Administrator",
    "share": 1,
    "write": 1
   },
@@ -283,7 +283,7 @@
    "write": 1
   }
  ],
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "search_fields": "patient, practitioner, department, appointment_date, appointment_time",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

@@ -10,5 +10,5 @@ frappe.views.calendar["Patient Appointment"] = {
 	},
 	order_by: "appointment_date",
 	gantt: true,
-	get_events_method: "erpnext.kis.doctype.patient_appointment.patient_appointment.get_events"
+	get_events_method: "erpnext.KIS.doctype.patient_appointment.patient_appointment.get_events"
 };

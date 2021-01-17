@@ -155,7 +155,7 @@
  "max_attachments": 50,
  "modified": "2020-04-25 17:24:32.146415",
  "modified_by": "Administrator",
- "module": "Healthcare",
+ "module": "KIS",
  "name": "Patient",
  "name_case": "Title Case",
  "owner": "Administrator",
@@ -187,7 +187,7 @@
 
  ],
  "quick_entry": 1,
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "search_fields": "patient_name,mobile,email",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

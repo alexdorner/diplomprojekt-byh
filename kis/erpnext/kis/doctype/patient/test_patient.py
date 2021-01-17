@@ -5,18 +5,18 @@ from __future__ import unicode_literals
 
 import unittest
 import frappe
-from erpnext.healthcare.doctype.patient_appointment.test_patient_appointment import create_patient
+from erpnext.KIS.doctype.patient_appointment.test_patient_appointment import create_patient
 
 class TestPatient(unittest.TestCase):
 	def test_customer_created(self):
 		frappe.db.sql("""delete from `tabPatient`""")
-		frappe.db.set_value('Healthcare Settings', None, 'link_customer_to_patient', 1)
+		frappe.db.set_value('KIS Settings', None, 'link_customer_to_patient', 1)
 		patient = create_patient()
 		self.assertTrue(frappe.db.get_value('Patient', patient, 'customer'))
 
 	def test_patient_registration(self):
 		frappe.db.sql("""delete from `tabPatient`""")
-		settings = frappe.get_single('Healthcare Settings')
+		settings = frappe.get_single('KIS Settings')
 		settings.collect_registration_fee = 1
 		settings.registration_fee = 500
 		settings.save()

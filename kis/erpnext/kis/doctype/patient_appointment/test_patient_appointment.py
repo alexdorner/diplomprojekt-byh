@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 import unittest
 import frappe
-from erpnext.healthcare.doctype.patient_appointment.patient_appointment import update_status, make_encounter
+from erpnext.KIS.doctype.patient_appointment.patient_appointment import update_status, make_encounter
 from frappe.utils import nowdate, add_days
 from frappe.utils.make_random import get_random
 from erpnext.accounts.doctype.pos_profile.test_pos_profile import make_pos_profile
@@ -18,7 +18,7 @@ class TestPatientAppointment(unittest.TestCase):
 
 	def test_status(self):
 		patient, medical_department, practitioner = create_healthcare_docs()
-		frappe.db.set_value('Healthcare Settings', None, 'automate_appointment_invoicing', 0)
+		frappe.db.set_value('KIS Settings', None, 'automate_appointment_invoicing', 0)
 		appointment = create_appointment(patient, practitioner, nowdate())
 		self.assertEquals(appointment.status, 'Open')
 		appointment = create_appointment(patient, practitioner, add_days(nowdate(), 2))
@@ -28,7 +28,7 @@ class TestPatientAppointment(unittest.TestCase):
 
 	def test_start_encounter(self):
 		patient, medical_department, practitioner = create_healthcare_docs()
-		frappe.db.set_value('Healthcare Settings', None, 'automate_appointment_invoicing', 1)
+		frappe.db.set_value('KIS Settings', None, 'automate_appointment_invoicing', 1)
 		appointment = create_appointment(patient, practitioner, add_days(nowdate(), 4), invoice = 1)
 		self.assertEqual(frappe.db.get_value('Patient Appointment', appointment.name, 'invoiced'), 1)
 		encounter = make_encounter(appointment.name)
@@ -41,12 +41,12 @@ class TestPatientAppointment(unittest.TestCase):
 
 	def test_invoicing(self):
 		patient, medical_department, practitioner = create_healthcare_docs()
-		frappe.db.set_value('Healthcare Settings', None, 'enable_free_follow_ups', 0)
-		frappe.db.set_value('Healthcare Settings', None, 'automate_appointment_invoicing', 0)
+		frappe.db.set_value('KIS Settings', None, 'enable_free_follow_ups', 0)
+		frappe.db.set_value('KIS Settings', None, 'automate_appointment_invoicing', 0)
 		appointment = create_appointment(patient, practitioner, nowdate())
 		self.assertEqual(frappe.db.get_value('Patient Appointment', appointment.name, 'invoiced'), 0)
 
-		frappe.db.set_value('Healthcare Settings', None, 'automate_appointment_invoicing', 1)
+		frappe.db.set_value('KIS Settings', None, 'automate_appointment_invoicing', 1)
 		appointment = create_appointment(patient, practitioner, add_days(nowdate(), 2), invoice=1)
 		self.assertEqual(frappe.db.get_value('Patient Appointment', appointment.name, 'invoiced'), 1)
 		sales_invoice_name = frappe.db.get_value('Sales Invoice Item', {'reference_dn': appointment.name}, 'parent')
@@ -57,7 +57,7 @@ class TestPatientAppointment(unittest.TestCase):
 
 	def test_appointment_cancel(self):
 		patient, medical_department, practitioner = create_healthcare_docs()
-		frappe.db.set_value('Healthcare Settings', None, 'enable_free_follow_ups', 1)
+		frappe.db.set_value('KIS Settings', None, 'enable_free_follow_ups', 1)
 		appointment = create_appointment(patient, practitioner, nowdate())
 		fee_validity = frappe.db.get_value('Fee Validity Reference', {'appointment': appointment.name}, 'parent')
 		# fee validity created
@@ -68,8 +68,8 @@ class TestPatientAppointment(unittest.TestCase):
 		# check fee validity updated
 		self.assertEqual(frappe.db.get_value('Fee Validity', fee_validity, 'visited'), visited - 1)
 
-		frappe.db.set_value('Healthcare Settings', None, 'enable_free_follow_ups', 0)
-		frappe.db.set_value('Healthcare Settings', None, 'automate_appointment_invoicing', 1)
+		frappe.db.set_value('KIS Settings', None, 'enable_free_follow_ups', 0)
+		frappe.db.set_value('KIS Settings', None, 'automate_appointment_invoicing', 1)
 		appointment = create_appointment(patient, practitioner, nowdate(), invoice=1)
 		update_status(appointment.name, 'Cancelled')
 		# check invoice cancelled
@@ -79,7 +79,7 @@ class TestPatientAppointment(unittest.TestCase):
 
 def create_healthcare_docs():
 	patient = create_patient()
-	practitioner = frappe.db.exists('Healthcare Practitioner', '_Test Healthcare Practitioner')
+	practitioner = frappe.db.exists('KIS Practitioner', '_Test KIS Practitioner')
 	medical_department = frappe.db.exists('Medical Department', '_Test Medical Department')
 
 	if not medical_department:
@@ -89,8 +89,8 @@ def create_healthcare_docs():
 		medical_department = medical_department.name
 
 	if not practitioner:
-		practitioner = frappe.new_doc('Healthcare Practitioner')
-		practitioner.first_name = '_Test Healthcare Practitioner'
+		practitioner = frappe.new_doc('KIS Practitioner')
+		practitioner.first_name = '_Test KIS Practitioner'
 		practitioner.gender = 'Female'
 		practitioner.department = medical_department
 		practitioner.op_consulting_charge = 500
@@ -125,8 +125,8 @@ def create_encounter(appointment):
 
 def create_appointment(patient, practitioner, appointment_date, invoice=0, procedure_template=0):
 	item = create_healthcare_service_items()
-	frappe.db.set_value('Healthcare Settings', None, 'inpatient_visit_charge_item', item)
-	frappe.db.set_value('Healthcare Settings', None, 'op_consulting_charge_item', item)
+	frappe.db.set_value('KIS Settings', None, 'inpatient_visit_charge_item', item)
+	frappe.db.set_value('KIS Settings', None, 'op_consulting_charge_item', item)
 	appointment = frappe.new_doc('Patient Appointment')
 	appointment.patient = patient
 	appointment.practitioner = practitioner

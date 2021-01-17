@@ -12,8 +12,8 @@ from frappe import _
 import datetime
 from frappe.core.doctype.sms_settings.sms_settings import send_sms
 from erpnext.hr.doctype.employee.employee import is_holiday
-from erpnext.healthcare.doctype.healthcare_settings.healthcare_settings import get_receivable_account, get_income_account
-from erpnext.healthcare.utils import check_fee_validity, get_service_item_and_practitioner_charge, manage_fee_validity
+from erpnext.KIS.doctype.healthcare_settings.healthcare_settings import get_receivable_account, get_income_account
+from erpnext.KIS.utils import check_fee_validity, get_service_item_and_practitioner_charge, manage_fee_validity
 
 class PatientAppointment(Document):
 	def validate(self):
@@ -141,19 +141,19 @@ def get_availability_data(date, practitioner):
 	date = getdate(date)
 	weekday = date.strftime('%A')
 
-	practitioner_doc = frappe.get_doc('Healthcare Practitioner', practitioner)
+	practitioner_doc = frappe.get_doc('KIS Practitioner', practitioner)
 
 
 	if practitioner_doc.practitioner_schedules:
 		slot_details = get_available_slots(practitioner_doc, date)
 	else:
-		frappe.throw(_('{0} does not have a Healthcare Practitioner Schedule. Add it in Healthcare Practitioner master').format(
+		frappe.throw(_('{0} does not have a KIS Practitioner Schedule. Add it in KIS Practitioner master').format(
 			practitioner), title=_('Practitioner Schedule Not Found'))
 
 
 	if not slot_details:
 		# TODO: return available slots in nearby dates
-		frappe.throw(_('Healthcare Practitioner not available on {0}').format(weekday), title=_('Not Available'))
+		frappe.throw(_('KIS Practitioner not available on {0}').format(weekday), title=_('Not Available'))
 
 	return {'slot_details': slot_details}
 
@@ -170,7 +170,7 @@ def get_available_slots(practitioner_doc, date):
 		if schedule_entry.schedule:
 			practitioner_schedule = frappe.get_doc('Practitioner Schedule', schedule_entry.schedule)
 		else:
-			frappe.throw(_('{0} does not have a Healthcare Practitioner Schedule. Add it in Healthcare Practitioner').format(
+			frappe.throw(_('{0} does not have a KIS Practitioner Schedule. Add it in KIS Practitioner').format(
 				frappe.bold(practitioner)), title=_('Practitioner Schedule Not Found'))
 
 		if practitioner_schedule:
@@ -191,7 +191,7 @@ def get_available_slots(practitioner_doc, date):
 
 				if schedule_entry.service_unit:
 					slot_name  = schedule_entry.schedule + ' - ' + schedule_entry.service_unit
-					allow_overlap = frappe.get_value('Healthcare Service Unit', schedule_entry.service_unit, 'overlap_appointments')
+					allow_overlap = frappe.get_value('KIS Service Unit', schedule_entry.service_unit, 'overlap_appointments')
 					if not allow_overlap:
 						# fetch all appointments to service unit
 						filters.pop('practitioner')
@@ -226,8 +226,8 @@ def update_status(appointment_id, status):
 
 
 def send_confirmation_msg(doc):
-	if frappe.db.get_single_value('Healthcare Settings', 'send_appointment_confirmation'):
-		message = frappe.db.get_single_value('Healthcare Settings', 'appointment_confirmation_msg')
+	if frappe.db.get_single_value('KIS Settings', 'send_appointment_confirmation'):
+		message = frappe.db.get_single_value('KIS Settings', 'appointment_confirmation_msg')
 		try:
 			send_message(doc, message)
 		except Exception:
@@ -255,8 +255,8 @@ def make_encounter(source_name, target_doc=None):
 
 
 def send_appointment_reminder():
-	if frappe.db.get_single_value('Healthcare Settings', 'send_appointment_reminder'):
-		remind_before = datetime.datetime.strptime(frappe.db.get_single_value('Healthcare Settings', 'remind_before'), '%H:%M:%S')
+	if frappe.db.get_single_value('KIS Settings', 'send_appointment_reminder'):
+		remind_before = datetime.datetime.strptime(frappe.db.get_single_value('KIS Settings', 'remind_before'), '%H:%M:%S')
 		reminder_dt = datetime.datetime.now() + datetime.timedelta(
 			hours=remind_before.hour, minutes=remind_before.minute, seconds=remind_before.second)
 
@@ -268,7 +268,7 @@ def send_appointment_reminder():
 
 		for appointment in appointment_list:
 			doc = frappe.get_doc('Patient Appointment', appointment.name)
-			message = frappe.db.get_single_value('Healthcare Settings', 'appointment_reminder_msg')
+			message = frappe.db.get_single_value('KIS Settings', 'appointment_reminder_msg')
 			send_message(doc, message)
 			frappe.db.set_value('Patient Appointment', doc.name, 'reminded', 1)
 
