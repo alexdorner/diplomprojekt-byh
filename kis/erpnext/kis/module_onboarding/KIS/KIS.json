@@ -1,7 +1,7 @@
 {
  "allow_roles": [
   {
-   "role": "Healthcare Administrator"
+   "role": "KIS Administrator"
   }
  ],
  "creation": "2020-05-19 10:32:43.025852",
@@ -12,8 +12,8 @@
  "is_complete": 0,
  "modified": "2020-07-08 14:06:19.512946",
  "modified_by": "Administrator",
- "module": "Healthcare",
- "name": "Healthcare",
+ "module": "KIS",
+ "name": "KIS",
  "owner": "Administrator",
  "steps": [
   {
@@ -23,19 +23,19 @@
    "step": "Create Practitioner Schedule"
   },
   {
-   "step": "Introduction to Healthcare Practitioner"
+   "step": "Introduction to KIS Practitioner"
   },
   {
-   "step": "Create Healthcare Practitioner"
+   "step": "Create KIS Practitioner"
   },
   {
-   "step": "Explore Healthcare Settings"
+   "step": "Explore KIS Settings"
   },
   {
    "step": "Explore Clinical Procedure Templates"
   }
  ],
  "subtitle": "Patients, Practitioner Schedules, Settings, and more.",
- "success_message": "The Healthcare Module is all set up!",
- "title": "Let's Set Up the Healthcare Module."
+ "success_message": "The KIS Module is all set up!",
+ "title": "Let's Set Up the KIS Module."
 }

@@ -49,7 +49,7 @@
  "links": [],
  "modified": "2020-02-03 21:06:05.833050",
  "modified_by": "Administrator",
- "module": "Healthcare",
+ "module": "KIS",
  "name": "Appointment Type",
  "owner": "Administrator",
  "permissions": [
@@ -61,7 +61,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Healthcare Administrator",
+   "role": "KIS Administrator",
    "share": 1,
    "write": 1
   },
@@ -79,7 +79,7 @@
   }
  ],
  "quick_entry": 1,
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "search_fields": "appointment_type",
  "sort_field": "modified",
  "sort_order": "DESC"

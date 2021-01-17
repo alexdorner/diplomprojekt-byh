@@ -5,5 +5,5 @@ from __future__ import unicode_literals
 
 import unittest
 
-class TestHealthcareServiceUnit(unittest.TestCase):
+class TestKISServiceUnit(unittest.TestCase):
 	pass

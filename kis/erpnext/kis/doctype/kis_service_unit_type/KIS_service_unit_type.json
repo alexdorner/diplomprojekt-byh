@@ -12,12 +12,8 @@
   "service_unit_type",
   "allow_appointments",
   "overlap_appointments",
-  "inpatient_occupancy",
-  "is_billable",
-  "item_details",
-  "item",
-  "item_code",
-  "item_group",
+
+
   "uom",
   "no_of_hours",
   "column_break_11",
@@ -140,8 +136,8 @@
  "links": [],
  "modified": "2020-05-20 15:31:09.627516",
  "modified_by": "Administrator",
- "module": "Healthcare",
- "name": "Healthcare Service Unit Type",
+ "module": "KIS",
+ "name": "KIS Service Unit Type",
  "owner": "Administrator",
  "permissions": [
   {
@@ -152,12 +148,12 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Healthcare Administrator",
+   "role": "KIS Administrator",
    "share": 1,
    "write": 1
   }
  ],
- "restrict_to_domain": "Healthcare",
+ "restrict_to_domain": "KIS",
  "sort_field": "modified",
  "sort_order": "DESC",
  "title_field": "service_unit_type"

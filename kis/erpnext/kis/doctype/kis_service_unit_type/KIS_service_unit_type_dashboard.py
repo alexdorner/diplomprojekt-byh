@@ -6,8 +6,8 @@ def get_data():
 		'fieldname': 'service_unit_type',
 		'transactions': [
 			{
-				'label': _('Healthcare Service Units'),
-				'items': ['Healthcare Service Unit']
+				'label': _('KIS Service Units'),
+				'items': ['KIS Service Unit']
 			},
 		]
 	}

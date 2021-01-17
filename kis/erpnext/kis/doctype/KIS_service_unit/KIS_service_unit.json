@@ -2,34 +2,34 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:healthcare_service_unit_name",
+ "autoname": "field:kis_service_unit_name",
  "beta": 1,
  "creation": "2016-09-21 13:48:14.731437",
- "description": "Healthcare Service Unit",
+ "description": "KIS Service Unit",
  "doctype": "DocType",
  "document_type": "Setup",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "healthcare_service_unit_name",
+  "kis_service_unit_name",
   "is_group",
   "service_unit_type",
   "allow_appointments",
   "overlap_appointments",
-  "inpatient_occupancy",
+
   "occupancy_status",
   "column_break_9",
   "company",
   "warehouse",
   "tree_details_section",
-  "parent_healthcare_service_unit",
+  "parent_kis_service_unit",
   "lft",
   "rgt",
   "old_parent"
  ],
  "fields": [
   {
-   "fieldname": "healthcare_service_unit_name",
+   "fieldname": "kis_service_unit_name",
    "fieldtype": "Data",
    "in_global_search": 1,
    "in_list_view": 1,
@@ -39,12 +39,12 @@
   },
   {
    "bold": 1,
-   "fieldname": "parent_healthcare_service_unit",
+   "fieldname": "parent_kis_service_unit",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Parent Service Unit",
-   "options": "Healthcare Service Unit"
+   "options": "KIS Service Unit"
   },
   {
    "bold": 1,
@@ -60,7 +60,7 @@
    "fieldname": "service_unit_type",
    "fieldtype": "Link",
    "label": "Service Unit Type",
-   "options": "Healthcare Service Unit Type"
+   "options": "KIS Service Unit Type"
   },
   {
    "default": "0",
@@ -155,7 +155,7 @@
    "ignore_user_permissions": 1,
    "label": "Old Parent",
    "no_copy": 1,
-   "options": "Healthcare Service Unit",
+   "options": "KIS Service Unit",
    "print_hide": 1,
    "report_hide": 1
   },
@@ -169,19 +169,11 @@
  "links": [],
  "modified": "2020-05-20 18:26:56.065543",
  "modified_by": "Administrator",
- "module": "Healthcare",
- "name": "Healthcare Service Unit",
+ "module": "KIS",
+ "name": "KIS Service Unit",
  "owner": "Administrator",
  "permissions": [
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Nursing User",
-   "share": 1
-  },
+
   {
    "create": 1,
    "delete": 1,
@@ -190,7 +182,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Healthcare Administrator",
+   "role": "KIS Administrator",
    "share": 1,
    "write": 1
   },
@@ -207,10 +199,10 @@
   }
  ],
  "quick_entry": 1,
- "restrict_to_domain": "Healthcare",
- "search_fields": "healthcare_service_unit_name",
+ "restrict_to_domain": "KIS",
+ "search_fields": "kis_service_unit_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "healthcare_service_unit_name",
+ "title_field": "kis_service_unit_name",
  "track_changes": 1
 }

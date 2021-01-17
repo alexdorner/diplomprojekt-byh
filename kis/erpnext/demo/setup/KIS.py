@@ -19,7 +19,7 @@ def setup_data():
 	frappe.clear_cache()
 
 def make_masters():
-	import_json("Healthcare Practitioner")
+	import_json("KIS Practitioner")
 	frappe.db.commit()
 
 def make_patient():
@@ -42,8 +42,8 @@ def make_patient():
 def make_appointment():
 	i = 1
 	while i <= 4:
-		practitioner = get_random("Healthcare Practitioner")
-		department = frappe.get_value("Healthcare Practitioner", practitioner, "department")
+		practitioner = get_random("KIS Practitioner")
+		department = frappe.get_value("KIS Practitioner", practitioner, "department")
 		patient = get_random("Patient")
 		patient_sex = frappe.get_value("Patient", patient, "sex")
 		appointment = frappe.new_doc("Patient Appointment")
@@ -62,8 +62,8 @@ def make_appointment():
 
 def make_consulation():
 	for i in range(3):
-		practitioner = get_random("Healthcare Practitioner")
-		department = frappe.get_value("Healthcare Practitioner", practitioner, "department")
+		practitioner = get_random("KIS Practitioner")
+		department = frappe.get_value("KIS Practitioner", practitioner, "department")
 		patient = get_random("Patient")
 		patient_sex = frappe.get_value("Patient", patient, "sex")
 		encounter = set_encounter(patient, patient_sex, practitioner, department, getdate(), i)

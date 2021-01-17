@@ -7,8 +7,8 @@ from __future__ import unicode_literals
 from frappe.utils.nestedset import NestedSet
 import frappe
 
-class HealthcareServiceUnit(NestedSet):
-	nsm_parent_field = 'parent_healthcare_service_unit'
+class KISServiceUnit(NestedSet):
+	nsm_parent_field = 'parent_kis_service_unit'
 
 	def autoname(self):
 		if self.company:
@@ -19,7 +19,7 @@ class HealthcareServiceUnit(NestedSet):
 			self.name = self.healthcare_service_unit_name
 
 	def on_update(self):
-		super(HealthcareServiceUnit, self).on_update()
+		super(KISServiceUnit, self).on_update()
 		self.validate_one_root()
 
 	def after_insert(self):
@@ -28,7 +28,7 @@ class HealthcareServiceUnit(NestedSet):
 			self.overlap_appointments = 0
 			self.inpatient_occupancy = 0
 		elif self.service_unit_type:
-			service_unit_type = frappe.get_doc('Healthcare Service Unit Type', self.service_unit_type)
+			service_unit_type = frappe.get_doc('KIS Service Unit Type', self.service_unit_type)
 			self.allow_appointments = service_unit_type.allow_appointments
 			self.overlap_appointments = service_unit_type.overlap_appointments
 			self.inpatient_occupancy = service_unit_type.inpatient_occupancy
