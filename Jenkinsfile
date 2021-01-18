@@ -11,5 +11,11 @@ pipeline {
                echo 'This is a minimal pipeline.' 
             }
         }
+		stage('Test') { 
+            steps {
+			   cd api
+               mvn test 
+            }
+        }
     }
 }
