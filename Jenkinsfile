@@ -13,10 +13,11 @@ pipeline {
         }
 		stage('Test') { 
             steps {
-				dir("api") {
-					bat 'cd'
-					bat 'mvn test' 
-				}
+				bat """
+					cd api
+					cd
+					mvn test
+				"""
             }
         }
     }
