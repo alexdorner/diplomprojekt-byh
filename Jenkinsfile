@@ -13,7 +13,7 @@ pipeline {
         }
 		stage('Test') { 
             steps {
-			   cd api
+			   cd 'api'
                mvn test 
             }
         }
