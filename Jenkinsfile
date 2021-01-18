@@ -3,9 +3,7 @@ pipeline {
 	stages { 
 		stage ('Initialize') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                ''' 
+                echo "PATH = ${PATH}" 
             }
         }
         stage('Build') { 
