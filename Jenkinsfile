@@ -26,8 +26,8 @@ pipeline {
         }
 		stage('Report') {
 			steps {
-				junit 'target/surefire-reports/*.xml'
-				allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+				junit 'api/target/surefire-reports/*.xml'
+				allure includeProperties: false, jdk: '', results: [[path: 'api/target/allure-results']]
 			}
 		}
 		stage('Actions') {
