@@ -6,7 +6,8 @@ import Ueberweisung from "./Ueberweisung/Ueberweisung";
 import Home from "./Home/Home";
 import history from './history';
 import Auswahl from "./Auswahl/MedicalDepartment";
-import TanService from "./TanService/TanServiceSMS";
+import TanServiceSms from "./TanService/TanServiceSMS";
+import TanServiceEmail from "./TanService/TanServiceEmail";
 
 export default class Routes extends Component {
     render() {
@@ -18,7 +19,8 @@ export default class Routes extends Component {
                     <Route path="/Contact" component={Contact} />
                     <Route path="/Ueberweisung" component={Ueberweisung} />
                     <Route path="/MedicalDepartment" component={Auswahl}/>
-                    <Route path="/TanServiceSMS" component={TanService}/>
+                    <Route path="/TanServiceSMS" component={TanServiceSms}/>
+                    <Route path="/TanServiceEmail" component={TanServiceEmail}/>
                 </Switch>
             </Router>
         )
