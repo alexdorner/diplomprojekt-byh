@@ -33,7 +33,7 @@ pipeline {
 	post {
 		always {
 			emailext attachLog: true, body: """Job: ${env.JOB_NAME}:${env.BUILD_NUMBER}\nStatus: ${currentBuild.result}""",
-				subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName}",
+				subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName} - ${currentBuild.result}",
 				to: "gru18163@spengergasse.at"
 		}
 	}
