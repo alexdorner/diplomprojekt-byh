@@ -27,13 +27,12 @@ pipeline {
 		stage('Report') {
 			steps {
 				junit 'api/target/surefire-reports/*.xml'
-				allure includeProperties: false, jdk: '', results: [[path: 'api/target/allure-results']]
 			}
 		}
 		stage('Actions') {
 			steps {
 				emailext body: '''${SCRIPT, template="build-report.groovy"}''',
-					subject: "[Jenkins] REPORT",
+					subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName}",
 					to: "user@example.com"
 			}
 		}
