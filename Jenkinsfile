@@ -29,12 +29,12 @@ pipeline {
 				junit 'api/target/surefire-reports/*.xml'
 			}
 		}
-		stage('Actions') {
-			steps {
-				emailext attachLog: true, body: '''Job: ${env.JOB_NAME}:${env.BUILD_NUMBER}\nStatus: ${currentBuild.result}''',
-					subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName}",
-					to: "gru18163@spengergasse.at"
-			}
-		}
     }
+	post {
+		alway {
+			emailext attachLog: true, body: """Job: ${env.JOB_NAME}:${env.BUILD_NUMBER}\nStatus: ${currentBuild.result}""",
+				subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName}",
+				to: "gru18163@spengergasse.at"
+		}
+	}
 }
