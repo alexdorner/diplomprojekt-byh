@@ -33,7 +33,7 @@ pipeline {
 			steps {
 				emailext body: '''${SCRIPT, template="build-report.groovy"}''',
 					subject: "[Jenkins] REPORT ${currentBuild.fullDisplayName}",
-					to: "user@example.com"
+					to: "gru18163@spengergasse.at"
 			}
 		}
     }
