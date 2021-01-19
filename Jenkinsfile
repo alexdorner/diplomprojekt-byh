@@ -1,7 +1,7 @@
 pipeline { 
     agent any 
 	stages { 
-		stage ('Initialize') {
+		stage('Initialize') {
             steps {
                 echo "PATH = ${PATH}" 
             }
@@ -24,14 +24,18 @@ pipeline {
 				"""
             }
         }
-		stage('report') {
-			junit 'target/surefire-reports/*.xml'
-			allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+		stage('Report') {
+			steps {
+				junit 'target/surefire-reports/*.xml'
+				allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+			}
 		}
-		stage('actions') {
-			emailext body: '''${SCRIPT, template="build-report.groovy"}''',
-                subject: "[Jenkins] REPORT",
-                to: "user@example.com"
+		stage('Actions') {
+			steps {
+				emailext body: '''${SCRIPT, template="build-report.groovy"}''',
+					subject: "[Jenkins] REPORT",
+					to: "user@example.com"
+			}
 		}
     }
 }
