@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+# Getting Started with BookYourHospital
+
+After the cloning you have to run (in IntelliJ Alt + F12) in the terminal
+
+### `npm install`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## After you installed npm get started
 
 In the project directory, you can run:
 
