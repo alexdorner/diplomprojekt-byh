@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Button, Image } from 'react-bootstrap';
 import history from "../history";
 import "./Home.css";
+import ByhLogo from '../byh_logo.svg';
 
 export default class Home extends Component {
   render() {
     return (
       <div className="Home">
         <div className="lander">
-          <Image src = "./byh_logo.svg"></Image>
+          <img src={ByhLogo}></img>
           <p>Willkommen bei BookYourHospital</p>
           <form>
             <Button variant="dark" onClick={() => history.push('/Ueberweisung')}>Starten</Button>
