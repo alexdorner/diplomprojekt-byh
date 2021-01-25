@@ -6,7 +6,7 @@ pipeline {
                 echo "PATH = ${PATH}" 
             }
         }
-        stage('Build') { 
+        stage('Build API') { 
             steps { 
                bat """
 					cd api
@@ -15,7 +15,7 @@ pipeline {
 				""" 
             }
         }
-		stage('Test') { 
+		stage('Test API') { 
             steps {
 				bat """
 					cd api
@@ -24,11 +24,29 @@ pipeline {
 				"""
             }
         }
-		stage('Report') {
+		stage('Report API') {
 			steps {
 				junit 'api/target/surefire-reports/*.xml'
 			}
 		}
+		stage('Build Webapplikation') { 
+            steps { 
+               bat """
+					cd bookyourhospital
+					cd
+					npm run build
+				""" 
+            }
+        }
+		stage('Test Webapplikation') { 
+            steps {
+				bat """
+					cd bookyourhospital
+					cd
+					npm test
+				"""
+            }
+        }
     }
 	post {
 		always {
