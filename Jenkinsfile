@@ -29,6 +29,15 @@ pipeline {
 				junit 'api/target/surefire-reports/*.xml'
 			}
 		}
+		stage('Install Webapplikation') { 
+            steps { 
+               bat """
+					cd bookyourhospital
+					cd
+					npm install
+				""" 
+            }
+        }
 		stage('Build Webapplikation') { 
             steps { 
                bat """
