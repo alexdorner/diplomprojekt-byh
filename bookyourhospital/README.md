@@ -1,14 +1,14 @@
-# Getting Started with BookYourHospital
-
-After the cloning you have to run (in IntelliJ Alt + F12) in the terminal
-
-### `npm install`
+# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## After you installed npm get started
+## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install http-proxy-middleware`
+
+To prevent CORS error in browser for http://localhost:8080 you must install a proxy
 
 ### `npm start`
 
