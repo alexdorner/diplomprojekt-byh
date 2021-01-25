@@ -24,19 +24,19 @@ public class SmsController {
 	@Autowired
     public TanService tanService;
 
-	//http://localhost:8080/api/sendSms?to=+4369911345176
+	//http://localhost:8080/api/sendSms?to=4369911345176
 	@ResponseBody
 	@GetMapping("/api/sendSms")
 	public String sms(HttpSession session, @RequestParam("to") String to) {
 		
 		smsService.config(smsConfig.getSmsConfig());
-		boolean ret = smsService.send(smsConfig.getSmsConfig().getFrom(), to /*"+4369911345176"*/, "Ihre TAN-Nummer lautet: ", tanService.getTan(session.getId()));
+		boolean ret = smsService.send(smsConfig.getSmsConfig().getFrom(), "+" + to /*"4369911345176"*/, "Ihre TAN-Nummer lautet: ", tanService.getTan(session.getId()));
 		
 		if(ret)
     		jsonString.put("returnCode", "ok");
     	else
     		jsonString.put("returnCode", "nok");
-    	
+		
     	return jsonString.toString();
 	} 
 }
