@@ -1,5 +1,11 @@
 # Getting Started with Spring Boot App
 
+## Import the API 
+Import in IntelliJ or SpringToolSuit 
+## Run the API
+Run Application to start the hole project
+## Try it
+go to the browser and type the URL from the controller (written in the controller classes)
 ## Available Scripts
 
 In the project directory, you can run:
