@@ -1,21 +1,32 @@
-KIS – ERPNext
+K## ****KIS – ERPNext****
 
-•	Installing – 2 options
+ **_Installing – 2 options_**
 
-Own Image:
+choose one (1) option to install the kis:
 
-docker pull alexandradorner/kis
-docker run -d - -name kis -p 80:80 alexandradorner/kis
-docker exec -it kis bash (to get inside the container’s shell and to run bench commands)
+**Own Image:**
 
-ERPNext + Custom App:
+`docker pull alexandradorner/kis ` to pull the docker image
 
-docker pull lukptr/ernext
-docker run -d - -name erpnext -p 81:80 lukptr
-docker exec -it erpnext bash
-bench get-app https://github.com/alexdorner/diplomprojekt-byh
-bench install-app kis
+`docker run -d - -name kis -p 80:80 alexandradorner/kis ` to run the app
+
+--> `localhost:8080` to try it out
+
+`docker exec -it kis bash ` to get inside the container’s shell and to run bench commands
+
+**ERPNext + Custom App:**
+
+`docker pull lukptr/ernext ` to pull the docker image
+
+`docker run -d - -name erpnext -p 81:80 lukptr ` to run the app
+
+`docker exec -it erpnext bash` to get inside the container’s shell and to run bench commands
 
 
+`bench get-app https://github.com/alexdorner/diplomprojekt-byh` to get your custom app (kis)
+
+`bench install-app kis` to install the kis
+
+--> `localhost:8180` to try it out
 
 
