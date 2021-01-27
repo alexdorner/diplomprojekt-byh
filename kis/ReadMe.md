@@ -16,14 +16,6 @@ docker exec -it erpnext bash
 bench get-app https://github.com/alexdorner/diplomprojekt-byh
 bench install-app kis
 
-•	Current Problem (20.01.2021)
 
-Docker crashed some days ago  since then, there are bugs in the main application and framework
-
-Own Image:
-Empty response because of bugs
-
-ERPNext + Custom App:
-Its running, KIS Module is shown but also empty somehow?
 
 
