@@ -10,7 +10,7 @@ def setup_healthcare():
 		return
 	create_medical_departments()
 
-	add_healthcare_service_unit_tree_root()
+	add_KIS_service_unit_tree_root()
 
 def create_medical_departments():
 	departments = [
