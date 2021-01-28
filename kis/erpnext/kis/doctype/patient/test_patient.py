@@ -17,18 +17,9 @@ class TestPatient(unittest.TestCase):
 	def test_patient_registration(self):
 		frappe.db.sql("""delete from `tabPatient`""")
 		settings = frappe.get_single('KIS Settings')
-		settings.collect_registration_fee = 1
-		settings.registration_fee = 500
 		settings.save()
 
 		patient = create_patient()
 		patient = frappe.get_doc('Patient', patient)
-		self.assertEqual(patient.status, 'Disabled')
 
-		# check sales invoice and patient status
-		result = patient.invoice_patient_registration()
-		self.assertTrue(frappe.db.exists('Sales Invoice', result.get('invoice')))
-		self.assertTrue(patient.status, 'Active')
 
-		settings.collect_registration_fee = 0
-		settings.save()

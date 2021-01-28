@@ -9,12 +9,7 @@ def setup_healthcare():
 		# already setup
 		return
 	create_medical_departments()
-	create_antibiotics()
-	create_lab_test_uom()
-	create_duration()
-	create_dosage()
-	create_healthcare_item_groups()
-	create_sensitivity()
+
 	add_healthcare_service_unit_tree_root()
 
 def create_medical_departments():
@@ -25,21 +20,23 @@ def create_medical_departments():
 		"Orthopaedics", "Pathology", "Physiotherapy", "Rheumatology", "Serology", "Urology"
 	]
 	for department in departments:
-		mediacal_department = frappe.new_doc("Medical Department")
-		mediacal_department.department = _(department)
+		medical_department = frappe.new_doc("Medical Department")
+		medical_department.department = _(department)
 		try:
-			mediacal_department.save()
+			medical_department.save()
 		except frappe.DuplicateEntryError:
 			pass
 
+def get_medical_department(medical_department):
+
+	return medical_department
 
 
-
-def add_healthcare_service_unit_tree_root():
+def add_KIS_service_unit_tree_root():
 	record = [
 		{
-			"doctype": "Healthcare Service Unit",
-			"healthcare_service_unit_name": "All Healthcare Service Units",
+			"doctype": "KIS Service Unit",
+			"KIS_service_unit_name": "All KIS Service Units",
 			"is_group": 1,
 			"company": get_company()
 	 	}

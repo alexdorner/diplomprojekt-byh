@@ -11,11 +11,10 @@
  "field_order": [
   "naming_series",
   "title",
-
   "patient",
-  "patient_name",
-  "patient_sex",
-  "patient_age",
+  "patient_mobile",
+  "patient_email",
+
 
   "column_break_1",
   "company",

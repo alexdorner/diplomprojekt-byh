@@ -25,12 +25,12 @@ class PatientAppointment(Document):
 
 	def after_insert(self):
 		self.update_prescription_details()
-		invoice_appointment(self)
+		#invoice_appointment(self)
 		self.update_fee_validity()
-		send_confirmation_msg(self)
+
 
 	def set_title(self):
-		self.title = _('{0} with {1}').format(self.patient_name or self.patient,
+		self.title = _('{0} with {1}').format(self.patient_mobile or self.patient,
 			self.practitioner_name or self.practitioner)
 
 	def set_status(self):
@@ -95,7 +95,7 @@ class PatientAppointment(Document):
 def check_is_new_patient(patient, name=None):
 	filters = {'patient': patient, 'status': ('!=','Cancelled')}
 	if name:
-		filters['name'] = ('!=', name)
+		filters['mobile'] = ('!=', mobile)
 
 	has_previous_appointment = frappe.db.exists('Patient Appointment', filters)
 	if has_previous_appointment:
@@ -225,16 +225,6 @@ def update_status(appointment_id, status):
 		frappe.db.set_value('Procedure Prescription', procedure_prescription, 'appointment_booked', appointment_booked)
 
 
-def send_confirmation_msg(doc):
-	if frappe.db.get_single_value('KIS Settings', 'send_appointment_confirmation'):
-		message = frappe.db.get_single_value('KIS Settings', 'appointment_confirmation_msg')
-		try:
-			send_message(doc, message)
-		except Exception:
-			frappe.log_error(frappe.get_traceback(), _('Appointment Confirmation Message Not Sent'))
-			frappe.msgprint(_('Appointment Confirmation Message Not Sent'), indicator='orange')
-
-
 @frappe.whitelist()
 def make_encounter(source_name, target_doc=None):
 	doc = get_mapped_doc('Patient Appointment', source_name, {
@@ -245,7 +235,7 @@ def make_encounter(source_name, target_doc=None):
 				['patient', 'patient'],
 				['practitioner', 'practitioner'],
 				['medical_department', 'department'],
-				['patient_sex', 'patient_sex'],
+				['patient_mobile', 'patient_mobile'],
 
 				['company', 'company']
 			]
@@ -253,39 +243,6 @@ def make_encounter(source_name, target_doc=None):
 	}, target_doc)
 	return doc
 
-
-def send_appointment_reminder():
-	if frappe.db.get_single_value('KIS Settings', 'send_appointment_reminder'):
-		remind_before = datetime.datetime.strptime(frappe.db.get_single_value('KIS Settings', 'remind_before'), '%H:%M:%S')
-		reminder_dt = datetime.datetime.now() + datetime.timedelta(
-			hours=remind_before.hour, minutes=remind_before.minute, seconds=remind_before.second)
-
-		appointment_list = frappe.db.get_all('Patient Appointment', {
-			'appointment_datetime': ['between', (datetime.datetime.now(), reminder_dt)],
-			'reminded': 0,
-			'status': ['!=', 'Cancelled']
-		})
-
-		for appointment in appointment_list:
-			doc = frappe.get_doc('Patient Appointment', appointment.name)
-			message = frappe.db.get_single_value('KIS Settings', 'appointment_reminder_msg')
-			send_message(doc, message)
-			frappe.db.set_value('Patient Appointment', doc.name, 'reminded', 1)
-
-def send_message(doc, message):
-	patient_mobile = frappe.db.get_value('Patient', doc.patient, 'mobile')
-	if patient_mobile:
-		context = {'doc': doc, 'alert': doc, 'comments': None}
-		if doc.get('_comments'):
-			context['comments'] = json.loads(doc.get('_comments'))
-
-		# jinja to string convertion happens here
-		message = frappe.render_template(message, context)
-		number = [patient_mobile]
-		try:
-			send_sms(number, message)
-		except Exception as e:
-			frappe.msgprint(_('SMS not sent, please check SMS Settings'), alert=True)
 
 @frappe.whitelist()
 def get_events(start, end, filters=None):

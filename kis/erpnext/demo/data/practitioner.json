@@ -1,16 +1,16 @@
 [
 	{
-		"doctype": "Healthcare Practitioner",
+		"doctype": "KIS Practitioner",
 		"first_name": "Eddie Jessup",
 		"department": "Pathology"
 	},
 	{
-		"doctype": "Healthcare Practitioner",
+		"doctype": "KIS Practitioner",
 		"first_name": "Deepshi Garg",
 		"department": "ENT"
 	},
 	{
-		"doctype": "Healthcare Practitioner",
+		"doctype": "KIS Practitioner",
 		"first_name": "Amit Jain",
 		"department": "Microbiology"
 	}

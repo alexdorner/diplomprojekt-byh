@@ -30,14 +30,10 @@ def make_patient():
 
 		for d in enumerate(patient_data):
 			patient = frappe.new_doc("Patient")
-			patient.patient_name = d[1]['patient_name'].title()
-			patient.sex = d[1]['gender']
-			patient.date_of_birth = datetime.datetime(1990, 3, 25)
-			patient.email_id = d[1]['patient_name'] + "_" + patient.date_of_birth.strftime('%m/%d/%Y') + "@example.com"
-			if count <5:
-				patient.insert()
-				frappe.db.commit()
-			count+=1
+			patient.mobile = d[1]['mobile'].title()
+			patient.email = d[1]['email']
+			patient.ID = d[1]['ID']
+
 
 def make_appointment():
 	i = 1
@@ -45,7 +41,6 @@ def make_appointment():
 		practitioner = get_random("KIS Practitioner")
 		department = frappe.get_value("KIS Practitioner", practitioner, "department")
 		patient = get_random("Patient")
-		patient_sex = frappe.get_value("Patient", patient, "sex")
 		appointment = frappe.new_doc("Patient Appointment")
 		startDate = datetime.datetime.now()
 		for x in random_date(startDate,0):
@@ -54,7 +49,7 @@ def make_appointment():
 		appointment.appointment_time = appointment_datetime
 		appointment.appointment_date = appointment_datetime
 		appointment.patient = patient
-		appointment.patient_sex = patient_sex
+
 		appointment.practitioner = practitioner
 		appointment.department = department
 		appointment.save(ignore_permissions = True)
@@ -65,22 +60,22 @@ def make_consulation():
 		practitioner = get_random("KIS Practitioner")
 		department = frappe.get_value("KIS Practitioner", practitioner, "department")
 		patient = get_random("Patient")
-		patient_sex = frappe.get_value("Patient", patient, "sex")
-		encounter = set_encounter(patient, patient_sex, practitioner, department, getdate(), i)
+		patient_ID = frappe.get_value("Patient", patient, "ID")
+		encounter = set_encounter(patient, patient_ID, practitioner, department, getdate(), i)
 		encounter.save(ignore_permissions=True)
 
 def consulation_on_appointment():
 	for i in range(3):
 		appointment = get_random("Patient Appointment")
 		appointment = frappe.get_doc("Patient Appointment",appointment)
-		encounter = set_encounter(appointment.patient, appointment.patient_sex, appointment.practitioner, appointment.department, appointment.appointment_date, i)
+		encounter = set_encounter(appointment.patient, appointment.patient_ID, appointment.practitioner, appointment.department, appointment.appointment_date, i)
 		encounter.appointment = appointment.name
 		encounter.save(ignore_permissions=True)
 
-def set_encounter(patient, patient_sex, practitioner, department, encounter_date, i):
+def set_encounter(patient, patient_ID, practitioner, department, encounter_date, i):
 	encounter = frappe.new_doc("Patient Encounter")
 	encounter.patient = patient
-	encounter.patient_sex = patient_sex
+	encounter.patient_ID = patient_ID
 	encounter.practitioner = practitioner
 	encounter.visit_department = department
 	encounter.encounter_date = encounter_date

@@ -14,7 +14,7 @@ def setup(domain):
 
 
 
-	setup_customer()
+	#setup_customer()
 
 	import_json('Address')
 	import_json('Contact')

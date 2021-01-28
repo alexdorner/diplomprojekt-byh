@@ -14,8 +14,8 @@ def get_data():
 				},
 				{
 					"type": "doctype",
-					"name": "Healthcare Practitioner",
-					"label": _("Healthcare Practitioner"),
+					"name": "KIS Practitioner",
+					"label": _("KIS Practitioner"),
 					"onboard": 1
 				},
 				{
@@ -31,13 +31,13 @@ def get_data():
 				},
 				{
 					"type": "doctype",
-					"name": "Healthcare Service Unit Type",
-					"label": _("Healthcare Service Unit Type")
+					"name": "KIS Service Unit Type",
+					"label": _("KIS Service Unit Type")
 				},
 				{
 					"type": "doctype",
-					"name": "Healthcare Service Unit",
-					"label": _("Healthcare Service Unit")
+					"name": "KIS Service Unit",
+					"label": _("KIS Service Unit")
 				}
 
 			]
@@ -83,8 +83,8 @@ def get_data():
 			"items": [
 				{
 					"type": "doctype",
-					"name": "Healthcare Settings",
-					"label": _("Healthcare Settings"),
+					"name": "KIS Settings",
+					"label": _("KIS Settings"),
 					"onboard": 1
 				}
 			]

@@ -8,7 +8,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import cint, cstr, getdate
 import dateutil
-from frappe.model.naming import set_name_by_naming_series
+from frappe.model.naming import set_mobile_by_naming_series
 from frappe.utils.nestedset import get_root_of
 from erpnext import get_default_currency
 from erpnext.KIS.doctype.KIS_settings.KIS_settings import get_receivable_account, get_income_account, send_registration_sms
@@ -27,9 +27,8 @@ class Patient(Document):
 		if frappe.db.get_single_value('KIS Settings', 'link_customer_to_patient') and not self.customer:
 			create_customer(self)
 		if frappe.db.get_single_value('KIS Settings', 'collect_registration_fee'):
-			frappe.db.set_value('Patient', self.name, 'status', 'Disabled')
-		else:
-			send_registration_sms(self)
+			frappe.db.set_value('Patient', self.mobile, 'status', 'Disabled')
+
 		self.reload() # self.notify_update()
 
 	def on_update(self):
@@ -50,66 +49,40 @@ class Patient(Document):
 			if frappe.db.get_single_value('KIS Settings', 'link_customer_to_patient'):
 				create_customer(self)
 
-	def set_full_name(self):
-		if self.last_name:
-			self.patient_name = ' '.join(filter(None, [self.first_name, self.last_name]))
+
+
+
+	#def add_as_website_user(self):
+	#	if self.email:
+	#		if not frappe.db.exists ('User', self.email):
+	#			user = frappe.get_doc({
+	#				'doctype': 'User',
+	#				'first_name': self.first_name,
+	#				'last_name': self.last_name,
+	#				'email': self.email,
+	#				'user_type': 'Website User'
+	#			})
+	#			user.flags.ignore_permissions = True
+	#			user.add_roles('Patient')
+#
+	def automobile(self):
+		patient_mobile_by = frappe.db.get_single_value('KIS Settings', 'patient_mobile_by')
+		if patient_mobile_by == 'Patient Mobile':
+			self.mobile = self.get_patient_mobile()
 		else:
-			self.patient_name = self.first_name
+			set_mobile_by_naming_series(self)
 
-	def set_missing_customer_details(self):
-		if not self.customer_group:
-			self.customer_group = frappe.db.get_single_value('Selling Settings', 'customer_group') or get_root_of('Customer Group')
-		if not self.territory:
-			self.territory = frappe.db.get_single_value('Selling Settings', 'territory') or get_root_of('Territory')
-		if not self.default_price_list:
-			self.default_price_list = frappe.db.get_single_value('Selling Settings', 'selling_price_list')
+	def get_patient_mobile(self):
 
-		if not self.customer_group or not self.territory or not self.default_price_list:
-			frappe.msgprint(_('Please set defaults for Customer Group, Territory and Selling Price List in Selling Settings'), alert=True)
-
-		if not self.default_currency:
-			self.default_currency = get_default_currency()
-		if not self.language:
-			self.language = frappe.db.get_single_value('System Settings', 'language')
-
-	def add_as_website_user(self):
-		if self.email:
-			if not frappe.db.exists ('User', self.email):
-				user = frappe.get_doc({
-					'doctype': 'User',
-					'first_name': self.first_name,
-					'last_name': self.last_name,
-					'email': self.email,
-					'user_type': 'Website User'
-				})
-				user.flags.ignore_permissions = True
-				user.add_roles('Patient')
-
-	def autoname(self):
-		patient_name_by = frappe.db.get_single_value('KIS Settings', 'patient_name_by')
-		if patient_name_by == 'Patient Name':
-			self.name = self.get_patient_name()
-		else:
-			set_name_by_naming_series(self)
-
-	def get_patient_name(self):
-		self.set_full_name()
-		name = self.patient_name
-		if frappe.db.get_value('Patient', name):
-			count = frappe.db.sql("""select ifnull(MAX(CAST(SUBSTRING_INDEX(name, ' ', -1) AS UNSIGNED)), 0) from tabPatient
-				 where name like %s""", "%{0} - %".format(name), as_list=1)[0][0]
+		mobile = self.patient_mobile
+		if frappe.db.get_value('Patient', mobile):
+			count = frappe.db.sql("""select ifnull(MAX(CAST(SUBSTRING_INDEX(mobile, ' ', -1) AS UNSIGNED)), 0) from tabPatient
+				 where mobile like %s""", "%{0} - %".format(mobile), as_list=1)[0][0]
 			count = cint(count) + 1
-			return "{0} - {1}".format(name, cstr(count))
+			return "{0} - {1}".format(mobile, cstr(count))
 
-		return name
+		return mobile
 
-	def get_age(self):
-		age_str = ''
-		if self.dob:
-			dob = getdate(self.dob)
-			age = dateutil.relativedelta.relativedelta(getdate(), dob)
-			age_str = str(age.years) + ' year(s) ' + str(age.months) + ' month(s) ' + str(age.days) + ' day(s)'
-		return age_str
 
 
 
@@ -131,19 +104,20 @@ def create_customer(doc):
 
 @frappe.whitelist()
 def get_patient_detail(patient):
-	patient_dict = frappe.db.sql("""select * from tabPatient where name=%s""", (patient), as_dict=1)
+	patient_dict = frappe.db.sql("""select * from tabPatient where mobile=%s""", (patient), as_dict=1)
 	if not patient_dict:
 		frappe.throw(_('Patient not found'))
 
-
-def get_timeline_data(doctype, name):
-	"""Return timeline data from medical records"""
-	return dict(frappe.db.sql('''
-		SELECT
-			unix_timestamp(communication_date), count(*)
-		FROM
-			`tabPatient Medical Record`
-		WHERE
-			patient=%s
-			and `communication_date` > date_sub(curdate(), interval 1 year)
-		GROUP BY communication_date''', name))
+#
+#def get_timeline_data(doctype, name):
+#	"""Return timeline data from medical records"""
+#	return dict(frappe.db.sql('''
+#		SELECT
+#			unix_timestamp(communication_date), count(*)
+#		FROM
+#			`tabPatient Medical Record`
+#		WHERE
+#			patient=%s
+#			and `communication_date` > date_sub(curdate(), interval 1 year)
+#		GROUP BY communication_date''', name))
+#
