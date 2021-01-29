@@ -65,5 +65,3 @@ You can test sending SMS in the browser, with the following link:
 You can test the TAN-Service in the browser, with the following link: 
 	http://localhost:8080/api/getTan
 
- 
- 

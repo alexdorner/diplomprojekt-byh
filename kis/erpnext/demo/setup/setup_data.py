@@ -14,7 +14,7 @@ def setup(domain):
 
 
 
-	setup_customer()
+	#setup_customer()
 
 	import_json('Address')
 	import_json('Contact')
@@ -50,8 +50,8 @@ def setup_user_roles(domain):
 	user = frappe.get_doc('User', 'demo@erpnext.com')
 
 
-	if domain == "Healthcare":
-		user.add_roles('Physician', 'Healthcare Administrator', 'Patient')
+	if domain == "KIS":
+		user.add_roles('Physician', 'KIS Administrator', 'Patient')
 
 
 
