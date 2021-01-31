@@ -92,9 +92,9 @@ class PatientAppointment(Document):
 @frappe.whitelist()
 
 
-def check_is_new_patient(patient, name=None):
+def check_is_new_patient(patient, mobile=None):
 	filters = {'patient': patient, 'status': ('!=','Cancelled')}
-	if name:
+	if mobile:
 		filters['mobile'] = ('!=', mobile)
 
 	has_previous_appointment = frappe.db.exists('Patient Appointment', filters)

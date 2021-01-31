@@ -4,7 +4,7 @@ frappe.provide('erpnext.queries');
 frappe.ui.form.on('Patient Appointment', {
 	setup: function(frm) {
 		frm.custom_make_buttons = {
-			'Vital Signs': 'Vital Signs',
+
 			'Patient Encounter': 'Patient Encounter'
 		};
 	},
@@ -51,71 +51,36 @@ frappe.ui.form.on('Patient Appointment', {
 						message: __('Please select Patient first'),
 						indicator: 'red'
 					});
-				} else {
-					frappe.call({
-						method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.check_payment_fields_reqd',
-						args: {'patient': frm.doc.patient},
-						callback: function(data) {
-							if (data.message == true) {
-								if (frm.doc.mode_of_payment && frm.doc.paid_amount) {
-									check_and_set_availability(frm);
-								}
-								if (!frm.doc.mode_of_payment) {
-									frappe.msgprint({
-										title: __('Not Allowed'),
-										message: __('Please select a Mode of Payment first'),
-										indicator: 'red'
-									});
-								}
-								if (!frm.doc.paid_amount) {
-									frappe.msgprint({
-										title: __('Not Allowed'),
-										message: __('Please set the Paid Amount first'),
-										indicator: 'red'
-									});
-								}
+
 							} else {
 								check_and_set_availability(frm);
 							}
-						}
-					});
-				}
+
 			});
 		} else {
 			frm.page.set_primary_action(__('Save'), () => frm.save());
 		}
 
-		if (frm.doc.patient) {
-			frm.add_custom_button(__('Patient History'), function() {
-				frappe.route_options = {'patient': frm.doc.patient};
-				frappe.set_route('patient_history');
-			}, __('View'));
-		}
+
 
 		if (frm.doc.status == 'Open' || (frm.doc.status == 'Scheduled' && !frm.doc.__islocal)) {
-			frm.add_custom_button(__('Cancel'), function() {
+			frm.add_custom_button(__('Cancel'), function () {
 				update_status(frm, 'Cancelled');
 			});
-			frm.add_custom_button(__('Reschedule'), function() {
+			frm.add_custom_button(__('Reschedule'), function () {
 				check_and_set_availability(frm);
 			});
 
 			if (frm.doc.procedure_template) {
-				frm.add_custom_button(__('Clinical Procedure'), function(){
+				frm.add_custom_button(__('Clinical Procedure'), function () {
 					frappe.model.open_mapped_doc({
 						method: 'erpnext.kis.doctype.clinical_procedure.clinical_procedure.make_procedure',
 						frm: frm,
 					});
 				}, __('Create'));
-			} else if (frm.doc.therapy_type) {
-				frm.add_custom_button(__('Therapy Session'),function(){
-					frappe.model.open_mapped_doc({
-						method: 'erpnext.kis.doctype.therapy_session.therapy_session.create_therapy_session',
-						frm: frm,
-					})
-				}, 'Create');
+
 			} else {
-				frm.add_custom_button(__('Patient Encounter'), function() {
+				frm.add_custom_button(__('Patient Encounter'), function () {
 					frappe.model.open_mapped_doc({
 						method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.make_encounter',
 						frm: frm,
@@ -123,77 +88,16 @@ frappe.ui.form.on('Patient Appointment', {
 				}, __('Create'));
 			}
 
-			frm.add_custom_button(__('Vital Signs'), function() {
-				create_vital_signs(frm);
-			}, __('Create'));
 		}
 	},
 
-	patient: function(frm) {
-		if (frm.doc.patient) {
-			frm.trigger('toggle_payment_fields');
-		} else {
-			frm.set_value('patient_name', '');
-			frm.set_value('patient_sex', '');
-			frm.set_value('patient_age', '');
-			frm.set_value('inpatient_record', '');
-		}
-	},
 
-	therapy_plan: function(frm) {
-		frm.trigger('set_therapy_type_filter');
-	},
-
-	set_therapy_type_filter: function(frm) {
-		if (frm.doc.therapy_plan) {
-			frm.call('get_therapy_types').then(r => {
-				frm.set_query('therapy_type', function() {
-					return {
-						filters: {
-							'name': ['in', r.message]
-						}
-					};
-				});
-			});
-		}
-	},
-
-	therapy_type: function(frm) {
-		if (frm.doc.therapy_type) {
-			frappe.db.get_value('Therapy Type', frm.doc.therapy_type, 'default_duration', (r) => {
-				if (r.default_duration) {
-					frm.set_value('duration', r.default_duration)
-				}
-			});
-		}
-	},
 
 	get_procedure_from_encounter: function(frm) {
 		get_prescribed_procedure(frm);
 	},
 
-	toggle_payment_fields: function(frm) {
-		frappe.call({
-			method: 'erpnext.kis.doctype.patient_appointment.patient_appointment.check_payment_fields_reqd',
-			args: {'patient': frm.doc.patient},
-			callback: function(data) {
-				if (data.message.fee_validity) {
-					// if fee validity exists and automated appointment invoicing is enabled,
-					// show payment fields as non-mandatory
-					frm.toggle_display('mode_of_payment', 0);
-					frm.toggle_display('paid_amount', 0);
-					frm.toggle_reqd('mode_of_payment', 0);
-					frm.toggle_reqd('paid_amount', 0);
-				} else {
-					// if automated appointment invoicing is disabled, hide fields
-					frm.toggle_display('mode_of_payment', data.message ? 1 : 0);
-					frm.toggle_display('paid_amount', data.message ? 1 : 0);
-					frm.toggle_reqd('mode_of_payment', data.message ? 1 : 0);
-					frm.toggle_reqd('paid_amount', data.message ? 1 :0);
-				}
-			}
-		});
-	},
+
 
 	get_prescribed_therapies: function(frm) {
 		if (frm.doc.patient) {
@@ -226,7 +130,7 @@ let check_and_set_availability = function(frm) {
 	function show_empty_state(practitioner, appointment_date) {
 		frappe.msgprint({
 			title: __('Not Available'),
-			message: __('Healthcare Practitioner {0} not available on {1}', [practitioner.bold(), appointment_date.bold()]),
+			message: __('KIS Practitioner {0} not available on {1}', [practitioner.bold(), appointment_date.bold()]),
 			indicator: 'red'
 		});
 	}
@@ -459,61 +363,7 @@ let show_procedure_templates = function(frm, result){
 	d.show();
 };
 
-let show_therapy_types = function(frm, result) {
-	var d = new frappe.ui.Dialog({
-		title: __('Prescribed Therapies'),
-		fields: [
-			{
-				fieldtype: 'HTML', fieldname: 'therapy_type'
-			}
-		]
-	});
-	var html_field = d.fields_dict.therapy_type.$wrapper;
-	$.each(result, function(x, y){
-		var row = $(repl('<div class="col-xs-12" style="padding-top:12px; text-align:center;" >\
-		<div class="col-xs-5"> %(encounter)s <br> %(practitioner)s <br> %(date)s </div>\
-		<div class="col-xs-5"> %(therapy)s </div>\
-		<div class="col-xs-2">\
-		<a data-therapy="%(therapy)s" data-therapy-plan="%(therapy_plan)s" data-name="%(name)s"\
-		data-encounter="%(encounter)s" data-practitioner="%(practitioner)s"\
-		data-date="%(date)s"  data-department="%(department)s">\
-		<button class="btn btn-default btn-xs">Add\
-		</button></a></div></div><div class="col-xs-12"><hr/><div/>', {therapy:y[0],
-		name: y[1], encounter:y[2], practitioner:y[3], date:y[4],
-		department:y[6]? y[6]:'', therapy_plan:y[5]})).appendTo(html_field);
 
-		row.find("a").click(function() {
-			frm.doc.therapy_type = $(this).attr("data-therapy");
-			frm.doc.practitioner = $(this).attr("data-practitioner");
-			frm.doc.department = $(this).attr("data-department");
-			frm.doc.therapy_plan = $(this).attr("data-therapy-plan");
-			frm.refresh_field("therapy_type");
-			frm.refresh_field("practitioner");
-			frm.refresh_field("department");
-			frm.refresh_field("therapy-plan");
-			frappe.db.get_value('Therapy Type', frm.doc.therapy_type, 'default_duration', (r) => {
-				if (r.default_duration) {
-					frm.set_value('duration', r.default_duration)
-				}
-			});
-			d.hide();
-			return false;
-		});
-	});
-	d.show();
-};
-
-let create_vital_signs = function(frm) {
-	if (!frm.doc.patient) {
-		frappe.throw(__('Please select patient'));
-	}
-	frappe.route_options = {
-		'patient': frm.doc.patient,
-		'appointment': frm.doc.name,
-		'company': frm.doc.company
-	};
-	frappe.new_doc('Vital Signs');
-};
 
 let update_status = function(frm, status){
 	let doc = frm.doc;
