@@ -17,7 +17,7 @@ public class SmsServiceImpl implements SmsService {
 	        Message message = Message
 	        		.creator(new PhoneNumber(to),
 	        				new PhoneNumber(from),
-	        				text)
+	        				text + tan)
 	        		.create();
 	
 	        System.out.println(message.getSid());
