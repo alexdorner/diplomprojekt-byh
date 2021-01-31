@@ -15,7 +15,7 @@ from erpnext.KIS.doctype.KIS_settings.KIS_settings import get_receivable_account
 
 class Patient(Document):
 	def validate(self):
-		self.set_full_name()
+		self.set_mobile()
 		self.add_as_website_user()
 
 	def before_insert(self):
@@ -39,10 +39,8 @@ class Patient(Document):
 			if self.territory:
 				customer.territory = self.territory
 
-			customer.customer_name = self.patient_name
-			customer.default_price_list = self.default_price_list
-			customer.default_currency = self.default_currency
-			customer.language = self.language
+			customer.customer_mobile = self.patient_mobile
+
 			customer.ignore_mandatory = True
 			customer.save(ignore_permissions=True)
 		else:
@@ -89,7 +87,7 @@ class Patient(Document):
 def create_customer(doc):
 	customer = frappe.get_doc({
 		'doctype': 'Customer',
-		'customer_name': doc.patient_name,
+		'customer_mobile': doc.patient_mobile,
 		'customer_group': doc.customer_group or frappe.db.get_single_value('Selling Settings', 'customer_group'),
 		'territory' : doc.territory or frappe.db.get_single_value('Selling Settings', 'territory'),
 		'customer_type': 'Individual',
@@ -98,8 +96,8 @@ def create_customer(doc):
 		'language': doc.language
 	}).insert(ignore_permissions=True, ignore_mandatory=True)
 
-	frappe.db.set_value('Patient', doc.name, 'customer', customer.name)
-	frappe.msgprint(_('Customer {0} is created.').format(customer.name), alert=True)
+	frappe.db.set_value('Patient', doc.mobile, 'customer', customer.mobile)
+	frappe.msgprint(_('Customer {0} is created.').format(customer.mobile), alert=True)
 
 
 @frappe.whitelist()
