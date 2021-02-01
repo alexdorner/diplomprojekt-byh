@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from setuptools import setup, find_packages
-import re, ast, os
+import re, ast,os
+
 
 # get version from __version__ variable in erpnext/__init__.py
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
+#_version_re = re.compile(r'__version__\s+=\s+(.*)')
 #
 #with open('requirements.txt') as f:
 #	install_requires = f.read().strip().split('\n')
