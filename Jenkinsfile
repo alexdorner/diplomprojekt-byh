@@ -52,7 +52,7 @@ pipeline {
 				bat """
 					cd bookyourhospital
 					cd
-					npm test
+					npm test -- --watchAll=false
 				"""
             }
         }
