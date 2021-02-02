@@ -6,6 +6,7 @@ import Ueberweisung from "./Ueberweisung/Ueberweisung";
 import Home from "./Home/Home";
 import history from './history';
 import Auswahl from "./Auswahl/MedicalDepartment";
+import ServiceUnit from "./Auswahl/ServiceUnit";
 import TanServiceSms from "./TanService/TanServiceSMS";
 import TanServiceEmail from "./TanService/TanServiceEmail";
 import TanCheck from "./TanService/TanCheck";
@@ -22,6 +23,7 @@ export default class Routes extends Component {
                     <Route path="/Contact" component={Contact} />
                     <Route path="/Ueberweisung" component={Ueberweisung} />
                     <Route path="/MedicalDepartment" component={Auswahl}/>
+                    <Route path="/ServiceUnit/:department" component={ServiceUnit}/>
                     <Route path="/TanServiceSMS" component={TanServiceSms}/>
                     <Route path="/TanServiceEmail" component={TanServiceEmail}/>
                     <Route path="/TanCheck" component={TanCheck}/>
