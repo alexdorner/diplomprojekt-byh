@@ -15,6 +15,7 @@ import TanError from "./TanService/TanError";
 import TanNotOK from "./TanService/TanNotOK";
 import AppointmentOverview from "./Appointment/AppointmentOverview";
 import WasUeberweisung from "./Ueberweisung/WasUeberweisung";
+import AppointmentView from "./Appointment/AppointmentView";
 
 export default class Routes extends Component {
     render() {
@@ -33,6 +34,7 @@ export default class Routes extends Component {
                     <Route path="/ServiceUnit/:department" component={ServiceUnit}/>
 
                     <Route path="/AppointmentOverview/:serviceUnit" component={AppointmentOverview}/>
+                    <Route path="/AppointmentView/:appointmentView" component={AppointmentView}/>
 
                     <Route path="/TanServiceSMS" component={TanServiceSms}/>
                     <Route path="/TanServiceEmail" component={TanServiceEmail}/>

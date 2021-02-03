@@ -32,11 +32,11 @@ class AppointmentOverview extends Component{
                 <h1>Ausgewählter Bereich: {this.serviceUnit}</h1>
                 <Col>
                    <ListGroup>
-                       <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                       <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                       <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                       <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                       <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                       <ListGroup.Item href="/AppointmentView">Cras justo odio</ListGroup.Item>
+                       <ListGroup.Item href="/AppointmentView">Dapibus ac facilisis in</ListGroup.Item>
+                       <ListGroup.Item href="/AppointmentView">Morbi leo risus</ListGroup.Item>
+                       <ListGroup.Item href="/AppointmentView">Porta ac consectetur ac</ListGroup.Item>
+                       <ListGroup.Item href="/AppointmentView">Vestibulum at eros</ListGroup.Item>
                    </ListGroup>
                </Col>
             </Container>
