@@ -6,6 +6,8 @@ import ServiceUnit from "../Auswahl/ServiceUnit";
 class AppointmentView extends Component{
     appointmentOverView = this.props.match.params.appointmentOverView
 
+
+
     async componentDidMount(){
         try {
             let result = await fetch("http://localhost:8080/api", {
@@ -31,13 +33,12 @@ class AppointmentView extends Component{
             <Container>
                 <h1>Ausgewählter Termin: {this.appointmentOverView}</h1>
                 <Col>
-                    <ListGroup>
-                        <ListGroup.Item href="/AppointmentView">Cras justo odio</ListGroup.Item>
-                        <ListGroup.Item href="/AppointmentView">Dapibus ac facilisis in</ListGroup.Item>
-                        <ListGroup.Item href="/AppointmentView">Morbi leo risus</ListGroup.Item>
-                        <ListGroup.Item href="/AppointmentView">Porta ac consectetur ac</ListGroup.Item>
-                        <ListGroup.Item href="/AppointmentView">Vestibulum at eros</ListGroup.Item>
-                    </ListGroup>
+                    <p>Adresse so und so</p>
+                </Col>
+                <Col>
+                    <div style={{ height: '100vh', width: '100%' }}>
+
+                    </div>
                 </Col>
             </Container>
         );

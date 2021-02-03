@@ -32,11 +32,11 @@ class AppointmentOverview extends Component{
                 <h1>Ausgewählter Bereich: {this.serviceUnit}</h1>
                 <Col>
                    <ListGroup>
-                       <ListGroup.Item href="/AppointmentView">Cras justo odio</ListGroup.Item>
-                       <ListGroup.Item href="/AppointmentView">Dapibus ac facilisis in</ListGroup.Item>
-                       <ListGroup.Item href="/AppointmentView">Morbi leo risus</ListGroup.Item>
-                       <ListGroup.Item href="/AppointmentView">Porta ac consectetur ac</ListGroup.Item>
-                       <ListGroup.Item href="/AppointmentView">Vestibulum at eros</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test1")} href="/AppointmentView/Test1">Tes1</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test2")} href="/AppointmentView/Test2">Tes2</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test3")} href="/AppointmentView/Test3">Test3</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test4")} href="/AppointmentView/ZTest4">Test4</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test5")} href="/AppointmentView/Test5">Test5</ListGroup.Item>
                    </ListGroup>
                </Col>
             </Container>
