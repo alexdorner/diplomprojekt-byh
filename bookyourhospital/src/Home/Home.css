@@ -13,9 +13,14 @@
     font-size: large;
 }
 
-.Home Image{
-    max-width: 100%;
+.Home-Image{
+    width: 30px;
+    height: 15px;
 
+}
+
+.Home-Button{
+    padding-left: 15px;
 }
 
 
