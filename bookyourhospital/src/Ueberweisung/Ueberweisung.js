@@ -2,27 +2,26 @@ import React, { Component } from 'react';
 import { Button, Table, Container, Row, Col } from 'react-bootstrap';
 import history from "../history";
 import { withRouter } from 'react-router-dom';
+import "./Ueberweisung.css";
 
 
 class Ueberweisung extends Component {
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col>Haben Sie eine Ueberweisung?</Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Button variant="dark" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
-                    </Col>
-                    <Col>
-                        <Button variant="dark" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
-                    </Col>
-                    <Col>
-                        <Button variant="dark" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Ueberweisung?</Button>
-                    </Col>
-                </Row>
-            </Container>
+            <center>
+                <div className="Ueberweisung" style={{ padding: 30 }}>
+                    <h2>Haben Sie eine Ueberweisung?</h2>
+                </div>
+                <div style={{ padding: 10 }}>
+                    <Button variant="dark" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
+                </div>
+                <div style={{ padding: 10 }}>
+                    <Button variant="dark" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
+                </div>
+                <div style={{ padding: 10 }}>
+                    <Button variant="dark" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Ueberweisung?</Button>
+                </div>
+            </center>
         );
     }
 }

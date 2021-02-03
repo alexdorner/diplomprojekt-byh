@@ -34,13 +34,13 @@ class ServiceUnit extends Component{
                 </Row>
                 <Row>
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Art auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="/calender">Mittelfuß</Dropdown.Item>
-                            <Dropdown.Item href="/calender">Hüfte</Dropdown.Item>
-                            <Dropdown.Item href="/calender">Schulter</Dropdown.Item>
+                            <Dropdown.Item href="/AppointmentOverview">Mittelfuß</Dropdown.Item>
+                            <Dropdown.Item href="/AppointmentOverview">Hüfte</Dropdown.Item>
+                            <Dropdown.Item href="/AppointmentOverview">Schulter</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Row>
