@@ -11,18 +11,24 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SMSControllerTest {
-
+public class AppointmentControllerTest {
+	
 	@Autowired
 	MockMvc mockMvc;
 	
 	@Test
-	public void testSMS() throws Exception {
-		/*
+	public void getAppointment() throws Exception {
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api/sendSms?to=4369911345176"))
+			.perform(MockMvcRequestBuilders.get("/api/1"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
-			*/
+	}
+
+	@Test
+	public void getAppointments() throws Exception {
+		mockMvc
+			.perform(MockMvcRequestBuilders.get("/api"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isOk()); 
 	}
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table, Container, Row, Col, Dropdown } from 'react-bootstrap';
 import history from "../history";
 import ServiceUnit from "./ServiceUnit";
+import "./Auswahl.css";
 
 class MedicalDepartment extends Component {state = { data : "" }
 
@@ -14,14 +15,14 @@ class MedicalDepartment extends Component {state = { data : "" }
 
     render() {
         return (
-            <Container>
-                <Row>
-                    Bitte wählen Sie einen Fachbereich aus!
-                </Row>
-                <Row>
+            <center>
+                <div className="MedicalDepartment" style={{ padding: 30 }}>
+                    <h2>Bitte wählen Sie einen Fachbereich aus!</h2>
+                </div>
+                <div>
                     <Dropdown id="drop">
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Fachbereich auswählen
+                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                           Fachbereich auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => this.postData("Orthopäde")} href="/ServiceUnit/Orthopaedie">Orthopaedie</Dropdown.Item>
@@ -29,8 +30,8 @@ class MedicalDepartment extends Component {state = { data : "" }
                             <Dropdown.Item onClick={() => this.postData("Augenambulanz")} href="/ServiceUnit/Augenambulanz">Augenambulanz</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                </Row>
-            </Container>
+                </div>
+            </center>
         );
     }
 }

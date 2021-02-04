@@ -27,24 +27,26 @@ class ServiceUnit extends Component{
 
     render() {
         return (
-            <Container>
-                <h1>Ausgewählte Abteilung: {this.department}</h1>
-                <Row>
-                    Bitte wählen Sie eine Art aus!
-                </Row>
-                <Row>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Art auswählen
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="/calender">Mittelfuß</Dropdown.Item>
-                            <Dropdown.Item href="/calender">Hüfte</Dropdown.Item>
-                            <Dropdown.Item href="/calender">Schulter</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Row>
-            </Container>
+            <center>
+                <div style={{ padding: 30 }}>
+                    <h1>Ausgewählte Abteilung: {this.department}</h1>
+                    <div style={{ padding: 30 }}>
+                        <h5>Bitte wählen Sie eine Art aus!</h5>
+                    </div>
+                    <div style={{ padding: 30 }}>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                Art auswählen
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => this.postData("Mittelfuß")} href="/AppointmentOverview/Mittelfuß">Mittelfuß</Dropdown.Item>
+                                <Dropdown.Item onClick={() => this.postData("Hüfte")} href="/AppointmentOverview/Huefte">Hüfte</Dropdown.Item>
+                                <Dropdown.Item onClick={() => this.postData("Schulter")} href="/AppointmentOverview/Schulter">Schulter</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                </div>
+            </center>
         );
     }
 }
