@@ -17,6 +17,7 @@ import AppointmentOverview from "./Appointment/AppointmentOverview";
 import WhatTransfer from "./Transfer/WhatTransfer";
 import AppointmentView from "./Appointment/AppointmentView";
 import AppointmentConfirm from "./Appointment/AppointmentConfirm";
+import AppointmentCancel from "./Appointment/AppointmentCancel";
 
 export default class Routes extends Component {
     render() {
@@ -37,6 +38,7 @@ export default class Routes extends Component {
                     <Route path="/AppointmentOverview/:serviceUnit" component={AppointmentOverview}/>
                     <Route path="/AppointmentView/:appointmentOverView" component={AppointmentView}/>
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
+                    <Route path="/AppointmentCancle" component={AppointmentCancel}/>
 
                     <Route path="/TanServiceSMS" component={TanServiceSms}/>
                     <Route path="/TanServiceEmail" component={TanServiceEmail}/>
