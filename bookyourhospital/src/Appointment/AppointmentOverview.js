@@ -35,7 +35,7 @@ class AppointmentOverview extends Component{
                        <ListGroup.Item onClick={() => this.postData("Test1")} href="/AppointmentView/Test1">Tes1</ListGroup.Item>
                        <ListGroup.Item onClick={() => this.postData("Test2")} href="/AppointmentView/Test2">Tes2</ListGroup.Item>
                        <ListGroup.Item onClick={() => this.postData("Test3")} href="/AppointmentView/Test3">Test3</ListGroup.Item>
-                       <ListGroup.Item onClick={() => this.postData("Test4")} href="/AppointmentView/ZTest4">Test4</ListGroup.Item>
+                       <ListGroup.Item onClick={() => this.postData("Test4")} href="/AppointmentView/Test4">Test4</ListGroup.Item>
                        <ListGroup.Item onClick={() => this.postData("Test5")} href="/AppointmentView/Test5">Test5</ListGroup.Item>
                    </ListGroup>
                </Col>
