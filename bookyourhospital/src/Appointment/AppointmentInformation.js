@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Col, Container} from "react-bootstrap";
 
-class AppointmentConfirm extends Component {
-    appointmentInformation = this.props.match.params.appointmentInformation
+class AppointmentInformation extends Component {
+    appointmentView = this.props.match.params.appointmentView
 
     async componentDidMount(){
         try {
@@ -14,7 +14,7 @@ class AppointmentConfirm extends Component {
                     'Content-type': 'application/json',
                 },
                 body: JSON.stringify({
-                    appointmentInformation: this.appointmentInformation
+                    appointmentView: this.appointmentView
                 })
             })
         }
@@ -27,7 +27,7 @@ class AppointmentConfirm extends Component {
     render() {
         return (
             <Container>
-                <h1>Ausgewählter Termin: {this.appointmentInformation}</h1>
+                <h1>Ausgewählter Termin: {this.appointmentView}</h1>
                 <Col>
                     <p>Adresse so und so</p>
                 </Col>
@@ -39,4 +39,4 @@ class AppointmentConfirm extends Component {
         );
     }
 }
-export default AppointmentConfirm;
+export default AppointmentInformation;
