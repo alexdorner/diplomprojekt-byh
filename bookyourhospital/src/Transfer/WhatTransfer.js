@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Button, Table, Container, Row, Col } from 'react-bootstrap';
 import history from "../history";
 import { withRouter } from 'react-router-dom';
-import "./Ueberweisung.css";
+import "./Transfer.css";
 
 
-class WasUeberweisung extends Component {
+class WhatTransfer extends Component {
 
     render() {
         return (
@@ -16,4 +16,4 @@ class WasUeberweisung extends Component {
     }
 
 }
-export default withRouter(WasUeberweisung);
+export default withRouter(WhatTransfer);

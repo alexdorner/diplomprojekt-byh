@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Table, Container, Row, Col, Dropdown, ListGroup, ListGroupItem} from 'react-bootstrap';
 import history from "../history";
-import ServiceUnit from "../Auswahl/ServiceUnit";
+import ServiceUnit from "../Selection/ServiceUnit";
 
 class AppointmentView extends Component{
     appointmentOverView = this.props.match.params.appointmentOverView

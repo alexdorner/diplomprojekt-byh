@@ -4,7 +4,7 @@ import history from "../history";
 import { withRouter } from 'react-router-dom';
 
 
-class KeineUeberweisung extends Component{
+class NoTransfer extends Component{
 
     render() {
         return (
@@ -19,4 +19,4 @@ class KeineUeberweisung extends Component{
         );
     }
 }
-export default withRouter(KeineUeberweisung);
+export default withRouter(NoTransfer);
