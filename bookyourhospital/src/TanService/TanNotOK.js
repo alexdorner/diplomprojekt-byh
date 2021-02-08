@@ -9,10 +9,10 @@ class TanNotOK extends Component {
                 <Row>
                     <Col>
                         <br></br>
-                        <div class="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <h4>Der Tan stimmt mit dem gesendeten Tan nicht überein</h4>
                         </div>
-                        <div class="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <a href="./TanCheck">Tan nochmal eingeben</a>
                         </div>
                     </Col>

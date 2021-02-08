@@ -18,13 +18,13 @@ class TanServiceSMS extends Component {
 
     sendSMS(event) {
         event.preventDefault();
-        console.log('clicked sendSMS: ' + this.state.sms);
+        //console.log('clicked sendSMS: ' + this.state.sms);
 
         //Change URL localhost to Server URL
         fetch("http://localhost:3000/api/sendSms?to=" + this.state.sms)
         .then(response => response.json())
         .then((jsonData) => {
-            console.log(jsonData);
+            //console.log(jsonData);
 
             if(jsonData.returnCode == "ok") {
                 this.props.history.push('/TanCheck');
@@ -48,15 +48,15 @@ class TanServiceSMS extends Component {
                     <Col></Col>
                     <Col>
                         <br></br>
-                        <div class="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <h1>Tan per SMS</h1>
                         </div>
                         <Form onSubmit={this.sendSMS} method='POST'>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <input value={this.state.sms} onChange={this.changeSMS} type="tel" id="to" name="to" className="form-control" placeholder="Telefonnummer (+431234567)" required autoFocus></input>
                             </div>
                             <br></br>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <Button size="lg" variant="dark" type="submit">Senden</Button>
                             </div>
                         </Form>

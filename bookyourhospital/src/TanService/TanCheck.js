@@ -18,7 +18,7 @@ class TanCheck extends Component {
 
     sendTan(event) {
         event.preventDefault();
-        console.log('clicked sendTan: ' + this.state.tan);
+        //console.log('clicked sendTan: ' + this.state.tan);
 
         //TODO: Change URL localhost to Server URL
         fetch("http://localhost:3000/api/getTan")
@@ -50,15 +50,15 @@ class TanCheck extends Component {
                     <Col></Col>
                     <Col>
                         <br></br>
-                        <div class="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <h2>Tan Prüfung</h2>
                         </div>
                         <Form onSubmit={this.sendTan} method='POST'>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <input value={this.state.tan} onChange={this.changeTan} type="number" id="tan" name="tan" className="form-control" placeholder="Tan" required autoFocus min="10000" max="99999"></input>
                             </div>
                             <br></br>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <Button type="submit">Senden</Button>
                             </div>
                         </Form>

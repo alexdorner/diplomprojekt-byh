@@ -18,13 +18,13 @@ class TanServiceEmail extends Component {
 
     sendEmail(event) {
         event.preventDefault();
-        console.log('clicked sendEmail: ' + this.state.email);
+        //console.log('clicked sendEmail: ' + this.state.email);
 
         //TODO: Change URL localhost to Server URL
         fetch("http://localhost:3000/api/sendMail?to=" + this.state.email)
         .then(response => response.json())
         .then((jsonData) => {
-            console.log(jsonData);
+            //console.log(jsonData);
 
             if(jsonData.returnCode == "ok") {
                 this.props.history.push('/TanCheck');
@@ -48,15 +48,15 @@ class TanServiceEmail extends Component {
                     <Col></Col>
                     <Col>
                         <br></br>
-                        <div class="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <h1>Tan per E-Mail</h1>
                         </div>
                         <Form onSubmit={this.sendEmail} method='POST'>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <input value={this.state.email} onChange={this.changeEmail} type="email" id="to" name="to" className="form-control" placeholder="E-Mail Adresse" required autoFocus></input>
                             </div>
                             <br></br>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <Button size="lg" variant="dark" type="submit">Senden</Button>
                             </div>
                         </Form>
