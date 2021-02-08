@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Row, Col, Container, Form, Button } from 'react-bootstrap';
+import "./TanService.css"
 
 class TanCheck extends Component {
 
@@ -43,20 +45,27 @@ class TanCheck extends Component {
 
     render() {
         return (
-            <center>
-                <div className="TanCheck" style={{ padding: 30 }}>
-                    <div style={{ width: '400px' }}>
-                        <div><h2>Tan Prüfung</h2></div>
-                        <div>
-                            <form onSubmit={this.sendTan} method='POST'>
-                                <input value={this.state.tan} onChange={this.changeTan} type="number" id="tan" name="tan" className="form-control" placeholder="Tan" required autoFocus min="10000" max="99999"></input>
-                                <br></br>
-                                <button type="submit">Senden</button>
-                            </form>
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <br></br>
+                        <div class="d-flex justify-content-center">
+                            <h2>Tan Prüfung</h2>
                         </div>
-                    </div>
-                </div>
-            </center>
+                        <Form onSubmit={this.sendTan} method='POST'>
+                            <div class="d-flex justify-content-center">
+                                <input value={this.state.tan} onChange={this.changeTan} type="number" id="tan" name="tan" className="form-control" placeholder="Tan" required autoFocus min="10000" max="99999"></input>
+                            </div>
+                            <br></br>
+                            <div class="d-flex justify-content-center">
+                                <Button type="submit">Senden</Button>
+                            </div>
+                        </Form>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }

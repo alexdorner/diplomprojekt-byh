@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import "./TanService.css"
 
 class TanServiceEmail extends Component {
@@ -42,20 +43,27 @@ class TanServiceEmail extends Component {
 
     render() {
         return (
-            <center>
-                <div className="TanServiceEmail" style={{ padding: 30 }}>
-                    <div style={{ width: '400px' }}>
-                        <div><h2>Tan per E-Mail</h2></div>
-                        <div>
-                            <form onSubmit={this.sendEmail} method='POST'>
-                                <input value={this.state.email} onChange={this.changeEmail} type="email" id="to" name="to" className="form-control" placeholder="E-Mail Adresse" required autoFocus></input>
-                                <br></br>
-                                <button type="submit">Senden</button>
-                            </form>
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <br></br>
+                        <div class="d-flex justify-content-center">
+                            <h1>Tan per E-Mail</h1>
                         </div>
-                    </div>
-                </div>
-            </center>
+                        <Form onSubmit={this.sendEmail} method='POST'>
+                            <div class="d-flex justify-content-center">
+                                <input value={this.state.email} onChange={this.changeEmail} type="email" id="to" name="to" className="form-control" placeholder="E-Mail Adresse" required autoFocus></input>
+                            </div>
+                            <br></br>
+                            <div class="d-flex justify-content-center">
+                                <Button size="lg" variant="dark" type="submit">Senden</Button>
+                            </div>
+                        </Form>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }
