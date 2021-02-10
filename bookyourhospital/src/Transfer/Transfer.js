@@ -16,10 +16,10 @@ class Transfer extends Component {
                     <Button variant="dark" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" onClick={() => history.push('/KeineUeberweisung')}>Nein</Button>
+                    <Button variant="dark" onClick={() => history.push('/NoTransfer')}>Nein</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Transfer?</Button>
+                    <Button variant="dark" onClick={() => history.push('/WhatTransfer')}>Was ist eine Transfer?</Button>
                 </div>
             </center>
         );

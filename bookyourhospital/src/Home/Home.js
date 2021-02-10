@@ -12,7 +12,7 @@ export default class Home extends Component {
           <div className="lander">
             <Image src={ByhLogo}></Image>
             <h4>Willkommen bei BookYourHospital</h4>
-            <Button size="lg" variant="dark" onClick={() => history.push('/Ueberweisung')}>Starten</Button>
+            <Button size="lg" variant="dark" onClick={() => history.push('/Transfer')}>Starten</Button>
             <Button size="lg" variant="dark" onClick={() => history.push('/Cancel')}>Stornieren</Button>
           </div>
         </div>
