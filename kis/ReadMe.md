@@ -14,10 +14,16 @@
 `--> localhost:80` to try it out
 
 ** Requests you can try: **
+
 http://localhost/api/resource/Medical%20Department
+
 http://localhost/api/resource/Patient
+
 http://localhost/api/resource/Practitioner
+
 http://localhost/api/resource/Appointment Type
+
 http://localhost/api/resource/Patient Appointment
+
 
 ...
