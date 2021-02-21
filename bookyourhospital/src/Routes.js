@@ -13,6 +13,7 @@ import TanServiceEmail from "./TanService/TanServiceEmail";
 import TanCheck from "./TanService/TanCheck";
 import TanError from "./TanService/TanError";
 import TanNotOK from "./TanService/TanNotOK";
+import TanOK from "./TanService/TanOK";
 import AppointmentOverview from "./Appointment/AppointmentOverview";
 import WhatTransfer from "./Transfer/WhatTransfer";
 import AppointmentView from "./Appointment/AppointmentView";
@@ -45,6 +46,7 @@ export default class Routes extends Component {
                     <Route path="/TanCheck" component={TanCheck}/>
                     <Route path="/TanError" component={TanError}/>
                     <Route path="/TanNotOK" component={TanNotOK}/>
+                    <Route path="/TanOK" component={TanOK}/>
                 </Switch>
             </Router>
         )

@@ -28,8 +28,8 @@ class TanCheck extends Component {
 
             if(jsonData.tan == this.state.tan) {
                 //TODO: Redirect to Url for Tan OK
-                //this.props.history.push('/');
-                //this.props.history.go();
+                this.props.history.push('/TanOK');
+                this.props.history.go();
             } else {
                 //console.log("nok");
                 this.props.history.push('/TanNotOK');
@@ -43,6 +43,33 @@ class TanCheck extends Component {
         })
     }
 
+    render() {
+        return (
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <br></br>
+                        <Form onSubmit={this.sendTan}>
+                            <Form.Group>
+                                <Form.Label className="d-flex justify-content-center"><h2>Tan Prüfung</h2></Form.Label>
+                                <Form.Control value={this.state.tan} onChange={this.changeTan} type="number" placeholder="Tan" id="tan" name="tan" required autoFocus/>
+                            </Form.Group>
+                            <div className="d-flex justify-content-center">
+                                <Button size="lg" variant="dark" type="submit">Senden</Button>
+                            </div>
+                        </Form>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
+        );
+    }
+}
+
+export default TanCheck;
+
+/*
     render() {
         return (
             <Container>
@@ -69,5 +96,4 @@ class TanCheck extends Component {
         );
     }
 }
-
-export default TanCheck;
+*/
