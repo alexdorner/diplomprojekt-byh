@@ -11,7 +11,7 @@ public class Appointment extends DomainResource{
 
     Set<Participant> participant = new HashSet<Participant>();//Da ist dann der Appointment_Type und der Patient drinnen
     Set<Reference> slot = new HashSet<Reference>(); //duration
-    public LocalDateTime start; //appointment_time
+    public String start; //appointment_time
 
     public Set<Participant> getParticipant() {
         return participant;
@@ -29,11 +29,11 @@ public class Appointment extends DomainResource{
         this.slot = slot;
     }
 
-    public LocalDateTime getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(String start) {
         this.start = start;
     }
 

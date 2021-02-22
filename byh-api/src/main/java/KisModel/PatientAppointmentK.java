@@ -195,11 +195,13 @@ public class PatientAppointmentK  {
     public void setService_unit(String service_unit) {
         this.service_unit = service_unit;
     }
-    @JsonIgnore
+
+
+
     public String getAppointment_time() {
         return appointment_time;
     }
-    @JsonIgnore
+
     public void setAppointment_time(String appointment_time) {
         this.appointment_time = appointment_time;
     }

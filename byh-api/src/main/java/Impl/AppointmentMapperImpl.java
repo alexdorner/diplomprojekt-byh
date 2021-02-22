@@ -26,7 +26,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Patient patient = new Patient();
         Reference ref1 = new Reference();
         Reference ref2 = new Reference();
-        ref1.setReference("http://192.189.51.8/api/resource/Appointment%20Type/" + patientAppointmentK.getAppointment_type()    );//referenziert zum HealthCareService
+        ref1.setReference("http://192.189.51.8/api/resource/Appointment%20Type/" );//referenziert zum HealthCareService
         ref1.setType("HealthCareService");
         ref2.setReference("Referenz zum Patienten");
         ref2.setType("Patient");
@@ -34,6 +34,8 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         participant.add(new Participant(ref2));
         appointment.setParticipant(participant);
         appointment.setId(patientAppointmentK.getName());
+        appointment.setStart(patientAppointmentK.getAppointment_time());
+        // reference für den Slot fehlt noch
         return appointment;
     }
 }

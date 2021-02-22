@@ -8,12 +8,6 @@ public class PatientK {
     String mobile;
 
 
-    public PatientK(String patientK_UUID, String patientK_Email, String patientK_Mobile) {
-        this.ID = patientK_UUID;
-        this.email = patientK_Email;
-        this.mobile = patientK_Mobile;
-    }
-
 
     public String getID() {
         return ID;
