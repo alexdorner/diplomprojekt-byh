@@ -13,16 +13,6 @@ public class Appointment extends DomainResource{
     Set<Reference> slot = new HashSet<Reference>(); //duration
     public LocalDateTime start; //appointment_time
 
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String Name;
-
     public Set<Participant> getParticipant() {
         return participant;
     }

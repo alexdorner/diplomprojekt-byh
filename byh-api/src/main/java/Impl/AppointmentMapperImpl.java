@@ -18,7 +18,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
             return null;
         }
         Appointment appointment = new Appointment();
-        /*
+
         Set<Participant> participant = new HashSet<>();
         AppointmentTypeK appointmentTypeK = new AppointmentTypeK();
         HealthcareServiceMapperImpl health = new HealthcareServiceMapperImpl();
@@ -32,9 +32,8 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         ref2.setType("Patient");
         participant.add(new Participant(ref1));
         participant.add(new Participant(ref2));
-        //appointment.setParticipant(participant);
-         */
-        appointment.setName(patientAppointmentK.getName());
+        appointment.setParticipant(participant);
+
         return appointment;
     }
 }

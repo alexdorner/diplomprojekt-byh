@@ -11,11 +11,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
             return null;
         }
         Organization organization = new Organization();
-
-        //Appointment
-        //Healthcare Service
-        // Organization
-
         organization.setName(medicalDepartmentK.getKis_service_unit_name());
         return organization;
     }
