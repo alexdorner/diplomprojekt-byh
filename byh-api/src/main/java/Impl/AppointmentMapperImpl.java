@@ -33,7 +33,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         participant.add(new Participant(ref1));
         participant.add(new Participant(ref2));
         appointment.setParticipant(participant);
-
+        appointment.setId(patientAppointmentK.getName());
         return appointment;
     }
 }

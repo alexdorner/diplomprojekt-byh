@@ -36,11 +36,13 @@ public class AppointmentController {
 }
     @GetMapping("/Get")
     public @ResponseBody
-    static void getAll() {
-        final String uri = "http://192.189.51.8/api/resource/Patient Appointment";
+    static String getAll() {
+        //final String uri = "http://192.189.51.8/api/resource/Patient Appointment";
+        final String uri = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
         RestTemplate restTemplate = new RestTemplate();
-        PatientAppointmentWrapper result = restTemplate.getForObject(uri, PatientAppointmentWrapper.class);
-        System.out.println(result);
+        //PatientAppointmentWrapper result = restTemplate.getForObject(uri, PatientAppointmentWrapper.class);
+        String result = restTemplate.getForObject(uri, String.class);
+        return result;
 
     }
 
