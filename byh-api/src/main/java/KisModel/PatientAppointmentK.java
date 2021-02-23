@@ -139,11 +139,11 @@ public class PatientAppointmentK  {
     public void setAppointment_type(String appointment_type) {
         this.appointment_type = appointment_type;
     }
-    @JsonIgnore
+
     public String getCompany() {
         return company;
     }
-    @JsonIgnore
+
     public void setCompany(String company) {
         this.company = company;
     }
@@ -229,56 +229,5 @@ public class PatientAppointmentK  {
     public String service_unit;
     public String appointment_time;
 }
-    /*
 
-    //Patient musst du noch dazu geben
-    //Department kommt auch noch dazu
-    public String name; //ich glaub das ist die id
-    public String appointment_time;
-    public AppointmentTypeK appointment_type;
-    public int duration;
-
-
-    public String getAppointment_time() {
-        return appointment_time;
-    }
-
-    public void setAppointment_time(String appointment_time) {
-        this.appointment_time = appointment_time;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
-    public AppointmentTypeK getAppointment_type() {
-        return appointment_type;
-    }
-
-    public void setAppointment_type(AppointmentTypeK appointment_type) {
-        this.appointment_type = appointment_type;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-
-
-
-
-
-}
-     */
 // equvalent zu appointment
