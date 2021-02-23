@@ -10,8 +10,6 @@ class MedicalDepartment extends Component {
     async componentWillMount() {
         const url = "http://localhost:8080/api/healthcareservice/Get";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
-        //console.log(this.state.data.name);
-        //this.state.data.map(entry => console.log(entry.name));
     }
 
     render() {
