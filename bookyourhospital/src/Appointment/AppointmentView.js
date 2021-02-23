@@ -32,14 +32,13 @@ class AppointmentView extends Component{
         return (
             <Container>
                 <h1>Ausgewählter Termin: {this.appointmentOverView}</h1>
-                <Col>
+                <Row>
                     <p>Adresse so und so</p>
-                </Col>
-                <Col>
-                    <div style={{ height: '100vh', width: '100%' }}>
-
-                    </div>
-                </Col>
+                </Row>
+                <Row>
+                    <p>Map</p>
+                </Row>
+                <Button size="lg" variant="dark" onClick={() => history.push('/AppointmentInformation')}>Weiter</Button>
             </Container>
         );
     }

@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import {Col, Container} from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 
@@ -32,15 +32,12 @@ class AppointmentCancel extends Component {
             <center>
                 <h1>Termin stornieren </h1>
                 <div>
-                    <form onSubmit={} method='DELETE'>
-                        <input value={} onChange={} type="email" id="to" name="to" className="form-control" placeholder="Termincode" required autoFocus></input>
-                        <br></br>
+                    <form>
                         <button type="submit">Weiter</button>
                     </form>
                 </div>
-
             </center>
         );
     }
-}*/
-//export default withRouter(AppointmentCancel);
+}
+export default withRouter(AppointmentCancel);
