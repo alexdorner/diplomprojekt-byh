@@ -67,11 +67,11 @@ public class PatientAppointmentK  {
     public void setModified_by(String modified_by) {
         this.modified_by = modified_by;
     }
-    @JsonIgnore
+
     public String getAppointment_date() {
         return appointment_date;
     }
-    @JsonIgnore
+
     public void setAppointment_date(String appointment_date) {
         this.appointment_date = appointment_date;
     }
@@ -99,11 +99,11 @@ public class PatientAppointmentK  {
     public void setPatient_name(String patient_name) {
         this.patient_name = patient_name;
     }
-    @JsonIgnore
+
     public String getDepartment() {
         return department;
     }
-    @JsonIgnore
+
     public void setDepartment(String department) {
         this.department = department;
     }
@@ -131,11 +131,11 @@ public class PatientAppointmentK  {
     public void setPractitioner(String practitioner) {
         this.practitioner = practitioner;
     }
-    @JsonIgnore
+
     public String getAppointment_type() {
         return appointment_type;
     }
-    @JsonIgnore
+
     public void setAppointment_type(String appointment_type) {
         this.appointment_type = appointment_type;
     }

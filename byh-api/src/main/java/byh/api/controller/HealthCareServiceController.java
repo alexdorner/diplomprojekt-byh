@@ -33,5 +33,23 @@ public class HealthCareServiceController {
         });
         return services;
     }
-}
 
+    @GetMapping("/{id}")
+    public  @ResponseBody
+    HealthCareService getOneAppointmentType (@PathVariable String id) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Set<HealthCareService> services = new HashSet<>();
+        HealthcareServiceMapperImpl hp = new HealthcareServiceMapperImpl();
+        String json = "{\"data\":[{\"name\":\"Erstgespraech\"},{\"name\":\"Kontrolle\"},{\"name\":\"Untersuchung\"}]}";//kommt raus sobalt ich einen http Request verschicken kann
+        AppointmentTypeWrapper appointments = objectMapper.readValue(json, AppointmentTypeWrapper.class);
+        appointments.getData().forEach(a -> {
+            services.add(hp.FromAptToHcs(a));
+        });
+        for (HealthCareService h : services){
+            if (h.getId().equals(id)){
+                return h;
+            }
+        }
+        return null;
+    }
+}

@@ -29,4 +29,23 @@ public class OrganizationController {
         });
         return o;
     }
+
+    @GetMapping("/{id}")
+    public Organization getOneOrganization(@PathVariable String id) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Set<Organization> o = new HashSet<>();
+        OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
+        String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
+        MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
+        wrapper.getData().forEach( organization ->{
+            o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
+        });
+        for (Organization org : o){
+            if (org.getId().equals(id)){
+                return org;
+            }
+        }
+        return null;
+    }
+
 }
