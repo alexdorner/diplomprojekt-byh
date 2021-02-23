@@ -7,9 +7,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface DepartmentMapper {
+public interface OrganizationMapper {
 
-    DepartmentMapper departmentMapper = Mappers.getMapper(DepartmentMapper.class);
+    OrganizationMapper organizationtMapper = Mappers.getMapper(OrganizationMapper.class);
     Organization FromKisDepartmentToOrganization (MedicalDepartmentK medicalDepartmentK);
 
 

@@ -8,6 +8,7 @@ import KisModel.PatientAppointmentK;
 import KisModel.PatientAppointmentWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,12 +38,12 @@ public class AppointmentController {
     @GetMapping("/Get")
     public @ResponseBody
     static String getAll() {
-        //final String uri = "http://192.189.51.8/api/resource/Patient Appointment";
-        final String uri = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
+        final String uriPa = "http://192.189.51.8/api/resource/Patient Appointment";
+        final String uriLo = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
         RestTemplate restTemplate = new RestTemplate();
-        //PatientAppointmentWrapper result = restTemplate.getForObject(uri, PatientAppointmentWrapper.class);
-        String result = restTemplate.getForObject(uri, String.class);
-        return result;
+        restTemplate.getForObject(uriLo, JSONObject.class);
+        PatientAppointmentWrapper result = restTemplate.getForObject(uriPa, PatientAppointmentWrapper.class);
+        return "";
 
     }
 

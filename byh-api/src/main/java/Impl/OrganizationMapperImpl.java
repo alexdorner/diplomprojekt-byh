@@ -2,16 +2,17 @@ package Impl;
 
 import FhirModel.Organization;
 import KisModel.MedicalDepartmentK;
-import mapper.DepartmentMapper;
+import mapper.OrganizationMapper;
 
-public class DepartmentMapperImpl implements DepartmentMapper {
+public class OrganizationMapperImpl implements OrganizationMapper {
     @Override
     public Organization FromKisDepartmentToOrganization(MedicalDepartmentK medicalDepartmentK) {
         if(medicalDepartmentK == null){
             return null;
         }
         Organization organization = new Organization();
-        organization.setName(medicalDepartmentK.getKis_service_unit_name());
+        organization.setName(medicalDepartmentK.getName());
+        organization.setId(medicalDepartmentK.getName());
         return organization;
     }
 }

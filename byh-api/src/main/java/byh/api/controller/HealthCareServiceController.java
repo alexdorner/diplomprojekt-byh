@@ -34,17 +34,4 @@ public class HealthCareServiceController {
         return services;
     }
 }
-/*
-**************ALTE METHODEN*******************
 
-    @GetMapping("/GetAll")
-    public  @ResponseBody
-    Iterable<HealthCareService> GetHealthcare (@RequestBody Set<AppointmentTypeK> appointmentTypeKSet){
-        Set<HealthCareService> services = new HashSet<>();
-        HealthcareServiceMapperImpl hp = new HealthcareServiceMapperImpl();
-        appointmentTypeKSet.forEach(a -> {
-            services.add(hp.FromAptToHcs(a));
-        });
-        return services;
-    }
- */
