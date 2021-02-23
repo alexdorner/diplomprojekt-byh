@@ -1,15 +1,10 @@
 package Impl;
 
-import FhirModel.ContactPoint;
 import FhirModel.Patient;
 import KisModel.PatientK;
-import Model.PatienKIS;
-import Model.PatientFHIR;
 import mapper.PatientMapper;
 
-import java.util.Locale;
-
- public class PatientMapperImpl implements PatientMapper {
+public class PatientMapperImpl implements PatientMapper {
 
 
      @Override

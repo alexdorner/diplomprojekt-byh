@@ -2,8 +2,6 @@ package mapper;
 
 import FhirModel.Patient;
 import KisModel.PatientK;
-import Model.PatienKIS;
-import Model.PatientFHIR;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
