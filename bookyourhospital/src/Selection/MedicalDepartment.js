@@ -7,13 +7,11 @@ import "./Selection.css";
 class MedicalDepartment extends Component {
     state = {data: []}
 
-    async componentDidMount() {
+    async componentWillMount() {
         const url = "http://localhost:8080/api/healthcareservice/Get";
-        const response = await fetch(url).then(response => response.json()).then(data => this.state.data = data);
-        console.log(this.state.data);
-        this.state.data.map(entry => console.log(entry.name));
-        var feld = document.getElementById("meineID")
-        feld.innerText = this.state.data;
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        //console.log(this.state.data.name);
+        //this.state.data.map(entry => console.log(entry.name));
     }
 
     render() {
@@ -22,18 +20,13 @@ class MedicalDepartment extends Component {
                 <div className="MedicalDepartment" style={{padding: 30}}>
                     <h2>Bitte wählen Sie einen Fachbereich aus!</h2>
                 </div>
-                <div id="data">
-                    <p id="meineID"></p>
-                    Ende
-                </div>
                 <div>
                     <Dropdown id="drop">
                         <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Fachbereich auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {this.state.data.map(el => <Dropdown.Item onClick={() => this.postData("Augenambulanz")}
-                                                                      href="/ServiceUnit/Augenambulanz">{el.name}</Dropdown.Item>)}
+                            {this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.name}>{el.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
