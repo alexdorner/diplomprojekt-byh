@@ -22,7 +22,7 @@ public class OrganizationController {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-        String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
+        String json ="{"data":[{"name":"Plastische, Rekonstruktive und Aethetische Chirurgie"},{"name":"Psychiatrie und Psychotherapie"},{"name":"Thoraxchirurgie"},{"name":"Radiologie/Nuklearmedizin"},{"name":"Urologie"},{"name":"Mund-, Kiefer-, und Gesichtschirurgie"},{"name":"Notfallmedizin"},{"name":"Neurologie"},{"name":"Neurochirurgie"},{"name":"Klinische Pharmakologie"},{"name":"Kinder - und Jugenheilkunde"},{"name":"Innere Medizin"},{"name":"Herzchirurgie"},{"name":"HNO"},{"name":"Ggynaekologie"},{"name":"Dermatologie"},{"name":"Augenheilkunde"},{"name":"Anaesthesie"},{"name":"Allgemeinchirurgie"},{"name":"Orthopaedie"}]}";
         MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
             o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
@@ -35,7 +35,7 @@ public class OrganizationController {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-        String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
+        String json ="{"data":[{"name":"Plastische, Rekonstruktive und Aethetische Chirurgie"},{"name":"Psychiatrie und Psychotherapie"},{"name":"Thoraxchirurgie"},{"name":"Radiologie/Nuklearmedizin"},{"name":"Urologie"},{"name":"Mund-, Kiefer-, und Gesichtschirurgie"},{"name":"Notfallmedizin"},{"name":"Neurologie"},{"name":"Neurochirurgie"},{"name":"Klinische Pharmakologie"},{"name":"Kinder - und Jugenheilkunde"},{"name":"Innere Medizin"},{"name":"Herzchirurgie"},{"name":"HNO"},{"name":"Ggynaekologie"},{"name":"Dermatologie"},{"name":"Augenheilkunde"},{"name":"Anaesthesie"},{"name":"Allgemeinchirurgie"},{"name":"Orthopaedie"}]}";
         MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
             o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
