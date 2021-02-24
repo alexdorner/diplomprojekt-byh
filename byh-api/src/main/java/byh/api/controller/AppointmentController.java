@@ -6,6 +6,7 @@ import Impl.AppointmentMapperImpl;
 import KisModel.AppointmentTypeWrapper;
 import KisModel.PatientAppointmentK;
 import KisModel.PatientAppointmentWrapper;
+import KisModel.PatientAppointmentWrapperList;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
@@ -37,13 +38,13 @@ public class AppointmentController {
 }
     @GetMapping("/Get")
     public @ResponseBody
-    static String getAll() {
-        final String uriPa = "http://192.189.51.8/api/resource/Patient Appointment";
+    static PatientAppointmentWrapperList getAll() {
+        final String uriPa = "http://192.189.51.8/api/resource/Patient Appointment?sid=963f39c24b198e6266333c0fbfec89c28b8f1eda6755980e4fceb93c";
         final String uriLo = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getForObject(uriLo, JSONObject.class);
-        PatientAppointmentWrapper result = restTemplate.getForObject(uriPa, PatientAppointmentWrapper.class);
-        return "";
+
+        PatientAppointmentWrapperList result = restTemplate.getForObject(uriPa, PatientAppointmentWrapperList.class);
+        return result;
 
     }
 

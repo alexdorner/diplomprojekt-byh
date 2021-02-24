@@ -6,6 +6,7 @@ import KisModel.MedicaldepartmentWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,10 +21,13 @@ public class OrganizationController {
     public @ResponseBody
     Iterable<Organization> getAllOrganizations (/*@RequestBody OrganizationWrapper organization*/) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
+        final String medicalDepartment = "http://192.189.51.8/api/resource/Medical Department?sid=963f39c24b198e6266333c0fbfec89c28b8f1eda6755980e4fceb93c";
+        RestTemplate restTemplate = new RestTemplate();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-        String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
-        MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
+
+        //String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
+        MedicaldepartmentWrapper wrapper = restTemplate.getForObject(medicalDepartment, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
             o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
         });
