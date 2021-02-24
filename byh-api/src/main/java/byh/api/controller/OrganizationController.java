@@ -22,7 +22,7 @@ public class OrganizationController {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-        String json = ""{\data\":[{"\name\":"\Plastische, Rekonstruktive und Aethetische Chirurgie"},{"\name\":"\Psychiatrie und Psychotherapie"},{"\name\":"\Thoraxchirurgie"};"
+        String json = "{\"data\":[{\"name\":\"Plastische, Rekonstruktive und Aethetische Chirurgie\"},{\"name\":\"Psychiatrie und Psychotherapie\"},{\"name\":\"Thoraxchirurgie\"}]}";
         MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
             o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
@@ -35,7 +35,7 @@ public class OrganizationController {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-        String json = ""{\data\":[{"\name\":"\Plastische, Rekonstruktive und Aethetische Chirurgie"},{"\name\":"\Psychiatrie und Psychotherapie"},{"\name\":"\Thoraxchirurgie"};"
+        String json = "{\"data\":[{\"name\":\"Plastische, Rekonstruktive und Aethetische Chirurgie\"},{\"name\":\"Psychiatrie und Psychotherapie\"},{\"name\":\"Thoraxchirurgie\"}]}";
         MedicaldepartmentWrapper wrapper = objectMapper.readValue(json, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
             o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
