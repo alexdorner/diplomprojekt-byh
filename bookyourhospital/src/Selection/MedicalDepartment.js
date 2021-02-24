@@ -8,7 +8,7 @@ class MedicalDepartment extends Component {
     state = {data: []}
 
     async componentWillMount() {
-        const url = "http://localhost:8080/api/healthcareservice/Get";
+        const url = "http://localhost:8080/api/organization/Get";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
     }
 
@@ -24,7 +24,7 @@ class MedicalDepartment extends Component {
                             Fachbereich auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.name}>{el.name}</Dropdown.Item>)}
+                            {this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.id}>{el.id}</Dropdown.Item>)}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
