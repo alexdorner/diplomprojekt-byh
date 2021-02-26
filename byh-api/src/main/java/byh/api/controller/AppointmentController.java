@@ -3,10 +3,7 @@ package byh.api.controller;
 
 import FhirModel.*;
 import Impl.AppointmentMapperImpl;
-import KisModel.AppointmentTypeWrapper;
-import KisModel.PatientAppointmentK;
-import KisModel.PatientAppointmentWrapper;
-import KisModel.PatientAppointmentWrapperList;
+import KisModel.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
@@ -18,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -25,28 +23,46 @@ import java.util.Set;
 @CrossOrigin
 public class AppointmentController {
 
+    //Die Methode filtert nach MedicalDepartment(Organization), Service Unit(Device)
     @GetMapping("/GetAll")
     public @ResponseBody
-    Iterable<Appointment> getAllAppointments() throws JsonProcessingException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    Set<Appointment> appointments = new HashSet<>();
-    AppointmentMapperImpl appointmentMapper = new AppointmentMapperImpl();
-    String json = "{\"data\":{\"creation\":\"2021-02-02 20:16:04.115358\",\"doctype\":\"Patient Appointment\",\"owner\":\"Administrator\",\"duration\":10,\"patient\":\"HLC-PAT-2021-00001\",\"invoiced\":0,\"modified_by\":\"Administrator\",\"appointment_date\":\"2021-02-18\",\"paid_amount\":0.0,\"reminded\":0,\"patient_name\":\"Melanie Pakchehr\",\"department\":\"Orthopaedics\",\"docstatus\":0,\"status\":\"Open\",\"practitioner\":\"Alexandra Dorner\",\"appointment_type\":\"Untersuchung\",\"company\":\"BookYourHospital\",\"referring_practitioner\":\"Alexandra Dorner\",\"name\":\"OP-000001\",\"idx\":0,\"patient_sex\":\"Female\",\"modified\":\"2021-02-02 20:16:08.059841\",\"service_unit\":\"\",\"appointment_time\":\"18:40:00\"}}";
-    PatientAppointmentWrapper wrapper = objectMapper.readValue(json, PatientAppointmentWrapper.class);
-    appointments.add(appointmentMapper.FromPaToAppointment(wrapper.getData()));
-    return appointments;
-}
-    @GetMapping("/Get")
-    public @ResponseBody
-    static PatientAppointmentWrapperList getAll() {
-        final String uriPa = "http://192.189.51.8/api/resource/Patient Appointment?sid=963f39c24b198e6266333c0fbfec89c28b8f1eda6755980e4fceb93c";
-        final String uriLo = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
+    Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice) throws JsonProcessingException {
+        final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?sid=f0300b7d56325a7319a27df7a3aef341805093fcd56de241a82a6d1f";
         RestTemplate restTemplate = new RestTemplate();
+        Set<Appointment> listAppointment = new HashSet<>();
+        Set<Appointment> appointments = new HashSet<>();
+        AppointmentMapperImpl appointmentMapper = new AppointmentMapperImpl();
+        PatientAppointmentWrapperList appointmentListWrapper = restTemplate.getForObject(allAppointments, PatientAppointmentWrapperList.class);
+        appointmentListWrapper.getData().forEach(list -> {
+            listAppointment.add(appointmentMapper.FromPaListToAppointment(list));
+        });
 
-        PatientAppointmentWrapperList result = restTemplate.getForObject(uriPa, PatientAppointmentWrapperList.class);
-        return result;
+        listAppointment.forEach(item ->{
+            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?sid=f0300b7d56325a7319a27df7a3aef341805093fcd56de241a82a6d1f" ;
+            PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
+            appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));
+        });
+        Set<Appointment> filtered = new HashSet<>();
 
+        if (idOrganization == null || idOrganization == "" && idDevice == null || idDevice == ""){
+            return appointments;
+        }
+        if(idOrganization != null){
+            appointments.forEach(a ->{
+                a.getParticipant().forEach(participant -> {
+                    if (participant.getActor().getType().equals(idOrganization)){
+                        filtered.add(a);
+                    }
+                });
+            });
+            return filtered;
+        }
+
+        return appointments;
     }
-
-
 }
+//o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
+
+//Die Methode filtert dann nach Datum und oder KH
+
+

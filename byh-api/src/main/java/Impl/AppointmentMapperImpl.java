@@ -38,11 +38,21 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         appointment.setCreated(patientAppointmentK.getAppointment_date());
         Reference ref4 = new Reference();
         ref4.setId("ref4");
-        ref4.setType("Location = Organization/MedicalDepartment");
+        ref4.setType(patientAppointmentK.getDepartment());
         ref4.setReference("http://localhost:8080/api/organization/" + patientAppointmentK.getDepartment());
         participant.add(new Participant(ref4));
 
         // reference für den Slot fehlt noch
+        return appointment;
+    }
+
+    @Override
+    public Appointment FromPaListToAppointment(PatientAppointmentK patientAppointmentK) {
+        if(patientAppointmentK == null){
+            return null;
+        }
+        Appointment appointment = new Appointment();
+        appointment.setId(patientAppointmentK.getName());
         return appointment;
     }
 }

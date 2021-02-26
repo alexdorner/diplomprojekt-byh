@@ -11,4 +11,6 @@ public interface AppointmentMapper {
 
     Appointment FromPaToAppointment (PatientAppointmentK patientAppointmentK);
 
+    Appointment FromPaListToAppointment(PatientAppointmentK patientAppointmentK);
+
 }
