@@ -3,6 +3,7 @@ package FhirModel;
 
 public class HealthCareService extends DomainResource{
     public Reference providedBy;
+
     public String name;
 
     public String getName() {

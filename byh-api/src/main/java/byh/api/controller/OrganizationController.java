@@ -25,7 +25,6 @@ public class OrganizationController {
         RestTemplate restTemplate = new RestTemplate();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
-
         //String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
         MedicaldepartmentWrapper wrapper = restTemplate.getForObject(medicalDepartment, MedicaldepartmentWrapper.class);
         wrapper.getData().forEach( organization ->{
