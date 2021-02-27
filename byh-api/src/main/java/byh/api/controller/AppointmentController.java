@@ -27,7 +27,7 @@ public class AppointmentController {
     @GetMapping("/GetAll")
     public @ResponseBody
     Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice) throws JsonProcessingException {
-        final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?sid=f0300b7d56325a7319a27df7a3aef341805093fcd56de241a82a6d1f";
+        final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?sid=c14fa5e7c5e3a1bdb4848a3ba97895c3d9696f1b3b860e37a1c1492b";
         RestTemplate restTemplate = new RestTemplate();
         Set<Appointment> listAppointment = new HashSet<>();
         Set<Appointment> appointments = new HashSet<>();
@@ -38,7 +38,7 @@ public class AppointmentController {
         });
 
         listAppointment.forEach(item ->{
-            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?sid=f0300b7d56325a7319a27df7a3aef341805093fcd56de241a82a6d1f" ;
+            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?sid=c14fa5e7c5e3a1bdb4848a3ba97895c3d9696f1b3b860e37a1c1492b" ;
             PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
             appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));
         });

@@ -21,7 +21,7 @@ public class OrganizationController {
     public @ResponseBody
     Iterable<Organization> getAllOrganizations (/*@RequestBody OrganizationWrapper organization*/) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        final String medicalDepartment = "http://192.189.51.8/api/resource/Medical Department?sid=f0300b7d56325a7319a27df7a3aef341805093fcd56de241a82a6d1f";
+        final String medicalDepartment = "http://192.189.51.8/api/resource/Medical Department?sid=c14fa5e7c5e3a1bdb4848a3ba97895c3d9696f1b3b860e37a1c1492b";
         RestTemplate restTemplate = new RestTemplate();
         Set<Organization> o = new HashSet<>();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
