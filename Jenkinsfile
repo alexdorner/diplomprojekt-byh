@@ -9,7 +9,7 @@ pipeline {
         stage('Build API') { 
             steps { 
                sh """
-					cd api
+					cd byh-api
 					cd
 					mvn compile
 				""" 
@@ -18,7 +18,7 @@ pipeline {
 		stage('Test API') { 
             steps {
 				sh """
-					cd api
+					cd byh-api
 					cd
 					mvn test
 				"""
@@ -26,7 +26,7 @@ pipeline {
         }
 		stage('Report API') {
 			steps {
-				junit 'api/target/surefire-reports/*.xml'
+				junit 'byh-api/target/surefire-reports/*.xml'
 			}
 		}
 		stage('Install Webapplikation') { 
