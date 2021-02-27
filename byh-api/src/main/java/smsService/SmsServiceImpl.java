@@ -12,12 +12,16 @@ public class SmsServiceImpl implements SmsService {
     	Twilio.init(smsConfig.getAccountSID(), smsConfig.getAuthToken());
     }
 
-    public boolean send(String from, String to, String text, int tan) {
+	public boolean send(String from, String to, String text, int tan) {
+    	return send(from, to, text + tan);
+    }
+	
+    public boolean send(String from, String to, String text) {
     	try {
 	        Message message = Message
 	        		.creator(new PhoneNumber(to),
 	        				new PhoneNumber(from),
-	        				text + tan)
+	        				text )
 	        		.create();
 	
 	        System.out.println(message.getSid());

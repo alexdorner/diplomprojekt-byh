@@ -8,6 +8,12 @@ class TanServiceSMS extends Component {
         super(props);
         this.state = {sms: ''};
 
+        if(this.props.match != null) {
+            this.parent = this.props.match.params.parent;
+        } else {
+            this.parent = "parent";
+        }
+
         this.changeSMS = this.changeSMS.bind(this);
         this.sendSMS = this.sendSMS.bind(this);
     }
@@ -27,16 +33,16 @@ class TanServiceSMS extends Component {
             //console.log(jsonData);
 
             if(jsonData.returnCode == "ok") {
-                this.props.history.push('/TanCheck');
+                this.props.history.push('/TanCheck/' + this.parent + "/sms/" + this.state.sms);
                 this.props.history.go();
             } else {
-                this.props.history.push('/TanError');
+                this.props.history.push('/TanError/' + this.parent);
                 this.props.history.go();
             }
         })
         .catch((error) => {
             console.error(error);
-            this.props.history.push('/TanError');
+            this.props.history.push('/TanError/' + this.parent);
             this.props.history.go();
         })
     }
@@ -45,12 +51,12 @@ class TanServiceSMS extends Component {
         return (
             <Container>
                 <Row>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                     <Col>
                         <br></br>
                         <Form onSubmit={this.sendSMS}>
                             <Form.Group>
-                                <Form.Label className="d-flex justify-content-center"><h1>Tan per SMS</h1></Form.Label>
+                                <Form.Label className="d-flex justify-content-center"><h4>Bitte geben Sie Ihre Telefonnummer an</h4></Form.Label>
                                 <Form.Control value={this.state.sms} onChange={this.changeSMS} type="sms" placeholder="Telefonnummer (+431234567)" id="to" name="to" required autoFocus/>
                             </Form.Group>
                             <div className="d-flex justify-content-center">
@@ -58,7 +64,7 @@ class TanServiceSMS extends Component {
                             </div>
                         </Form>
                     </Col>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                 </Row>
             </Container>
         );

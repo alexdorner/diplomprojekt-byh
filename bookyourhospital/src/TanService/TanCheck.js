@@ -8,6 +8,16 @@ class TanCheck extends Component {
         super(props);
         this.state = {tan: ''};
 
+        if(this.props.match != null) {
+            this.parent = this.props.match.params.parent
+            this.type = this.props.match.params.type
+            this.to = this.props.match.params.to
+        } else {
+            this.parent = "parent"
+            this.type = "type"
+            this.to = "to"
+        }
+
         this.changeTan = this.changeTan.bind(this);
         this.sendTan = this.sendTan.bind(this);
     }
@@ -28,17 +38,17 @@ class TanCheck extends Component {
 
             if(jsonData.tan == this.state.tan) {
                 //TODO: Redirect to Url for Tan OK
-                this.props.history.push('/TanOK');
+                this.props.history.push('/TanOK/' + this.parent + "/" + this.type + "/" + this.to);
                 this.props.history.go();
             } else {
                 //console.log("nok");
-                this.props.history.push('/TanNotOK');
+                this.props.history.push('/TanNotOK/' + this.parent + "/" + this.type + "/" + this.to);
                 this.props.history.go();
             }
         })
         .catch((error) => {
             console.error(error);
-            this.props.history.push('/TanError');
+            this.props.history.push('/TanError/' + this.parent);
             this.props.history.go();
         })
     }
@@ -47,12 +57,12 @@ class TanCheck extends Component {
         return (
             <Container>
                 <Row>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                     <Col>
                         <br></br>
                         <Form onSubmit={this.sendTan}>
                             <Form.Group>
-                                <Form.Label className="d-flex justify-content-center"><h2>Tan Prüfung</h2></Form.Label>
+                                <Form.Label className="d-flex justify-content-center"><h2>Bitte geben Sie Ihre TAN an</h2></Form.Label>
                                 <Form.Control value={this.state.tan} onChange={this.changeTan} type="number" placeholder="Tan" id="tan" name="tan" required autoFocus/>
                             </Form.Group>
                             <div className="d-flex justify-content-center">
@@ -60,7 +70,7 @@ class TanCheck extends Component {
                             </div>
                         </Form>
                     </Col>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                 </Row>
             </Container>
         );

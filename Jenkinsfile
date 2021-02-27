@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Build API') { 
             steps { 
-               bat """
-					cd api
+               sh """
+					cd byh-api
 					cd
 					mvn compile
 				""" 
@@ -17,8 +17,8 @@ pipeline {
         }
 		stage('Test API') { 
             steps {
-				bat """
-					cd api
+				sh """
+					cd byh-api
 					cd
 					mvn test
 				"""
@@ -26,12 +26,12 @@ pipeline {
         }
 		stage('Report API') {
 			steps {
-				junit 'api/target/surefire-reports/*.xml'
+				junit 'byh-api/target/surefire-reports/*.xml'
 			}
 		}
 		stage('Install Webapplikation') { 
             steps { 
-               bat """
+               sh """
 					cd bookyourhospital
 					cd
 					npm install
@@ -40,7 +40,7 @@ pipeline {
         }
 		stage('Build Webapplikation') { 
             steps { 
-               bat """
+               sh """
 					cd bookyourhospital
 					cd
 					npm run build
@@ -49,7 +49,7 @@ pipeline {
         }
 		stage('Test Webapplikation') { 
             steps {
-				bat """
+				sh """
 					cd bookyourhospital
 					cd
 					npm test -- --watchAll=false
