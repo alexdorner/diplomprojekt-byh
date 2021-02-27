@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build API') { 
             steps { 
-               bat """
+               sh """
 					cd api
 					cd
 					mvn compile
@@ -17,7 +17,7 @@ pipeline {
         }
 		stage('Test API') { 
             steps {
-				bat """
+				sh """
 					cd api
 					cd
 					mvn test
@@ -31,7 +31,7 @@ pipeline {
 		}
 		stage('Install Webapplikation') { 
             steps { 
-               bat """
+               sh """
 					cd bookyourhospital
 					cd
 					npm install
@@ -40,7 +40,7 @@ pipeline {
         }
 		stage('Build Webapplikation') { 
             steps { 
-               bat """
+               sh """
 					cd bookyourhospital
 					cd
 					npm run build
@@ -49,7 +49,7 @@ pipeline {
         }
 		stage('Test Webapplikation') { 
             steps {
-				bat """
+				sh """
 					cd bookyourhospital
 					cd
 					npm test -- --watchAll=false

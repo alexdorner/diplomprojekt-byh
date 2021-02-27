@@ -3,10 +3,15 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import "./TanService.css"
 
 class TanServiceEmail extends Component {
-
     constructor(props) {
         super(props);
         this.state = {email: ''};
+
+        if(this.props.match != null) {
+            this.parent = this.props.match.params.parent;
+        } else {
+            this.parent = "parent";
+        }
 
         this.changeEmail = this.changeEmail.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
@@ -27,16 +32,16 @@ class TanServiceEmail extends Component {
                 //console.log(jsonData);
 
                 if (jsonData.returnCode == "ok") {
-                    this.props.history.push('/TanCheck');
+                    this.props.history.push('/TanCheck/' + this.parent + "/email/" + this.state.email);
                     this.props.history.go();
                 } else {
-                    this.props.history.push('/TanError');
+                    this.props.history.push('/TanError/' + this.parent);
                     this.props.history.go();
                 }
             })
             .catch((error) => {
                 console.error(error);
-                this.props.history.push('/TanError');
+                this.props.history.push('/TanError/' + this.parent);
                 this.props.history.go();
             })
     }
@@ -46,12 +51,12 @@ class TanServiceEmail extends Component {
         return (
             <Container>
                 <Row>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                     <Col>
                         <br></br>
             <Form onSubmit={this.sendEmail}>
                 <Form.Group>
-                    <Form.Label className="d-flex justify-content-center"><h1>Tan per E-Mail</h1></Form.Label>
+                    <Form.Label className="d-flex justify-content-center"><h3>Bitte geben Sie Ihre E-Mail an</h3></Form.Label>
                     <Form.Control value={this.state.email} onChange={this.changeEmail} type="email" placeholder="E-Mail Adresse" id="to" name="to" required autoFocus/>
                 </Form.Group>
                 <div className="d-flex justify-content-center">
@@ -59,7 +64,7 @@ class TanServiceEmail extends Component {
                 </div>
             </Form>
                     </Col>
-                    <Col></Col>
+                    <Col xs="3"></Col>
                     </Row>
             </Container>
         );
