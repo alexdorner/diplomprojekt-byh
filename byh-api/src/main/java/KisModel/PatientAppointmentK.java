@@ -187,11 +187,11 @@ public class PatientAppointmentK  {
     public void setModified(String modified) {
         this.modified = modified;
     }
-    @JsonIgnore
+
     public String getService_unit() {
         return service_unit;
     }
-    @JsonIgnore
+
     public void setService_unit(String service_unit) {
         this.service_unit = service_unit;
     }

@@ -23,11 +23,11 @@ import java.util.stream.Stream;
 @CrossOrigin
 public class AppointmentController {
 
-    //Die Methode filtert nach MedicalDepartment(Organization), Service Unit(Device)
+    //Die Methode filtert nach MedicalDepartment(Organization), Service Unit(Device), und datum
     @GetMapping("/GetAll")
     public @ResponseBody
-    Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice) throws JsonProcessingException {
-        final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?sid=c14fa5e7c5e3a1bdb4848a3ba97895c3d9696f1b3b860e37a1c1492b";
+    Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice, @RequestParam(required = false) String datum) throws JsonProcessingException {
+        final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?sid=20a292333176f36356ea99f01a7025b8a2659d2e5052a50026e903d0";
         RestTemplate restTemplate = new RestTemplate();
         Set<Appointment> listAppointment = new HashSet<>();
         Set<Appointment> appointments = new HashSet<>();
@@ -38,7 +38,7 @@ public class AppointmentController {
         });
 
         listAppointment.forEach(item ->{
-            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?sid=c14fa5e7c5e3a1bdb4848a3ba97895c3d9696f1b3b860e37a1c1492b" ;
+            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?sid=20a292333176f36356ea99f01a7025b8a2659d2e5052a50026e903d0" ;
             PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
             appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));
         });
@@ -61,8 +61,6 @@ public class AppointmentController {
         return appointments;
     }
 }
-//o.add((organizationMapper.FromKisDepartmentToOrganization(organization)));
 
-//Die Methode filtert dann nach Datum und oder KH
 
 

@@ -18,11 +18,22 @@ public class DeviceMapperImpl implements DeviceMapper {
         deviceName.setName(serviceUnit.getName());
         device.setDeviceName(deviceName);
         Reference reference = new Reference();
-        reference.setType("Device");
-        reference.setReference("Referez zum Organization");
+        reference.setType(serviceUnit.getDepartment());
+        reference.setReference("http://localhost:8080/api/organization/" + serviceUnit.getDepartment());
         device.setOwner(reference);
         reference.setId("ref01");
         deviceName.setId(serviceUnit.getName());
         return device;
     }
+
+    @Override
+    public Device FromDeviceListToDevice(ServiceUnit serviceUnit) {
+        if(serviceUnit == null){
+            return null;
+        }
+        Device device = new Device();
+        device.setId(serviceUnit.getName());
+        return device;
+    }
 }
+

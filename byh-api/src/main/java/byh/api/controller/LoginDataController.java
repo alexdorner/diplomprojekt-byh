@@ -36,4 +36,3 @@ public class LoginDataController {
     }
 //List<Session.Cookie>
 }
-

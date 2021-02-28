@@ -10,4 +10,6 @@ public interface DeviceMapper {
     DeviceMapper deviceMapper = Mappers.getMapper(DeviceMapper.class);
 
     Device FromerviceUnitToDevice (ServiceUnit serviceUnit);
+
+    Device FromDeviceListToDevice (ServiceUnit serviceUnit);
 }

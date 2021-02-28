@@ -41,7 +41,10 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         ref4.setType(patientAppointmentK.getDepartment());
         ref4.setReference("http://localhost:8080/api/organization/" + patientAppointmentK.getDepartment());
         participant.add(new Participant(ref4));
-
+        Reference ref5 = new Reference();
+        ref5.setType(patientAppointmentK.getService_unit());
+        ref5.setReference("Referenz zum device");
+        participant.add(new Participant(ref5));
         // reference für den Slot fehlt noch
         return appointment;
     }

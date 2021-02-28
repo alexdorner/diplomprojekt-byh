@@ -1,15 +1,13 @@
 package byh.api.controller;
 
 
-import FhirModel.Appointment;
 import FhirModel.Device;
-import Impl.AppointmentMapperImpl;
 import Impl.DeviceMapperImpl;
-import KisModel.PatientAppointmentWrapper;
 import KisModel.ServiceUnitWrapper;
+import KisModel.ServiceUnitWrapperList;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,14 +20,22 @@ public class DeviceController {
     @GetMapping("GetAll")
     public @ResponseBody
     Iterable<Device> getAllDevices() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        final String serviceUnitURL = "http://192.189.51.8/api/resource/Service Unit?sid=20a292333176f36356ea99f01a7025b8a2659d2e5052a50026e903d0";
+        RestTemplate restTemplate = new RestTemplate();
         Set<Device> deviceList = new HashSet<>();
+        Set<Device> devices = new HashSet<>();
         DeviceMapperImpl deviceMapper = new DeviceMapperImpl();
-        String json = "{\"data\":[{\"name\":\"CT\",\"department\":\"HNO\"}]}";
-        ServiceUnitWrapper wrapper = objectMapper.readValue(json, ServiceUnitWrapper.class);
-        wrapper.getData().forEach(d ->{
-            deviceList.add(deviceMapper.FromerviceUnitToDevice(d));
+        ServiceUnitWrapperList wrapper = restTemplate.getForObject(serviceUnitURL, ServiceUnitWrapperList.class);
+        wrapper.getData().forEach(serviceUnit -> {
+            deviceList.add(deviceMapper.FromDeviceListToDevice(serviceUnit));
         });
-        return deviceList;
+        deviceList.forEach(device -> {
+            final String detaildevice = "http://192.189.51.8/api/resource/Service Unit/" + device.getId() + "?sid=20a292333176f36356ea99f01a7025b8a2659d2e5052a50026e903d0";
+            ServiceUnitWrapper serviceUnitWrapper = restTemplate.getForObject(detaildevice, ServiceUnitWrapper.class);
+            devices.add(deviceMapper.FromerviceUnitToDevice(serviceUnitWrapper.getData()));
+        });
+        return devices;
     }
 }
+
+

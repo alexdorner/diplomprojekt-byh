@@ -1,6 +1,6 @@
 package FhirModel;
 
-public class Device {
+public class Device extends DomainResource{
 
     public Reference owner;
 
