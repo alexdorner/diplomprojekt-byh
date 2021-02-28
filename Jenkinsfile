@@ -1,6 +1,6 @@
 pipeline { 
-    agent any 
-	stages { 
+	agent any
+    stages { 
 		stage('Initialize') {
             steps {
                 echo "PATH = ${PATH}" 
@@ -9,8 +9,10 @@ pipeline {
         stage('Build API') { 
             steps { 
                sh """
+					export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+					export PATH=$JAVA_HOME/bin:$PATH
 					cd byh-api
-					cd
+					pwd
 					mvn compile
 				""" 
             }
@@ -18,22 +20,19 @@ pipeline {
 		stage('Test API') { 
             steps {
 				sh """
+					export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+					export PATH=$JAVA_HOME/bin:$PATH
 					cd byh-api
-					cd
+					pwd
 					mvn test
 				"""
             }
         }
-		stage('Report API') {
-			steps {
-				junit 'byh-api/target/surefire-reports/*.xml'
-			}
-		}
 		stage('Install Webapplikation') { 
             steps { 
                sh """
 					cd bookyourhospital
-					cd
+					pwd
 					npm install
 				""" 
             }
@@ -42,7 +41,7 @@ pipeline {
             steps { 
                sh """
 					cd bookyourhospital
-					cd
+					pwd
 					npm run build
 				""" 
             }
@@ -51,8 +50,15 @@ pipeline {
             steps {
 				sh """
 					cd bookyourhospital
-					cd
+					pwd
 					npm test -- --watchAll=false
+				"""
+            }
+        }
+		stage('Test KIS') { 
+            steps {
+				sh """
+					docker exec erpnext bench --site site1.local run-tests --app kis
 				"""
             }
         }
