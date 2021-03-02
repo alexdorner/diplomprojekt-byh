@@ -20,19 +20,22 @@ import java.util.Set;
 @CrossOrigin
 public class LoginDataController {
 
-    @GetMapping
-    public static Set<String>getAll() {
+    public static String getAll() {
 
         final String uri = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
-        Set<String> cookie = new HashSet<String>();
+        String cookie;
         forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{
-            if(f.contains("sid")){
-                cookie.add(f);
+        })
+        ;
+        for (String fe:forEntity.getHeaders().get("Set-Cookie")
+             ) {
+            if(fe.contains("sid")){
+                return fe.split(";")[0];
             }
-        });
-     return cookie;
+        }
+        return "";
     }
 //List<Session.Cookie>
 }
