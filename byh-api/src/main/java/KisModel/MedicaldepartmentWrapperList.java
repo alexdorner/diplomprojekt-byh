@@ -4,7 +4,7 @@ import FhirModel.Organization;
 
 import java.util.Set;
 
-public class MedicaldepartmentWrapper {
+public class MedicaldepartmentWrapperList {
 
     public Set<MedicalDepartmentK> getData() {
         return data;
