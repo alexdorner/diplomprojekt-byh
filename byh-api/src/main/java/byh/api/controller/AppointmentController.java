@@ -3,6 +3,7 @@ package byh.api.controller;
 
 import FhirModel.*;
 import Impl.AppointmentMapperImpl;
+import Impl.OrganizationMapperImpl;
 import KisModel.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +61,17 @@ public class AppointmentController {
 
         return appointments;
     }
-}
 
+    @GetMapping("/{id}")
+    public @ResponseBody
+    Appointment getOneAppointment(@PathVariable String id){
+        ObjectMapper objectMapper = new ObjectMapper();
+        final String detailAppointment="http://192.189.51.8/api/resource/Patient Appointment/" + id +"?" + LoginDataController.getAll();
+        AppointmentMapperImpl appointmentMapper = new AppointmentMapperImpl();
+        RestTemplate restTemplate = new RestTemplate();
+        PatientAppointmentWrapper wrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
+        return appointmentMapper.FromPaToAppointment(wrapper.getData());
+    }
+}
 
 

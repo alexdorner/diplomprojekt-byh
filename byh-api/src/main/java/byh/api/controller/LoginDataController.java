@@ -23,19 +23,19 @@ public class LoginDataController {
     public static String getAll() {
 
         final String uri = "http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678";
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
-        String cookie;
-        forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{
-        })
-        ;
-        for (String fe:forEntity.getHeaders().get("Set-Cookie")
-             ) {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
+            String cookie;
+            forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{
+            })
+            ;
+            for (String fe:forEntity.getHeaders().get("Set-Cookie")
+            ) {
             if(fe.contains("sid")){
                 return fe.split(";")[0];
             }
         }
         return "";
     }
-//List<Session.Cookie>
+
 }
