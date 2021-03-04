@@ -1,39 +1,21 @@
 import React, { Component } from 'react';
-import {Col, Container} from "react-bootstrap";
+import {Col, Container, ListGroup, Row} from "react-bootstrap";
 
 class AppointmentConfirm extends Component {
-    appointmentInformation = this.props.match.params.appointmentInformation
-
-    async componentDidMount(){
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    appointmentInformation: this.appointmentInformation
-                })
-            })
-        }
-        catch (e){
-            console.log(e);
-        }
-
+    state = {data: []}
+    appointmentView = this.props.match.params.appointmentView
+    async componentWillMount() {
+        const url = "http://localhost:8080/api/appointment/GetAll";
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        // console.log(this.state.data);
     }
 
     render() {
         return (
             <Container>
-                <h1>Ausgewählter Termin: {this.appointmentInformation}</h1>
+                <h1>Ihr Termincode: {this.appointmentView}</h1>
                 <Col>
-                    <p>Adresse so und so</p>
-                </Col>
-                <Col>
-                    <div style={{ height: '100vh', width: '100%' }}>
-                    </div>
+                    {this.state.data.map(el => <ListGroup.Item>{el.Date} {el.start}</ListGroup.Item>)}
                 </Col>
             </Container>
         );
