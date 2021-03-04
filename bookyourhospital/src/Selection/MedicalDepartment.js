@@ -21,7 +21,7 @@ class MedicalDepartment extends Component {
                 <div>
                     <Dropdown id="drop">
                         <Dropdown.Toggle variant="info" id="dropdown-basic">
-                            Fachbereich auswählen
+                            Abteilung auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.id}>{el.id}</Dropdown.Item>)}

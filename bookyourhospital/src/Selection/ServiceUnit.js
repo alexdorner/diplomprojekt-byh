@@ -4,10 +4,11 @@ import history from "../history";
 
 class ServiceUnit extends Component{
     state = {data: []}
-
+    department = this.props.match.params.department
     async componentWillMount() {
-        const url = "http://localhost:8080/api/device/Get";
+        const url = "http://localhost:8080/api/device/GetAll";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        //console.log(this.state.data);
     }
 
     render() {
@@ -19,14 +20,12 @@ class ServiceUnit extends Component{
                         <h5>Bitte wählen Sie eine Art aus!</h5>
                     </div>
                     <div style={{ padding: 30 }}>
-                        <Dropdown>
+                        <Dropdown id="drop">
                             <Dropdown.Toggle variant="info" id="dropdown-basic">
-                                Art auswählen
+                                Fachbereich auswählen
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => this.postData("Mittelfuß")} href="/AppointmentOverview/Mittelfuß">Mittelfuß</Dropdown.Item>
-                                <Dropdown.Item onClick={() => this.postData("Hüfte")} href="/AppointmentOverview/Huefte">Hüfte</Dropdown.Item>
-                                <Dropdown.Item onClick={() => this.postData("Schulter")} href="/AppointmentOverview/Schulter">Schulter</Dropdown.Item>
+                                {this.state.data.map(el => <Dropdown.Item href={"/AppointmentOverview/"+el.owner.id}>{el.deviceName.name}</Dropdown.Item>)}
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>

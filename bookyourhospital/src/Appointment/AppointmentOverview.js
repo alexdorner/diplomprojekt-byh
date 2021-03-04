@@ -4,9 +4,15 @@ import history from "../history";
 import ServiceUnit from "../Selection/ServiceUnit";
 
 class AppointmentOverview extends Component{
+    state = {data: []}
     serviceUnit = this.props.match.params.serviceUnit
+    async componentWillMount() {
+        const url = "http://localhost:8080/api/appointment/GetAll";
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+       // console.log(this.state.data);
+    }
 
-    async componentDidMount(){
+    /*async componentDidMount(){
         try {
             let result = await fetch("http://localhost:8080/api", {
                 method: 'post',
@@ -24,7 +30,7 @@ class AppointmentOverview extends Component{
             console.log(e);
         }
 
-    }
+    }*/
 
     render() {
         return (
@@ -32,11 +38,7 @@ class AppointmentOverview extends Component{
                 <h1>Ausgewählter Bereich: {this.serviceUnit}</h1>
                 <Col>
                    <ListGroup>
-                       <ListGroup.Item onClick={() => this.postData("Test2")} href="/AppointmentView/Test1" action>Tes1</ListGroup.Item>
-                       <ListGroup.Item onClick={() => this.postData("Test2")} href="/AppointmentView/Test2" action>Tes2</ListGroup.Item>
-                       <ListGroup.Item onClick={() => this.postData("Test3")} href="/AppointmentView/Test3" action>Test3</ListGroup.Item>
-                       <ListGroup.Item onClick={() => this.postData("Test4")} href="/AppointmentView/Test4" action>Test4</ListGroup.Item>
-                       <ListGroup.Item onClick={() => this.postData("Test5")} href="/AppointmentView/Test5" action>Test5</ListGroup.Item>
+                       {this.state.data.map(el => <ListGroup.Item action href={"/AppointmentView/"+el.id}>{el.Date} {el.start}</ListGroup.Item>)}
                    </ListGroup>
                </Col>
             </Container>
