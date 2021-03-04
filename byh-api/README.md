@@ -11,7 +11,7 @@ Pfad der überhalb der Klasse definiert ist (@RequestMapping(path="")) + Pfad de
 
 # Controller
 Organization --> Medical Departments (HNO usw.)
-HealthCareServiceController --> Erstuntersuchung, Kontrolle, usw.
+Device --> Service Unit (MRT, CT, usw.)
 AppointmentController --> Gibt die Termine zurück
 --> Abfragereihenfolge
 PatientController --> ist nur Post & Delete
