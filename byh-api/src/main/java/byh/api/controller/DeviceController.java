@@ -17,7 +17,7 @@ import java.util.Set;
 @CrossOrigin
 public class DeviceController {
 
-    @GetMapping("GetAll")
+    @GetMapping("/GetAll")
     public @ResponseBody
     Iterable<Device> getAllDevices() throws JsonProcessingException {
         final String serviceUnitURL = "http://192.189.51.8/api/resource/Service Unit?" + LoginDataController.getAll();

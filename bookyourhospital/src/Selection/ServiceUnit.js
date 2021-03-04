@@ -3,26 +3,11 @@ import { Button, Table, Container, Row, Col, Dropdown } from 'react-bootstrap';
 import history from "../history";
 
 class ServiceUnit extends Component{
-    department = this.props.match.params.department
+    state = {data: []}
 
-    async componentDidMount(){
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    department: this.department
-                })
-            })
-        }
-        catch (e){
-            console.log(e);
-        }
-
+    async componentWillMount() {
+        const url = "http://localhost:8080/api/device/Get";
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
     }
 
     render() {
