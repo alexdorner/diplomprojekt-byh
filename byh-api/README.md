@@ -17,6 +17,6 @@ AppointmentController --> Gibt die Termine zurück
 PatientController --> ist nur Post & Delete
 # Filtern von Appointments
 URL --> /api/appointment/GetAll die Parameter mitgeben, nach denen gefiltert werden soll (Können auhc null sein oder gar nicht verwendet werden, dann wird aber nicht gefilter)
-beispiel --> /api/appointment/GetAll?idOrganization=Urology, idDevice=MRT, datum=2021-02-18 --> wichtig, die Parameter müssen genau so heißen
+beispiel --> /api/appointment/GetAll?idOrganization=Urology&idDevice=MRT&datum=2021-02-18 --> wichtig, die Parameter müssen genau so heißen
 (und auch das Datum in dem Format, weil im KIS ist es als String gespeichert, also muss ich es leider auch als String geben)
 
