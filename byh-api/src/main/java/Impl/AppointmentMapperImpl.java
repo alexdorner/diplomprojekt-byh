@@ -22,11 +22,13 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         AppointmentTypeK appointmentTypeK = new AppointmentTypeK();
         HealthcareServiceMapperImpl health = new HealthcareServiceMapperImpl();
         health.FromAptToHcs(appointmentTypeK);
+
         Patient patient = new Patient();
         Reference ref2 = new Reference();
         ref2.setReference("Referenz zum Patienten");
-        ref2.setType("Patient");
+        ref2.setType(patientAppointmentK.getPatient());
         ref2.setId("ref2");
+
         participant.add(new Participant(ref2));
         appointment.setParticipant(participant);
         appointment.setId(patientAppointmentK.getName());

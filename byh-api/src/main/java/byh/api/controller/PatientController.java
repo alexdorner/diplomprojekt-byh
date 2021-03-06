@@ -18,7 +18,7 @@ public class PatientController {
     public ResponseEntity<PatientK> createPatient (@RequestBody Patient patient){
         PatientMapperImpl patientMapper = new PatientMapperImpl();
         PatientK patientK = patientMapper.FromFhirToKis(patient);
-        return  ResponseEntity.created(URI.create("" + patientK.getID())).body(patientK);
+        return  ResponseEntity.created(URI.create("" + patientK.getName())).body(patientK);
     }
 
 

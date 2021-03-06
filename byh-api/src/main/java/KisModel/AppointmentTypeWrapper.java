@@ -3,13 +3,13 @@ package KisModel;
 import java.util.Set;
 
 public class AppointmentTypeWrapper {
-    public Set<AppointmentTypeK> getData() {
+    public AppointmentTypeK getData() {
         return data;
     }
 
-    public void setData(Set<AppointmentTypeK> data) {
+    public void setData(AppointmentTypeK data) {
         this.data = data;
     }
 
-    Set<AppointmentTypeK> data;
+    AppointmentTypeK data;
 }

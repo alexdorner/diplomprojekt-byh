@@ -43,7 +43,7 @@ public class PatientAppointmentK  {
     public void setDuration(int duration) {
         this.duration = duration;
     }
-    @JsonIgnore
+
     public String getPatient() {
         return patient;
     }

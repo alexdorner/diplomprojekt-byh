@@ -13,7 +13,7 @@ public class PatientMapperImpl implements PatientMapper {
              return null;
          }
          PatientK patientK= new PatientK();
-         patientK.setID(patient.getId());
+         patientK.setName(patient.getId());
          return patientK;
      }
  }
