@@ -13,5 +13,6 @@ public interface PatientMapper {
 
     PatientK FromFhirToKis(Patient patient);
 
+    Patient FromKisToFhir (PatientK patientK);
     
 }
