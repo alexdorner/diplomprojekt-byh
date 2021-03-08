@@ -174,7 +174,5 @@ public class AppointmentController {
         */
        return patientDetail;
    }
-
-
 }
 

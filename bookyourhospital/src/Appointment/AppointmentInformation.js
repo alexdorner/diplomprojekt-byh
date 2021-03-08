@@ -8,9 +8,24 @@ import ServiceUnit from "../Selection/ServiceUnit";
 import AppointmentOverview from "./AppointmentOverview";
 
 class AppointmentInformation extends Component{
-    appointmentView = this.props.match.params.appointmentView
 
-    async componentDidMount(){
+    constructor(props) {
+        super(props);
+
+        if(this.props.match != null) {
+            this.parent = this.props.match.params.parent
+            this.type = this.props.match.params.type
+            this.to = this.props.match.params.to
+            this.appointmentView = this.props.match.params.appointmentView;
+        } else {
+            this.parent = "parent"
+            this.type = "type"
+            this.to = "to"
+            this.appointmentView = "appointmentView";
+        }
+    }
+
+    async componentDidMount() {
         try {
             let result = await fetch("http://localhost:8080/api", {
                 method: 'post',
@@ -23,19 +38,28 @@ class AppointmentInformation extends Component{
                     appoinmentView: this.appointmentView
                 })
             })
-        }
-        catch (e){
+        } catch (e) {
             console.log(e);
         }
+    }
 
+    render() {
         return (
             <center>
-                <h1>Ausgewählter Termin: {this.appointmentView}</h1>
-                <div>
-                    <p>Informationen zum Termin</p>
-                </div>
-                <div>
-                    <button type="submit">Termin vormerken beenden</button>
+                <h1>Ausgewählter individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
+                <Row>
+                    <Col>
+                        <p>Krankenhaus</p>
+                        <p>Datum</p>
+                        <p>Uhrzeit</p>
+                        <p>Adresse</p>
+                    </Col>
+                    <Col>
+                        <p>Map</p>
+                    </Col>
+                </Row>
+                <div> {/*<!-- Termin wird im KIS vorgemerkt -->*/}
+                    <Button size="lg" variant="dark" type="submit" action href={'/TanOK/' + this.appointmentView + '/' + this.parent + '/' + this.type + '/' + this.to}>Termin vormerken beenden</Button>
                 </div>
             </center>
         );

@@ -10,16 +10,16 @@ class Transfer extends Component {
         return (
             <center>
                 <div className="Ueberweisung" style={{ padding: 30 }}>
-                    <h2>Haben Sie eine Transfer?</h2>
+                    <h2>Haben Sie eine Zuweisung?</h2>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" onClick={() => history.push('/MedicalDepartment')}>Ja</Button>
+                    <Button variant="dark" action href={'/MedicalDepartment'}>Ja</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" onClick={() => history.push('/NoTransfer')}>Nein</Button>
+                    <Button variant="dark" action href={'/NoTransfer'}>Nein</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" onClick={() => history.push('/WhatTransfer')}>Was ist eine Transfer?</Button>
+                    <Button variant="dark" action href={'/WhatTransfer'}>Was ist eine Zuweisung?</Button>
                 </div>
             </center>
         );

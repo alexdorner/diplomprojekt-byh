@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Col, Container, ListGroup, Row} from "react-bootstrap";
 
-class AppointmentConfirm extends Component {
+class AppointmentCancelConfirm extends Component {
     state = {data: []}
     appointmentView = this.props.match.params.appointmentView
     async componentWillMount() {
@@ -14,9 +14,12 @@ class AppointmentConfirm extends Component {
         return (
             <Container>
                 <h1>Individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
-                <h2>Ihr Termin wurde erfolgreich vorgemerkt</h2>
+                <h2>Ihr Termin wurde erfolgreich storniert</h2>
+                <Col>
+                    {this.state.data.map(el => <ListGroup.Item>{el.Date} {el.start}</ListGroup.Item>)}
+                </Col>
             </Container>
         );
     }
 }
-export default AppointmentConfirm;
+export default AppointmentCancelConfirm;

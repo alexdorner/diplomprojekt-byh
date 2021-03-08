@@ -9,8 +9,10 @@ class TanError extends Component {
 
         if(this.props.match != null) {
             this.parent = this.props.match.params.parent;
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
             this.parent = "parent";
+            this.appointmentOverView = "appointmentView";
         }
     }
 
@@ -24,10 +26,10 @@ class TanError extends Component {
                             <h4>Leider gab es ein Problem beim Versenden</h4>
                         </div>
                         <div className="d-flex justify-content-center">
-                            <a href={"/TanServiceEmail/" + this.parent}>Tan per Email senden</a>
+                            <a href={"/TanServiceEmail/" + this.appointmentOverView + '/' + this.parent}>Tan per Email senden</a>
                         </div>
                         <div className="d-flex justify-content-center">
-                            <a href={"/TanServiceSMS/" + this.parent}>Tan per SMS senden</a>
+                            <a href={"/TanServiceSMS/" + this.appointmentOverView + '/' + this.parent}>Tan per SMS senden</a>
                         </div>
                     </Col>
                 </Row>
