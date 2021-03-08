@@ -30,10 +30,18 @@ class AppointmentInformation extends Component{
 
         return (
             <center>
-                <h1>Ausgewählter Termin: {this.appointmentView}</h1>
-                <div>
-                    <p>Informationen zum Termin</p>
-                </div>
+                <h1>Ausgewählter individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
+                <Row>
+                    <Col>
+                        <p>Krankenhaus</p>
+                        <p>Datum</p>
+                        <p>Uhrzeit</p>
+                        <p>Adresse</p>
+                    </Col>
+                    <Col>
+                        <p>Map</p>
+                    </Col>
+                </Row>
                 <div> {/*<!-- Bitte Michelle, da sollte man SMS kommen UND Termin wird im KIS vorgemerkt -->*/}
                     <button type="submit" action href={'/AppointmentConfirm'}>Termin vormerken beenden</button>
                 </div>
