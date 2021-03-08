@@ -11,10 +11,12 @@ class TanOK extends Component {
             this.parent = this.props.match.params.parent
             this.type = this.props.match.params.type
             this.to = this.props.match.params.to
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
             this.parent = "parent"
             this.type = "type"
             this.to = "to"
+            this.appointmentOverView = "appointmentView";
         }
 
         this.sendSMS();
@@ -29,7 +31,7 @@ class TanOK extends Component {
         })
 
         if(this.props.history != null) {
-            this.props.history.push('/AppointmentView/ToDo:Termin');
+            this.props.history.push('/AppointmentConfirm/' + this.appointmentOverView);
             this.props.history.go();
         }
     }

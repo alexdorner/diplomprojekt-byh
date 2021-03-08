@@ -43,8 +43,7 @@ class AppointmentView extends Component{
                         <p>Map</p>
                     </Col>
                 </Row>
-                {/*<!-- Bitte Michelle, da sollte man zum TAN kommen -->*/}
-                <Button size="lg" variant="dark" action href={'/TanServiceSMS/AppointmentView'}>TAN per SMS senden</Button>
+                <Button size="lg" variant="dark" action href={'/TanServiceSMS/' + this.appointmentOverView + '/AppointmentView'}>TAN per SMS senden</Button>
             </Container>
         );
     }

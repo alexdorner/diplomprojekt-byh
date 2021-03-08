@@ -10,8 +10,10 @@ class TanServiceSMS extends Component {
 
         if(this.props.match != null) {
             this.parent = this.props.match.params.parent;
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
             this.parent = "parent";
+            this.appointmentOverView = "appointmentView";
         }
 
         this.changeSMS = this.changeSMS.bind(this);
@@ -33,16 +35,16 @@ class TanServiceSMS extends Component {
             //console.log(jsonData);
 
             if(jsonData.returnCode == "ok") {
-                this.props.history.push('/TanCheck/' + this.parent + "/sms/" + this.state.sms);
+                this.props.history.push('/TanCheck/' + this.appointmentOverView + '/' + this.parent + "/sms/" + this.state.sms);
                 this.props.history.go();
             } else {
-                this.props.history.push('/TanError/' + this.parent);
+                this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.parent);
                 this.props.history.go();
             }
         })
         .catch((error) => {
             console.error(error);
-            this.props.history.push('/TanError/' + this.parent);
+            this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.parent);
             this.props.history.go();
         })
     }

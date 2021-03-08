@@ -41,14 +41,14 @@ export default class Routes extends Component {
                     <Route path="/AppointmentView/:appointmentOverView" component={AppointmentView}/>
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
                     <Route path="/AppointmentCancle" component={AppointmentCancel}/>
-                    <Route path="/AppointmentInformation/: appointmentView" component={AppointmentInformation}/>
+                    <Route path="/AppointmentInformation/:appointmentView/:parent/:type/:to" component={AppointmentInformation}/>
 
-                    <Route path="/TanServiceSMS/:parent" component={TanServiceSms}/>
-                    <Route path="/TanServiceEmail/:parent" component={TanServiceEmail}/>
-                    <Route path="/TanCheck/:parent/:type/:to" component={TanCheck}/>
-                    <Route path="/TanError/:parent" component={TanError}/>
-                    <Route path="/TanNotOK/:parent/:type/:to" component={TanNotOK}/>
-                    <Route path="/TanOK/:parent/:type/:to" component={TanOK}/>
+                    <Route path="/TanServiceSMS/:appointmentOverView/:parent" component={TanServiceSms}/>
+                    <Route path="/TanServiceEmail/:appointmentOverView/:parent" component={TanServiceEmail}/>
+                    <Route path="/TanCheck/:appointmentOverView/:parent/:type/:to" component={TanCheck}/>
+                    <Route path="/TanError/:appointmentOverView/:parent" component={TanError}/>
+                    <Route path="/TanNotOK/:appointmentOverView/:parent/:type/:to" component={TanNotOK}/>
+                    <Route path="/TanOK/:appointmentOverView/:parent/:type/:to" component={TanOK}/>
                 </Switch>
             </Router>
         )

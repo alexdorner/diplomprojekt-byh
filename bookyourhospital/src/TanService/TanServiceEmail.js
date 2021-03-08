@@ -9,8 +9,10 @@ class TanServiceEmail extends Component {
 
         if(this.props.match != null) {
             this.parent = this.props.match.params.parent;
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
             this.parent = "parent";
+            this.appointmentOverView = "appointmentView";
         }
 
         this.changeEmail = this.changeEmail.bind(this);
@@ -32,16 +34,16 @@ class TanServiceEmail extends Component {
                 //console.log(jsonData);
 
                 if (jsonData.returnCode == "ok") {
-                    this.props.history.push('/TanCheck/' + this.parent + "/email/" + this.state.email);
+                    this.props.history.push('/TanCheck/' + this.appointmentOverView  + '/' + this.parent + "/email/" + this.state.email);
                     this.props.history.go();
                 } else {
-                    this.props.history.push('/TanError/' + this.parent);
+                    this.props.history.push('/TanError/' + this.appointmentOverView  + '/' + this.parent);
                     this.props.history.go();
                 }
             })
             .catch((error) => {
                 console.error(error);
-                this.props.history.push('/TanError/' + this.parent);
+                this.props.history.push('/TanError/' + this.appointmentOverView  + '/' + this.parent);
                 this.props.history.go();
             })
     }

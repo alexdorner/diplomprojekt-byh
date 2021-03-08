@@ -12,10 +12,12 @@ class TanCheck extends Component {
             this.parent = this.props.match.params.parent
             this.type = this.props.match.params.type
             this.to = this.props.match.params.to
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
             this.parent = "parent"
             this.type = "type"
             this.to = "to"
+            this.appointmentOverView = "appointmentView";
         }
 
         this.changeTan = this.changeTan.bind(this);
@@ -38,17 +40,17 @@ class TanCheck extends Component {
 
             if(jsonData.tan == this.state.tan) {
                 //TODO: Redirect to Url for Tan OK
-                this.props.history.push('/TanOK/' + this.parent + "/" + this.type + "/" + this.to);
+                this.props.history.push('/AppointmentInformation/' + this.appointmentOverView + '/' + this.parent + "/" + this.type + "/" + this.to);
                 this.props.history.go();
             } else {
                 //console.log("nok");
-                this.props.history.push('/TanNotOK/' + this.parent + "/" + this.type + "/" + this.to);
+                this.props.history.push('/TanNotOK/' + this.appointmentOverView + '/' + this.parent + "/" + this.type + "/" + this.to);
                 this.props.history.go();
             }
         })
         .catch((error) => {
             console.error(error);
-            this.props.history.push('/TanError/' + this.parent);
+            this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.parent);
             this.props.history.go();
         })
     }
