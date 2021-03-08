@@ -15,9 +15,6 @@ class AppointmentConfirm extends Component {
             <Container>
                 <h1>Individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
                 <h2>Ihr Termin wurde erfolgreich vorgemerkt</h2>
-                <Col>
-                    {this.state.data.map(el => <ListGroup.Item>{el.Date} {el.start}</ListGroup.Item>)}
-                </Col>
             </Container>
         );
     }

@@ -142,7 +142,5 @@ public class AppointmentController {
         ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
         return patientK.getName();
    }
-
-
 }
 

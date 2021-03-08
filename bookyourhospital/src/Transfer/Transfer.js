@@ -10,7 +10,7 @@ class Transfer extends Component {
         return (
             <center>
                 <div className="Ueberweisung" style={{ padding: 30 }}>
-                    <h2>Haben Sie eine Transfer?</h2>
+                    <h2>Haben Sie eine Zuweisung?</h2>
                 </div>
                 <div style={{ padding: 10 }}>
                     <Button variant="dark" action href={'/MedicalDepartment'}>Ja</Button>
@@ -19,7 +19,7 @@ class Transfer extends Component {
                     <Button variant="dark" action href={'/NoTransfer'}>Nein</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" action href={'/WhatTransfer'}>Was ist eine Transfer?</Button>
+                    <Button variant="dark" action href={'/WhatTransfer'}>Was ist eine Zuweisung?</Button>
                 </div>
             </center>
         );
