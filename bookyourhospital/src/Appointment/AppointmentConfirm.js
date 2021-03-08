@@ -14,6 +14,7 @@ class AppointmentConfirm extends Component {
         return (
             <Container>
                 <h1>Ihr Termincode: {this.appointmentView}</h1>
+                <h2>Ihr Termin wurde erfolgreich vorgemerkt</h2>
                 <Col>
                     {this.state.data.map(el => <ListGroup.Item>{el.Date} {el.start}</ListGroup.Item>)}
                 </Col>

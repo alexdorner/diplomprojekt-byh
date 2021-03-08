@@ -34,8 +34,8 @@ class AppointmentInformation extends Component{
                 <div>
                     <p>Informationen zum Termin</p>
                 </div>
-                <div>
-                    <button type="submit">Termin vormerken beenden</button>
+                <div> {/*<!-- Bitte Michelle, da sollte man SMS kommen UND Termin wird im KIS vorgemerkt -->*/}
+                    <button type="submit" action href={'/AppointmentConfirm'}>Termin vormerken beenden</button>
                 </div>
             </center>
         );
