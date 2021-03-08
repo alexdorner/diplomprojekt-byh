@@ -129,18 +129,50 @@ public class AppointmentController {
 
    @GetMapping("/vormerken")//geht noch nicht, patient hat noch was
     public @ResponseBody
-    String AppointmentVormerken(@RequestParam (required = false) String IdAppointment, @RequestParam(required = false) String phonenumber, @RequestParam(required = false) String mail){
+   Set<PatientK> AppointmentVormerken(@RequestParam (required = false) String IdAppointment, @RequestParam(required = false) String phonenumber, @RequestParam(required = false) String mail){
         String postPatient = "http://192.189.51.8/api/resource/Patient/";
         HttpHeaders headers = new HttpHeaders();
+        Set<PatientK> patientsList = new HashSet<>();
+        Set<PatientK> patientDetail = new HashSet<>();
         RestTemplate restTemplate = new RestTemplate();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         PatientK patientK = new PatientK();
+       //patientK.setMobile(phonenumber);
+       //patientK.setEmail(mail);
+        //patientK.setName("378uhdwgzds6");
        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
        forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{headers.add("Cookie", f); });
-       HttpEntity requestEntity = new HttpEntity(headers);
-        ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
-        return patientK.getName();
+       HttpEntity requestEntity = new HttpEntity(patientK,headers);
+
+       PatientKWrapperList getPatients = restTemplate.getForObject("http://192.189.51.8/api/resource/Patient?"+ LoginDataController.getAll(), PatientKWrapperList.class);
+        getPatients.getData().forEach(l ->{
+            patientsList.add(l);
+        });
+        patientsList.forEach(p->{
+            final String detail= "http://192.189.51.8/api/resource/Patient/" + p.getName()+"?"+LoginDataController.getAll();
+            PatientKWrapper wrapper = restTemplate.getForObject(detail, PatientKWrapper.class);
+            patientDetail.add(wrapper.getData());
+        });
+
+
+       //ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
+       /*
+       String updateAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + IdAppointment;
+       PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
+       HttpHeaders headers2 = new HttpHeaders();
+       headers2.setContentType(MediaType.APPLICATION_JSON);
+       headers2.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+       patientAppointmentK.setID(patientK.getName());
+       PatientAppointmentWrapper wrapper = restTemplate.getForObject(updateAppointmentURL + "?" + LoginDataController.getAll(), PatientAppointmentWrapper.class);
+       patientAppointmentK = wrapper.getData();
+       ResponseEntity<String> forEntity2 = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
+       forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{headers2.add("Cookie", f); });
+       HttpEntity requestEntity2 = new HttpEntity(patientAppointmentK,headers2);
+       ResponseEntity responseEntity2 = restTemplate.exchange(updateAppointmentURL, HttpMethod.PUT, requestEntity2, PatientAppointmentK.class);
+
+        */
+       return patientDetail;
    }
 
 

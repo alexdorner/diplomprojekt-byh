@@ -228,6 +228,16 @@ public class PatientAppointmentK  {
     public String modified;
     public String service_unit;
     public String appointment_time;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String ID;
 }
 
 // equvalent zu appointment

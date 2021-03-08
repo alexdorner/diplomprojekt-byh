@@ -38,7 +38,7 @@ public class OrganizationController {
     public Organization getOneOrganization(@PathVariable String id) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Organization> o = new HashSet<>();
-        final String detailDepartment = "http://192.189.51.8/api/resource//Medical Department/" + id + "?" + LoginDataController.getAll();
+        final String detailDepartment = "http://192.189.51.8/api/resource/Medical Department/" + id + "?" + LoginDataController.getAll();
         OrganizationMapperImpl organizationMapper = new OrganizationMapperImpl();
         RestTemplate restTemplate = new RestTemplate();
         //String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";

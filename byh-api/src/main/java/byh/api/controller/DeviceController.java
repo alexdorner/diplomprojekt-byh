@@ -2,10 +2,14 @@ package byh.api.controller;
 
 
 import FhirModel.Device;
+import FhirModel.Organization;
 import Impl.DeviceMapperImpl;
+import Impl.OrganizationMapperImpl;
+import KisModel.MedicalDepartmentWrapper;
 import KisModel.ServiceUnitWrapper;
 import KisModel.ServiceUnitWrapperList;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +39,19 @@ public class DeviceController {
             devices.add(deviceMapper.FromerviceUnitToDevice(serviceUnitWrapper.getData()));
         });
         return devices;
+    }
+
+    @GetMapping("/{id}")
+    public Device getOneDevice(@PathVariable String id) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Set<Device> o = new HashSet<>();
+        final String detailDevice = "http://192.189.51.8/api/resource/Service Unit/" + id + "?" + LoginDataController.getAll();
+        DeviceMapperImpl deviceMapper = new DeviceMapperImpl();
+        RestTemplate restTemplate = new RestTemplate();
+        //String json ="{\"data\":[{\"name\":\"Urology\"},{\"name\":\"Serology\"},{\"name\":\"Rheumatology\"},{\"name\":\"Physiotherapy\"},{\"name\":\"Pathology\"},{\"name\":\"Orthopaedics\"},{\"name\":\"Oncology\"},{\"name\":\"Neurology\"},{\"name\":\"Nephrology\"},{\"name\":\"Microbiology\"},{\"name\":\"Maternity\"},{\"name\":\"Haematology\"},{\"name\":\"Gynaecology\"},{\"name\":\"General Surgery\"},{\"name\":\"Gastroenterology\"},{\"name\":\"ENT\"},{\"name\":\"Diagnostic Imaging\"},{\"name\":\"Dermatology\"},{\"name\":\"Cardiology\"},{\"name\":\"Biochemistry\"}]}";
+        ServiceUnitWrapper wrapper = restTemplate.getForObject(detailDevice, ServiceUnitWrapper.class);
+
+        return deviceMapper.FromerviceUnitToDevice(wrapper.getData());
     }
 }
 

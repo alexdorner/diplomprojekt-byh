@@ -24,9 +24,9 @@ public class AppointmentMapperImpl implements AppointmentMapper {
 
         Patient patient = new Patient();
         Reference ref2 = new Reference();
-        ref2.setReference("Patienten");
-        ref2.setType(patientAppointmentK.getPatient());
-        ref2.setId(patientAppointmentK.getPatient()+"_ref");
+        ref2.setReference("Patient");
+        ref2.setType(patientAppointmentK.getID());
+        ref2.setId(patientAppointmentK.getID()+"_ref");
 
         participant.add(new Participant(ref2));
         appointment.setParticipant(participant);
