@@ -127,7 +127,21 @@ public class AppointmentController {
         return appointments;
     }
 
-    //termin vormerken
+   @GetMapping("/vormerken")//geht noch nicht, patient hat noch was
+    public @ResponseBody
+    String AppointmentVormerken(@RequestParam (required = false) String IdAppointment, @RequestParam(required = false) String phonenumber, @RequestParam(required = false) String mail){
+        String postPatient = "http://192.189.51.8/api/resource/Patient/";
+        HttpHeaders headers = new HttpHeaders();
+        RestTemplate restTemplate = new RestTemplate();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        PatientK patientK = new PatientK();
+       ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
+       forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{headers.add("Cookie", f); });
+       HttpEntity requestEntity = new HttpEntity(headers);
+        ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
+        return patientK.getName();
+   }
 
 
 }
