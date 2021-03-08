@@ -16,7 +16,7 @@ class MedicalDepartment extends Component {
         return (
             <center>
                 <div className="MedicalDepartment" style={{padding: 30}}>
-                    <h2>Bitte wählen Sie einen Fachbereich aus!</h2>
+                    <h2>Bitte wählen Sie eine Abteilung aus!</h2>
                 </div>
                 <div>
                     <Dropdown id="drop">
