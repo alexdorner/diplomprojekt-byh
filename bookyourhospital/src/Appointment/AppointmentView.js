@@ -44,8 +44,7 @@ class AppointmentView extends Component{
                     </Col>
                 </Row>
                 {/*<!-- Bitte Michelle, da sollte man zum TAN kommen -->*/}
-                <Button size="lg" variant="dark" action href={'/TanServiceSMS'}>SMS</Button>
-                <Button size="lg" variant="dark" onClick={() => history.push('/TanServiceEmail')}>Email</Button>
+                <Button size="lg" variant="dark" action href={'/TanServiceSMS/AppointmentView'}>TAN per SMS senden</Button>
             </Container>
         );
     }
