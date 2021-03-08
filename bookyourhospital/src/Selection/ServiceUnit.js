@@ -6,7 +6,7 @@ class ServiceUnit extends Component{
     state = {data: []}
     department = this.props.match.params.department
     async componentWillMount() {
-        const url = "http://localhost:8080/api/device/GetAll";
+        const url = "http://localhost:8080/api/device/" + this.department;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         //console.log(this.state.data);
     }

@@ -7,7 +7,7 @@ class AppointmentOverview extends Component{
     state = {data: []}
     serviceUnit = this.props.match.params.serviceUnit
     async componentWillMount() {
-        const url = "http://localhost:8080/api/appointment/GetAll";
+        const url = "/api/appointment/GetAll?idOrganization=" + "" + "&idDevice=" + "" + "&datum=" + "";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
        // console.log(this.state.data);
     }
