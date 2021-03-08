@@ -13,13 +13,13 @@ class Transfer extends Component {
                     <h2>Haben Sie eine Transfer?</h2>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" action href={'/AppointmentConfirm'}>Ja</Button>
+                    <Button variant="dark" action href={'/MedicalDepartment'}>Ja</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" action href={'/AppointmentConfirm'}>Nein</Button>
+                    <Button variant="dark" action href={'/NoTransfer'}>Nein</Button>
                 </div>
                 <div style={{ padding: 10 }}>
-                    <Button variant="dark" action href={'/AppointmentConfirm'}>Was ist eine Transfer?</Button>
+                    <Button variant="dark" action href={'/WhatTransfer'}>Was ist eine Transfer?</Button>
                 </div>
             </center>
         );
