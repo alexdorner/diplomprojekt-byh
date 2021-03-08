@@ -33,11 +33,17 @@ class AppointmentView extends Component{
             <Container>
                 <h1>Ausgewählter Termin: {this.appointmentOverView}</h1>
                 <Row>
-
+                    <col>
+                        <p>Krankenhaus</p>
+                        <p>Datum</p>
+                        <p>Uhrzeit</p>
+                        <p>Adresse</p>
+                    </col>
+                    <col>
+                        <p>Map</p>
+                    </col>
                 </Row>
-                <Row>
-                    <p>Map</p>
-                </Row> {/*<!-- Bitte Michelle, da sollte man zum TAN kommen -->*/}
+                {/*<!-- Bitte Michelle, da sollte man zum TAN kommen -->*/}
                 <Button size="lg" variant="dark" action href={'/TanServiceSMS'}>SMS</Button>
                 <Button size="lg" variant="dark" onClick={() => history.push('/TanServiceEmail')}>Email</Button>
             </Container>
