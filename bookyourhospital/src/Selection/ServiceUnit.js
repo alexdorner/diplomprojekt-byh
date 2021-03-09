@@ -25,8 +25,8 @@ class ServiceUnit extends Component{
                                 Fachbereich auswählen
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                {this.state.data.map(el => <Dropdown.Item href={"/AppointmentOverview/"+el.owner.id}>{el.deviceName.name}</Dropdown.Item>)}
-                            </Dropdown.Menu>
+                                {this.state.data.length > 0 &&
+                                this.state.data.map(el => <Dropdown.Item href={"/AppointmentOverview/"+el.owner.id}>{el.deviceName.name}</Dropdown.Item>)}                            </Dropdown.Menu>
                         </Dropdown>
                     </div>
                 </div>

@@ -12,10 +12,10 @@ const Navigation = (props) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link className="textContent" href="/">Home</Nav.Link>
                     <Nav.Link href="/About">About</Nav.Link>
                     <FontSizeChanger
-                        targets={['#target .content']}
+                        targets={['div']}
                         onChange={(element, newValue, oldValue) => {
                             console.log(element, newValue, oldValue);
                         }}
@@ -36,6 +36,9 @@ const Navigation = (props) => {
                             buttonsMargin: 10
                         }}
                     />
+                    <div id = "testId">
+                        <p className="content" color='#000000'> </p>
+                    </div>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
