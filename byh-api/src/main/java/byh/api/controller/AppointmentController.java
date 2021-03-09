@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @CrossOrigin
 public class AppointmentController {
 
-    //Die Methode filtert nach MedicalDepartment(Organization), Service Unit(Device), und datum
+    //sortieren hat leider noch bugs sitze dran
     @GetMapping("/GetAll")
     public @ResponseBody
     Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idKrankenhaus, @RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice, @RequestParam(required = false) String datum) throws JsonProcessingException {
@@ -34,32 +34,19 @@ public class AppointmentController {
             PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
             appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));});
 
-        /*
-        Set<Appointment> apFilter = new HashSet<>();
-        appointments.forEach(f -> {
-            f.getParticipant().forEach(p->{
-                if(p.getActor().getReference().equals("Patient") && p.getActor().getType().equals("")){
-                    apFilter.add(f);
-                }
-
-            });
-        });
-
-         */
-
         Set<Appointment> filtered = new HashSet<>();
 
         if (idOrganization == null || idOrganization == "" && idDevice == null || idDevice == "" && idKrankenhaus == null || idKrankenhaus == ""){
             return appointments;
         }
-        if(idOrganization != null&& idDevice != null){
+        if(idOrganization != null|| idOrganization != "" && idDevice != null || idDevice != ""){
             appointments.forEach(a ->{
                 a.getParticipant().forEach(participant -> {
                     if (participant.getActor().getType().equals(idOrganization)){
                         appointments.forEach(device ->{
                             device.getParticipant().forEach(d ->{
                                 if(d.getActor().getType().equals(idDevice)){
-                                    filtered.add(a); } }); } ); } }); });
+                                    filtered.add(a); } }); } ); }  });});
         return filtered;}
 
             if(idOrganization != null&& idDevice != null && idKrankenhaus != null){
@@ -92,39 +79,40 @@ public class AppointmentController {
 
     @GetMapping("/stornieren")
     public @ResponseBody
-    Set<Appointment> DeleteAppointment(@RequestParam(required = false) String termincode){
+    String DeleteAppointment(@RequestParam(required = false) String termincode){
         final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?" + LoginDataController.getAll();
         RestTemplate restTemplate = new RestTemplate();
-        Set<Appointment> listAppointment = new HashSet<>();
-        Set<Appointment> appointments = new HashSet<>();
+        Set<PatientAppointmentK> listAppointment = new HashSet<>();
+        Set<PatientAppointmentK> appointments = new HashSet<>();
         AppointmentMapperImpl appointmentMapper = new AppointmentMapperImpl();
         PatientAppointmentWrapperList appointmentListWrapper = restTemplate.getForObject(allAppointments, PatientAppointmentWrapperList.class);
         appointmentListWrapper.getData().forEach(list -> {
-            listAppointment.add(appointmentMapper.FromPaListToAppointment(list));});
+            listAppointment.add(list);});
+
         listAppointment.forEach(item ->{
-            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getId()+"?"+LoginDataController.getAll() ;
+            final String detailAppointment = "http://192.189.51.8/api/resource/Patient Appointment/"+item.getName()+"?"+LoginDataController.getAll() ;
             PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
-            appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));});
+            appointments.add(patientAppointmentWrapper.getData());});
 
         appointments.forEach(ap ->{
-            ap.getParticipant().forEach(delete -> {
-                if(delete.getActor().getType().equals(termincode)){
-                    String deleteAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + ap.getId();
+            if(ap.getName().equals(termincode)) {
+                    String deleteAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + ap.getName();
                     HttpHeaders headers = new HttpHeaders();
                     headers.setContentType(MediaType.APPLICATION_JSON);
                     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-                    PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
-                    patientAppointmentK.setID("empty");
-                    PatientAppointmentWrapper wrapper = restTemplate.getForObject(deleteAppointmentURL+ "?" + LoginDataController.getAll(), PatientAppointmentWrapper.class);
-                    patientAppointmentK = wrapper.getData();
                     ResponseEntity<String> forEntity = restTemplate.getForEntity("http://192.189.51.8/api/method/login?usr=Administrator&pwd=12345678", String.class);
                     forEntity.getHeaders().get("Set-Cookie").stream().forEach(f ->{headers.add("Cookie", f); });
+                    PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
+                    PatientAppointmentWrapper wrapper = restTemplate.getForObject(deleteAppointmentURL+ "?" + LoginDataController.getAll(), PatientAppointmentWrapper.class);
+                    patientAppointmentK = wrapper.getData();
+                    patientAppointmentK.setID("empty");
                     HttpEntity requestEntity = new HttpEntity(patientAppointmentK,headers);
                     ResponseEntity responseEntity = restTemplate.exchange(deleteAppointmentURL, HttpMethod.PUT, requestEntity, PatientAppointmentK.class);
                 }
             });
-        });
-        return appointments;
+
+
+        return "Termin wurde erfolgreich storniert";
     }
 
 
@@ -154,8 +142,10 @@ public class AppointmentController {
             PatientKWrapper wrapper = restTemplate.getForObject(detail, PatientKWrapper.class);
             patientDetail.add(wrapper.getData());
         });
+
+
         AtomicBoolean found = new AtomicBoolean(false);
-        patientDetail.forEach(detail ->{
+       patientDetail.forEach(detail ->{
             if(detail.getEmail().equals(mail) && detail.getMobile().equals(phonenumber)){
                 String updateAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + IdAppointment;
                 PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
@@ -164,12 +154,13 @@ public class AppointmentController {
                 headers2.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
                 PatientAppointmentWrapper wrapper = restTemplate.getForObject(updateAppointmentURL + "?" + LoginDataController.getAll(), PatientAppointmentWrapper.class);
                 patientAppointmentK = wrapper.getData();
-                patientAppointmentK.setID(patientK.getName());
+                patientAppointmentK.setID(detail.getName());
                 HttpEntity requestEntity2 = new HttpEntity(patientAppointmentK,headers);
                 ResponseEntity responseEntity2 = restTemplate.exchange(updateAppointmentURL, HttpMethod.PUT, requestEntity2, PatientAppointmentK.class);
                 found.set(true);
             }
-        });
+       });
+
         if(!found.get()){
             ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
             Set<PatientK> pList = new HashSet<>();
@@ -201,6 +192,8 @@ public class AppointmentController {
             });
 
         }
+
+
 
        return IdAppointment;
    }
