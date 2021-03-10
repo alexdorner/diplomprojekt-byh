@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Home from "../Home/Home";
+import Home from "../components/Home";
 
 let container;
 

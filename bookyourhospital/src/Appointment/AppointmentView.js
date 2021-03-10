@@ -4,28 +4,12 @@ import history from "../history";
 import ServiceUnit from "../Selection/ServiceUnit";
 
 class AppointmentView extends Component{
+    state = {data: []}
     appointmentOverView = this.props.match.params.appointmentOverView
-
-
-
-    async componentDidMount(){
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    appointmentOverView: this.appointmentOverView
-                })
-            })
-        }
-        catch (e){
-            console.log(e);
-        }
-
+    async componentWillMount() {
+        const url = "/api/appointment/GetAll?idOrganization=" + "" + "&idDevice=" + "" + "&datum=" + "";
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        // console.log(this.state.data);
     }
 
     render() {
@@ -34,10 +18,9 @@ class AppointmentView extends Component{
                 <h1>Ausgewählter Termin: {this.appointmentOverView}</h1>
                 <Row>
                     <Col>
-                        <p>Krankenhaus</p>
-                        <p>Datum</p>
-                        <p>Uhrzeit</p>
-                        <p>Adresse</p>
+                        <ListGroup>
+                            {this.state.data.map(el => <ListGroup.Item action href={"/AppointmentView/"+el.id}>{el.Date} {el.start}</ListGroup.Item>)}
+                        </ListGroup>
                     </Col>
                     <Col>
                         <p>Map</p>

@@ -35,7 +35,7 @@ class AppointmentOverview extends Component{
     render() {
         return (
             <Container>
-                <h1>Ausgewählter Bereich: {this.serviceUnit}</h1>
+                <h1>Termine für: {this.serviceUnit}</h1>
                 <Col>
                    <ListGroup>
                        {this.state.data.map(el => <ListGroup.Item action href={"/AppointmentView/"+el.id}>{el.Date} {el.start}</ListGroup.Item>)}

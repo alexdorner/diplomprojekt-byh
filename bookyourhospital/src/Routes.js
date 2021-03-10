@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-import About from "./About/About";
-import Contact from "./Contact/Contact";
+import About from "./components/About";
+import Contact from "./components/Contact";
 import Transfer from "./Transfer/Transfer";
 import NoTransfer from "./Transfer/NoTransfer";
-import Home from "./Home/Home";
+import Home from "./components/Home";
 import history from './history';
 import Auswahl from "./Selection/MedicalDepartment";
 import ServiceUnit from "./Selection/ServiceUnit";

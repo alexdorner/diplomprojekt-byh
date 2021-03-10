@@ -6,7 +6,7 @@ class ServiceUnit extends Component{
     state = {data: []}
     department = this.props.match.params.department
     async componentWillMount() {
-        const url = "http://localhost:8080/api/device/" + this.department;
+        const url = "http://localhost:8080/api/device/GetAll";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         //console.log(this.state.data);
     }
@@ -14,7 +14,7 @@ class ServiceUnit extends Component{
     render() {
         return (
             <center>
-                <div style={{ padding: 30 }}>
+                <div style={{ padding: 10 }}>
                     <h1>Ausgewählte Abteilung: {this.department}</h1>
                     <div style={{ padding: 30 }}>
                         <h5>Bitte wählen Sie eine Art aus!</h5>
@@ -26,7 +26,7 @@ class ServiceUnit extends Component{
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {this.state.data.length > 0 &&
-                                this.state.data.map(el => <Dropdown.Item href={"/AppointmentOverview/"+el.owner.id}>{el.deviceName.name}</Dropdown.Item>)}                            </Dropdown.Menu>
+                                this.state.data.filter((e) => e.owner.type === this.department).map(el => <Dropdown.Item href={"/AppointmentOverview/"+el.deviceName.id}>{el.deviceName.name}</Dropdown.Item>)}                            </Dropdown.Menu>
                         </Dropdown>
                     </div>
                 </div>
