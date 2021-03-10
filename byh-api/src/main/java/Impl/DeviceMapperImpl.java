@@ -21,8 +21,9 @@ public class DeviceMapperImpl implements DeviceMapper {
         reference.setType(serviceUnit.getDepartment());
         reference.setReference("http://localhost:8080/api/organization/" + serviceUnit.getDepartment());
         device.setOwner(reference);
-        reference.setId("ref01");
+        reference.setId(serviceUnit.getDepartment()+"_ref");
         deviceName.setId(serviceUnit.getName());
+        device.setId(serviceUnit.getName());
         return device;
     }
 
