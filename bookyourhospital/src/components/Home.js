@@ -9,18 +9,16 @@ export default class Home extends Component {
     return (
       <center>
         <div>
-          <Image height="500" width="500" src={ByhLogo}></Image>
+          <Image height="200" width="500" src={ByhLogo}></Image>
         </div>
-        <div>
         <h4>Willkommen bei BookYourHospital</h4>
-        </div>
         <div>
           <Row>
             <Col>
               <Button size="lg" variant="dark" action href={'/Transfer'}>Starten</Button>
             </Col>
             <Col>
-              <Button size="lg" variant="dark" action href={'/AppointmentConfirm'}>Stornieren</Button>
+              <Button size="lg" variant="dark" action href={'/AppointmentCancel'}>Stornieren</Button>
             </Col>
           </Row>
         </div>

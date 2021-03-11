@@ -1,43 +1,22 @@
 import React, { Component } from 'react';
-import {Col, Container} from "react-bootstrap";
-import { withRouter } from 'react-router-dom';
+import {Button, Col, Container, Form} from "react-bootstrap";
 
 
 class AppointmentCancel extends Component {
-
-    appointmentView = this.props.match.params.appointmentView
-
-    async componentDidMount(){
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    appointmentView: this.appointmentView
-                })
-            })
-        }
-        catch (e){
-            console.log(e);
-        }
-
-    }
 
     render() {
         return (
             <center>
                 <h1>Termin stornieren </h1>
-                <div>
-                    <form>
-                        <button type="submit">Weiter</button>
-                    </form>
-                </div>
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Hier bitte Ihren individuellen Termincode eingeben</Form.Label>
+                        <Form.Control type="email" placeholder="individuellen Termincode" />
+                    </Form.Group>
+                    <Button size="lg" variant="dark" action href={'/TanServiceSMS/' + this.appointmentOverView + '/AppointmentView'}>TAN per SMS senden</Button>
+                </Form>
             </center>
         );
     }
 }
-export default withRouter(AppointmentCancel);
+export default AppointmentCancel;

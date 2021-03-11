@@ -19,12 +19,13 @@ class MedicalDepartment extends Component {
                     <h2>Bitte wählen Sie eine Abteilung aus!</h2>
                 </div>
                 <div>
-                    <Dropdown id="drop">
-                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                    <Dropdown id="drop" >
+                        <Dropdown.Toggle variant="info" id="dropdown-basic" size="lg">
                             Abteilung auswählen
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.id}>{el.id}</Dropdown.Item>)}
+                            {this.state.data.length > 0 &&
+                                this.state.data.map(el => <Dropdown.Item href={"ServiceUnit/"+el.id}>{el.id}</Dropdown.Item>)}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>

@@ -18,6 +18,7 @@ import AppointmentOverview from "./Appointment/AppointmentOverview";
 import WhatTransfer from "./Transfer/WhatTransfer";
 import AppointmentView from "./Appointment/AppointmentView";
 import AppointmentConfirm from "./Appointment/AppointmentConfirm";
+import AppointmentCancelConfirm from "./Appointment/AppointmentCancelConfirm";
 import AppointmentCancel from "./Appointment/AppointmentCancel";
 import AppointmentInformation from "./Appointment/AppointmentInformation";
 import DSGVO from "./components/DSGVO";
@@ -44,8 +45,9 @@ export default class Routes extends Component {
                     <Route path="/AppointmentOverview/:serviceUnit" component={AppointmentOverview}/>
                     <Route path="/AppointmentView/:appointmentOverView" component={AppointmentView}/>
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
-                    <Route path="/AppointmentCancle" component={AppointmentCancel}/>
+                    <Route path="/AppointmentCancel" component={AppointmentCancel}/>
                     <Route path="/AppointmentInformation/:appointmentView/:parent/:type/:to" component={AppointmentInformation}/>
+                    <Route path="/AppointmentCancelConfirm" component={AppointmentCancelConfirm}/>
 
                     <Route path="/TanServiceSMS/:appointmentOverView/:parent" component={TanServiceSms}/>
                     <Route path="/TanServiceEmail/:appointmentOverView/:parent" component={TanServiceEmail}/>

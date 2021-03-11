@@ -18,9 +18,10 @@ class AppointmentView extends Component{
                 <h1>Ausgewählter Termin: {this.appointmentOverView}</h1>
                 <Row>
                     <Col>
-                        <ListGroup>
-                            {this.state.data.map(el => <ListGroup.Item action href={"/AppointmentView/"+el.id}>{el.Date} {el.start}</ListGroup.Item>)}
-                        </ListGroup>
+                        <p>Krankenhaus</p>
+                        <p>Adresse</p>
+                        <p>Datum</p>
+                        <p>Uhrzeit</p>
                     </Col>
                     <Col>
                         <p>Map</p>

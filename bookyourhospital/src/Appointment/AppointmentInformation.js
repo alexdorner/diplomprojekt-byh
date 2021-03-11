@@ -46,7 +46,7 @@ class AppointmentInformation extends Component{
     render() {
         return (
             <center>
-                <h1>Ausgewählter individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
+                <h1>Ausgewählter individueller Termincode: {/*Termincode hier anzeigen*/}</h1>
                 <Row>
                     <Col>
                         <p>Krankenhaus</p>

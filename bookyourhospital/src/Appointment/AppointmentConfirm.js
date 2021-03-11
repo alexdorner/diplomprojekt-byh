@@ -13,7 +13,7 @@ class AppointmentConfirm extends Component {
     render() {
         return (
             <Container>
-                <h1>Individueller Termincode: {this.appointmentView/*Termincode hier anzeigen*/}</h1>
+                <h1>Individueller Termincode: {/*Termincode hier anzeigen*/}</h1>
                 <h2>Ihr Termin wurde erfolgreich vorgemerkt</h2>
             </Container>
         );
