@@ -17,7 +17,6 @@ public class Participant extends BackboneElement{
     }
 
 
-    //brauch ich dann damit ich eine Reference auf HealthcareService habe und HealthcareService steht in Verbindung mit Organization was mein Department beim KIS ist
 
 }
 

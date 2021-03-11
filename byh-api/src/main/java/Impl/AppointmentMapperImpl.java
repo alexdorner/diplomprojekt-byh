@@ -25,6 +25,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Patient patient = new Patient();
         Reference ref2 = new Reference();
         ref2.setReference("Patient");
+        ref2.setType("Patient");
         ref2.setType(patientAppointmentK.getID());
         ref2.setId(patientAppointmentK.getID()+"_ref");
 
@@ -48,7 +49,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         ref5.setType(patientAppointmentK.getService_unit());
         ref5.setReference("http://localhost:8080/api/device/" +patientAppointmentK.getService_unit());
         participant.add(new Participant(ref5));
-        // reference für den Slot fehlt noch
+
         return appointment;
     }
 
