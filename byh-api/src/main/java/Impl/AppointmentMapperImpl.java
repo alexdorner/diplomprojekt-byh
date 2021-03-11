@@ -27,7 +27,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Reference ref2 = new Reference();
         ref2.setReference("Patient");
         ref2.setType("Patient");
-        ref2.setId(patientAppointmentK.getID()+"_ref");
+        ref2.setId(patientAppointmentK.getID());
         Participant pPatient = new Participant(ref2);
         pPatient.setId("patient");
         //participant.add(new Participant(ref2));
@@ -38,8 +38,8 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         appointment.setStart(patientAppointmentK.getAppointment_time());
 
         Reference ref3 = new Reference();
-        ref3.setType(patientAppointmentK.getCompany());
-        ref3.setId(patientAppointmentK.getCompany() + "_ref");
+        ref3.setType("Location");
+        ref3.setId(patientAppointmentK.getCompany());
         ref3.setReference("http://localhost:8080/api/location/"+patientAppointmentK.getCompany());
         Participant pCompany = new Participant(ref3);
         pCompany.setId("Location");
@@ -48,16 +48,16 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         appointment.setCreated(patientAppointmentK.getAppointment_date());
 
         Reference ref4 = new Reference();
-        ref4.setId(patientAppointmentK.getDepartment()+"_ref");
-        ref4.setType(patientAppointmentK.getDepartment());
+        ref4.setId(patientAppointmentK.getDepartment());
+        ref4.setType("Organization");
         ref4.setReference("http://localhost:8080/api/organization/" + patientAppointmentK.getDepartment());
         Participant pOrganization = new Participant(ref4);
         pOrganization.setId("Organization");
         participant.add(pOrganization);
 
         Reference ref5 = new Reference();
-        ref5.setId(patientAppointmentK.getService_unit()+"_ref");
-        ref5.setType(patientAppointmentK.getService_unit());
+        ref5.setId(patientAppointmentK.getService_unit());
+        ref5.setType("Device");
         ref5.setReference("http://localhost:8080/api/device/" +patientAppointmentK.getService_unit());
         Participant pDevice = new Participant(ref5);
         pDevice.setId("Device");

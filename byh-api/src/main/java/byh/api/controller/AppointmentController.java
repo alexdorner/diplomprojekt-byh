@@ -42,47 +42,48 @@ public class AppointmentController {
         if(idOrganization != null|| idOrganization != "" && idDevice != null || idDevice != ""){
             appointments.forEach(a ->{
                 a.getParticipant().forEach(participant -> {
-                    if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                    if (participant.getActor().getType().equals(idOrganization)){
+                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                    if (participant.getActor().getId().equals(idOrganization)){
                         appointments.forEach(device ->{
                             device.getParticipant().forEach(d ->{
-                                if(d.getActor() != null && d.getActor().getType() !=null){
-                                if(d.getActor().getType().equals(idDevice)){
+                                if(d.getActor() != null && d.getActor().getId() !=null){
+                                if(d.getActor().getId().equals(idDevice)){
                                     filtered.add(a); } }}); } ); }  }});});
         return filtered;}
+
             if(idOrganization != null&& idDevice != null && idKrankenhaus != null){
                 appointments.forEach(a ->{
                     a.getParticipant().forEach(participant -> {
-                        if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                        if (participant.getActor().getType().equals(idOrganization)){
+                        if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                        if (participant.getActor().getId().equals(idOrganization)){
                             appointments.forEach(device ->{
                                 device.getParticipant().forEach(d ->{
-                                    if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                                    if(d.getActor().getType().equals(idDevice)){
+                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                                    if(d.getActor().getId().equals(idDevice)){
                                         appointments.forEach(hospital->{
                                             hospital.getParticipant().forEach(kh->{
-                                                if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                                                if(kh.getActor().getType().equals(idKrankenhaus)){
+                                                if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                                                if(kh.getActor().getId().equals(idKrankenhaus)){
                                                     filtered.add(a); } }}); } ); } }}); } ); } }}); });
                 return filtered;
             }
         if(idOrganization != null&& idDevice != null && idKrankenhaus != null && datum!= null){
             appointments.forEach(a ->{
                 a.getParticipant().forEach(participant -> {
-                    if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                        if (participant.getActor().getType().equals(idOrganization)){
+                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                        if (participant.getActor().getId().equals(idOrganization)){
                             appointments.forEach(device ->{
                                 device.getParticipant().forEach(d ->{
-                                    if(participant.getActor() != null&& participant.getActor().getType()!=null){
+                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
                                         if(d.getActor().getType().equals(idDevice)){
                                             appointments.forEach(hospital->{
                                                 hospital.getParticipant().forEach(kh->{
-                                                    if(participant.getActor() != null&& participant.getActor().getType()!=null){
-                                                        if(kh.getActor().getType().equals(idKrankenhaus)){
+                                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
+                                                        if(kh.getActor().getId().equals(idKrankenhaus)){
                                                             appointments.forEach((date->{
                                                                 date.getParticipant().forEach(da->{
-                                                                    if(participant.getActor() != null && participant.getActor().getType() != null){
-                                                                        if(da.getActor().getType().equals(datum)){
+                                                                    if(participant.getActor() != null && participant.getActor().getId() != null){
+                                                                        if(da.getActor().getId().equals(datum)){
                                                                             filtered.add(a);
                                                                         } } }); })); } }}); } ); } }}); } ); } }}); });
             return filtered;
