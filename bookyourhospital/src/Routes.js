@@ -20,6 +20,8 @@ import AppointmentView from "./Appointment/AppointmentView";
 import AppointmentConfirm from "./Appointment/AppointmentConfirm";
 import AppointmentCancel from "./Appointment/AppointmentCancel";
 import AppointmentInformation from "./Appointment/AppointmentInformation";
+import DSGVO from "./components/DSGVO";
+import Impressum from "./components/Impressum";
 
 export default class Routes extends Component {
     render() {
@@ -29,6 +31,8 @@ export default class Routes extends Component {
                     <Route path="/" exact component={Home} />
                     <Route path="/About" component={About} />
                     <Route path="/Contact" component={Contact} />
+                    <Route path="/DSGVO" component={DSGVO}/>
+                    <Route path="/Impressum" component={Impressum}/>
 
                     <Route path="/Transfer" component={Transfer} />
                     <Route path="/NoTransfer" component={NoTransfer}/>
