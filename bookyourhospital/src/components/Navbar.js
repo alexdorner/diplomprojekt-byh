@@ -20,7 +20,7 @@ const Navigation = (props) => {
     };
     return (
         <>
-            <Navbar  variant="dark" sticky="top">
+            <Navbar  variant="dark" fixed="top">
                 <Navbar.Brand href="/">BookYourHospital</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -58,7 +58,6 @@ const Navigation = (props) => {
                                 Barrierefreiheit
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Dark Mode</Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">Kontrast 1</Dropdown.Item>
                                 <Dropdown.Item href="#/action-3">Kontrast 2</Dropdown.Item>
                             </Dropdown.Menu>
@@ -75,7 +74,7 @@ const Navigation = (props) => {
                 </Navbar.Collapse>
             </Navbar>
         <br />
-            <Navbar  variant="dark" fixed="bottom">
+            <Navbar variant="dark" fixed="bottom">
                 <Navbar.Brand href="/">BookYourHospital</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

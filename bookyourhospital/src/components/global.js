@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     justify-content: center;
     height: 100vh;
     background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text}
+    color: ${({ theme }) => theme.text};
     padding: 0;
     margin: 0;
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
