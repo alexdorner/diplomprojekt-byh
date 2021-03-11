@@ -79,10 +79,10 @@ const Navigation = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link className="textContent" href="/">Impressum</Nav.Link>
-                        <Nav.Link className="textContent" href="/">Über uns</Nav.Link>
-                        <Nav.Link className="textContent" href="/">Kontakt</Nav.Link>
-                        <Nav.Link className="textContent" href="/">DSGVO</Nav.Link>
+                        <Nav.Link className="textContent" href="/Impressum">Impressum</Nav.Link>
+                        <Nav.Link className="textContent" href="/About">Über uns</Nav.Link>
+                        <Nav.Link className="textContent" href="/Contact">Kontakt</Nav.Link>
+                        <Nav.Link className="textContent" href="/DSGVO">DSGVO</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
