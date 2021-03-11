@@ -9,7 +9,7 @@ export default class Home extends Component {
     return (
       <center>
         <div>
-          <Image src={ByhLogo}></Image>
+          <Image height="500" width="500" src={ByhLogo}></Image>
         </div>
         <div>
         <h4>Willkommen bei BookYourHospital</h4>
