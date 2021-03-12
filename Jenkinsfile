@@ -60,7 +60,7 @@ pipeline {
 		stage('Test KIS') { 
             steps {
 				sh """
-					docker exec erpnext bench --site site1.local run-tests --app kis
+					docker exec KIS bench --site site1.local run-tests --app kis
 				"""
             }
         }
