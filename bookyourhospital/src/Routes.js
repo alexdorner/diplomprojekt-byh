@@ -42,11 +42,11 @@ export default class Routes extends Component {
                     <Route path="/MedicalDepartment" component={Auswahl}/>
                     <Route path="/ServiceUnit/:department" component={ServiceUnit}/>
 
-                    <Route path="/AppointmentOverview/:serviceUnit" component={AppointmentOverview}/>
+                    <Route path="/AppointmentOverview/:medicalDepartment/:serviceUnit" component={AppointmentOverview}/>
                     <Route path="/AppointmentView/:appointmentOverView" component={AppointmentView}/>
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
                     <Route path="/AppointmentCancel" component={AppointmentCancel}/>
-                    <Route path="/AppointmentInformation/:appointmentView/:parent/:type/:to" component={AppointmentInformation}/>
+                    <Route path="/AppointmentInformation/:appointmentOverView" component={AppointmentInformation}/>
                     <Route path="/AppointmentCancelConfirm" component={AppointmentCancelConfirm}/>
 
                     <Route path="/TanServiceSMS/:appointmentOverView/:parent" component={TanServiceSms}/>

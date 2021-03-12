@@ -6,8 +6,20 @@ import {Button, Table, Container, Row, Col, Dropdown, ListGroup, ListGroupItem} 
 import history from "../history";
 import ServiceUnit from "../Selection/ServiceUnit";
 import AppointmentOverview from "./AppointmentOverview";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
 
 class AppointmentInformation extends Component{
+    state = {data: [], hospital: "", address: "", date: "", time: ""}
+    appointmentOverView = this.props.match.params.appointmentOverView
+
+    async componentDidMount() {
+        const url = "/api/appointment/" + this.appointmentOverView;
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({hospital: el.actor.id.split('-')[0]}))
+        this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({address:  el.actor.id.split('-')[1]}))
+        this.setState({date: this.state.data.Date})
+        this.setState({time: this.state.data.start})
+    }
 
     constructor(props) {
         super(props);
@@ -25,37 +37,27 @@ class AppointmentInformation extends Component{
         }
     }
 
-    async componentDidMount() {
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    appoinmentView: this.appointmentView
-                })
-            })
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
     render() {
         return (
             <center>
-                <h1>Ausgewählter individueller Termincode: {/*Termincode hier anzeigen*/}</h1>
+                <h1>Ihr Termin</h1>
                 <Row>
                     <Col>
-                        <p>Krankenhaus</p>
-                        <p>Datum</p>
-                        <p>Uhrzeit</p>
-                        <p>Adresse</p>
+                        <p>Krankenhaus: {this.state.hospital}</p>
+                        <p>Adresse: {this.state.address}</p>
+                        <p>Datum: {this.state.date}</p>
+                        <p>Uhrzeit: {this.state.time}</p>
                     </Col>
-                    <Col>
-                        <p>Map</p>
+                    <Col >
+                        <MapContainer center={[48.196417,16.390882]} zoom={26} style={{ width: '18rem' }}>
+                            <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            <Marker position={[48.196417,16.390882]}/>
+                        </MapContainer>
+
                     </Col>
                 </Row>
                 <div> {/*<!-- Termin wird im KIS vorgemerkt -->*/}

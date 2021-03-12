@@ -20,3 +20,8 @@
   background-color: #0F9183;
 
 }
+
+.leaflet-container {
+  height: 300px;
+  width: 100%;
+}

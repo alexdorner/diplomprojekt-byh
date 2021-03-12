@@ -31,7 +31,7 @@ class TanOK extends Component {
         })
 
         if(this.props.history != null) {
-            this.props.history.push('/AppointmentConfirm/' + this.appointmentOverView);
+            this.props.history.push('/AppointmentInformation/' + this.appointmentOverView);
             this.props.history.go();
         }
     }
