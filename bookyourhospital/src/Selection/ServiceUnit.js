@@ -26,7 +26,8 @@ class ServiceUnit extends Component{
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {this.state.data.length > 0 &&
-                                this.state.data.filter((e) => e.owner.type === this.department).map(el => <Dropdown.Item href={"/AppointmentOverview/"+ this.department + "/" + el.deviceName.id}>{el.deviceName.name}</Dropdown.Item>)}                            </Dropdown.Menu>
+                                this.state.data.filter((e) => e.owner.type === this.department).map(el => <Dropdown.Item href={"/AppointmentOverview/"+ this.department + "/" + el.deviceName.id}>{el.deviceName.name}</Dropdown.Item>)}
+                            </Dropdown.Menu>
                         </Dropdown>
                     </div>
                 </div>
