@@ -44,21 +44,16 @@ public class SmsController {
 	@ResponseBody
 	@GetMapping("/api/sendSummarySms")
 	public String summerySms(HttpSession session, @RequestParam("to") String to,  @RequestParam("tc") String tc, 
-			@RequestParam("kh") String kh, @RequestParam("str") String str, @RequestParam("ort") String ort,
-			@RequestParam("termin") String termin, @RequestParam("fb") String fb, @RequestParam("ebene") String ebene,
-			@RequestParam("tel") String tel) {
+			@RequestParam("kh") String kh, @RequestParam("addr") String addr,
+			@RequestParam("termin") String termin) {
 		
 		String summary = "";
 		
 		summary += "\n";
 		summary += "Termincode: " + tc + "\n";
 		summary += kh + "\n";
-		summary += str + "\n";
-		summary += ort + "\n";
+		summary += addr + "\n";
 		summary += "Termin: " + termin + "\n";
-		summary += "Fachbereich : " + fb + "\n";
-		summary += "Ebene: " + ebene + "\n";
-		summary += "Telefon: " + tel + "\n";
 			
 		smsService.config(smsConfig.getSmsConfig());
 		boolean ret = smsService.send(smsConfig.getSmsConfig().getFrom(), "+" + to /*"4369911345176"*/, summary);
