@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Container, ListGroup, Row} from "react-bootstrap";
+import {Button, Col, Container, ListGroup, Row} from "react-bootstrap";
 
 class AppointmentConfirm extends Component {
     state = {data: []}
@@ -12,10 +12,11 @@ class AppointmentConfirm extends Component {
 
     render() {
         return (
-            <Container>
+            <center>
                 <h1>Individueller Termincode: {this.appointmentView}</h1>
                 <h2>Ihr Termin wurde erfolgreich vorgemerkt</h2>
-            </Container>
+                <Button size="lg" variant="dark" type="submit" action href={'/'}>Beenden</Button>
+            </center>
         );
     }
 }

@@ -47,7 +47,7 @@ export default class Routes extends Component {
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
                     <Route path="/AppointmentCancel" component={AppointmentCancel}/>
                     <Route path="/AppointmentInformation/:appointmentOverView" component={AppointmentInformation}/>
-                    <Route path="/AppointmentCancelConfirm" component={AppointmentCancelConfirm}/>
+                    <Route path="/AppointmentCancelConfirm/:appointmentOverView" component={AppointmentCancelConfirm}/>
 
                     <Route path="/TanServiceSMS/:appointmentOverView/:parent" component={TanServiceSms}/>
                     <Route path="/TanServiceEmail/:appointmentOverView/:parent" component={TanServiceEmail}/>
