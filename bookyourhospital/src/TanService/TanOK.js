@@ -8,15 +8,23 @@ class TanOK extends Component {
         super(props);
 
         if(this.props.match != null) {
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
+            this.hospital = this.props.match.params.hospital;
+            this.address = this.props.match.params.address;
+            this.date = this.props.match.params.date;
+            this.time = this.props.match.params.time;
             this.parent = this.props.match.params.parent
             this.type = this.props.match.params.type
             this.to = this.props.match.params.to
-            this.appointmentOverView = this.props.match.params.appointmentOverView;
         } else {
+            this.appointmentOverView = "appointmentView";
+            this.hospital = "hospital";
+            this.address = "address";
+            this.date = "date";
+            this.time = "time";
             this.parent = "parent"
             this.type = "type"
             this.to = "to"
-            this.appointmentOverView = "appointmentView";
         }
 
         this.sendSMS();
@@ -24,14 +32,15 @@ class TanOK extends Component {
 
     sendSMS() {
         //Change URL localhost to Server URL
-        fetch("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=15&kh=AKH&str=Gürtel 5&ort=1090 Wien&termin=07.10.2020 12:30&fb=Orthopädie, Mittelfuß&ebene=7D&tel=+4369911345176")
+        //console.log("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=15&kh=AKH&str=Gürtel 5&ort=1090 Wien&termin=07.10.2020 12:30&fb=Orthopädie, Mittelfuß&ebene=7D&tel=+4369911345176");
+        fetch("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
         .then(response => response.json())
         .then((jsonData) => {
         //console.log(jsonData);
         })
 
         if(this.props.history != null) {
-            this.props.history.push('/AppointmentInformation/' + this.appointmentOverView);
+            this.props.history.push('/AppointmentConfirm/' + this.appointmentOverView);
             this.props.history.go();
         }
     }

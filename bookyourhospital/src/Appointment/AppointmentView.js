@@ -42,7 +42,7 @@ class AppointmentView extends Component {
                     </Col>
                 </Row>
                 <Button size="lg" variant="dark" action
-                        href={'/TanServiceSMS/' + this.appointmentOverView + '/AppointmentView'}>TAN per SMS
+                        href={'/TanServiceSMS/' + this.appointmentOverView + '/' + this.state.hospital + '/' + this.state.address + '/' + this.state.date + '/' + this.state.time + '/AppointmentView/'}>TAN per SMS
                     senden</Button>
             </Container>
         );

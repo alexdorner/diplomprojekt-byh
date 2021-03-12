@@ -46,15 +46,15 @@ export default class Routes extends Component {
                     <Route path="/AppointmentView/:appointmentOverView" component={AppointmentView}/>
                     <Route path="/AppointmentConfirm/:appointmentView" component={AppointmentConfirm}/>
                     <Route path="/AppointmentCancel" component={AppointmentCancel}/>
-                    <Route path="/AppointmentInformation/:appointmentView" component={AppointmentInformation}/>
+                    <Route path="/AppointmentInformation/:appointmentView/:hospital/:address/:date/:time/:parent/:type/:to" component={AppointmentInformation}/>
                     <Route path="/AppointmentCancelConfirm/:appointmentOverView" component={AppointmentCancelConfirm}/>
 
-                    <Route path="/TanServiceSMS/:appointmentOverView/:parent" component={TanServiceSms}/>
-                    <Route path="/TanServiceEmail/:appointmentOverView/:parent" component={TanServiceEmail}/>
-                    <Route path="/TanCheck/:appointmentOverView/:parent/:type/:to" component={TanCheck}/>
-                    <Route path="/TanError/:appointmentOverView/:parent" component={TanError}/>
-                    <Route path="/TanNotOK/:appointmentOverView/:parent/:type/:to" component={TanNotOK}/>
-                    <Route path="/TanOK/:appointmentOverView/:parent/:type/:to" component={TanOK}/>
+                    <Route path="/TanServiceSMS/:appointmentOverView/:hospital/:address/:date/:time/:parent" component={TanServiceSms}/>
+                    <Route path="/TanServiceEmail/:appointmentOverView/:hospital/:address/:date/:time/:parent" component={TanServiceEmail}/>
+                    <Route path="/TanCheck/:appointmentOverView/:hospital/:address/:date/:time/:parent/:type/:to" component={TanCheck}/>
+                    <Route path="/TanError/:appointmentOverView/:hospital/:address/:date/:time/:parent" component={TanError}/>
+                    <Route path="/TanNotOK/:appointmentOverView/:hospital/:address/:date/:time/:parent/:type/:to" component={TanNotOK}/>
+                    <Route path="/TanOK/:appointmentOverView/:hospital/:address/:date/:time/:parent/:type/:to" component={TanOK}/>
                 </Switch>
             </Router>
         )

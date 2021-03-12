@@ -9,11 +9,19 @@ class TanServiceSMS extends Component {
         this.state = {sms: ''};
 
         if(this.props.match != null) {
-            this.parent = this.props.match.params.parent;
             this.appointmentOverView = this.props.match.params.appointmentOverView;
+            this.hospital = this.props.match.params.hospital;
+            this.address = this.props.match.params.address;
+            this.date = this.props.match.params.date;
+            this.time = this.props.match.params.time;
+            this.parent = this.props.match.params.parent;
         } else {
-            this.parent = "parent";
             this.appointmentOverView = "appointmentView";
+            this.hospital = "hospital";
+            this.address = "address";
+            this.date = "date";
+            this.time = "time";
+            this.parent = "parent";
         }
 
         this.changeSMS = this.changeSMS.bind(this);
@@ -26,6 +34,7 @@ class TanServiceSMS extends Component {
 
     sendSMS(event) {
         event.preventDefault();
+
         //console.log('clicked sendSMS: ' + this.state.sms);
 
         //Change URL localhost to Server URL
@@ -35,16 +44,16 @@ class TanServiceSMS extends Component {
             //console.log(jsonData);
 
             if(jsonData.returnCode == "ok") {
-                this.props.history.push('/TanCheck/' + this.appointmentOverView + '/' + this.parent + "/sms/" + this.state.sms);
+                this.props.history.push('/TanCheck/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + "/sms/" + this.state.sms);
                 this.props.history.go();
             } else {
-                this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.parent);
+                this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent);
                 this.props.history.go();
             }
         })
         .catch((error) => {
             console.error(error);
-            this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.parent);
+            this.props.history.push('/TanError/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent);
             this.props.history.go();
         })
     }
