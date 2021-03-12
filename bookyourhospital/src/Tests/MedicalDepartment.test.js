@@ -23,7 +23,7 @@ it('MedicalDepartment: can render and select a button', () => {
     });
 
     //get elements and set values
-    const dropdown = getByText(container, "Fachbereich auswählen")
+    const dropdown = getByText(container, "Abteilung auswählen")
     fireEvent.change(dropdown, {target: {value: "Orthopäde"} });
 });
 

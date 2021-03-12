@@ -22,13 +22,14 @@ it('Home: can render and select a button', () => {
     });
 
     //get elements and set values
-    const button = container.querySelector('button');
+    const button = container.querySelector('Button');
     //const input = container.querySelector('input');
     //input.value = "34565";
 
     //simulate click
     act(() => {
-        button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+        if(button != null)
+            button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
     });
 });
 
