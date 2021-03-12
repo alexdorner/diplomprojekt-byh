@@ -31,7 +31,7 @@ class AppointmentView extends Component {
                         <p>Uhrzeit: {this.state.time}</p>
                     </Col>
                     <Col>
-                        <MapContainer center={[48.196417,16.390882]} zoom={25} style={{ width: '18rem' }}>
+                        <MapContainer center={[48.196417,16.390882]} zoom={10} style={{ width: '18rem' }}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
