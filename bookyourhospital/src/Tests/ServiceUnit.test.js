@@ -17,15 +17,14 @@ afterEach(() => {
 });
 
 it('ServiceUnit: can render and select a button', () => {
-    /*
+    
     // Test first render and componentDidMount
     act(() => {
         ReactDOM.render(<ServiceUnit />, container);
     });
 
     //get elements and set values
-    const dropdown = getByText(container, "Art auswählen")
+    const dropdown = getByText(container, "Fachbereich auswählen")
     fireEvent.change(dropdown, {target: {value: "Mittelfuß"} });
-    */
 });
 

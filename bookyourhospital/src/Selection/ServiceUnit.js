@@ -3,8 +3,18 @@ import { Button, Table, Container, Row, Col, Dropdown } from 'react-bootstrap';
 import history from "../history";
 
 class ServiceUnit extends Component{
-    state = {data: []}
-    department = this.props.match.params.department
+
+    constructor(props) {
+            super(props);
+            this.state = {data: []};
+
+            if(this.props.match != null) {
+                this.department = this.props.match.params.department;
+            } else {
+                this.department = "department";
+            }
+        }
+
     async componentWillMount() {
         const url = "http://localhost:8080/api/device/GetAll";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));

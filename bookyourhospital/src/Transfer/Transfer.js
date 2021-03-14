@@ -26,4 +26,4 @@ class Transfer extends Component {
     }
 }
 
-export default withRouter(Transfer);
+export default Transfer;

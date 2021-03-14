@@ -4,9 +4,19 @@ import history from "../history";
 import ServiceUnit from "../Selection/ServiceUnit";
 
 class AppointmentOverview extends Component {
-    state = {data: []}
-    serviceUnit = this.props.match.params.serviceUnit
-    department = this.props.match.params.medicalDepartment
+
+    constructor(props) {
+        super(props);
+        this.state = {data: []}
+
+        if(this.props.match != null) {
+            this.serviceUnit = this.props.match.params.serviceUnit;
+            this.department = this.props.match.params.medicalDepartment;
+        } else {
+            this.serviceUnit = "serviceUnit";
+            this.department = "medicalDepartment";
+        }
+    }
 
     async componentWillMount() {
         //const url = "/api/appointment/GetAll?idOrganization=" + this.department + "&idDevice=" + this.serviceUnit + "&datum=" + "";

@@ -32,12 +32,19 @@ class TanOK extends Component {
 
     sendSMS() {
         //Change URL localhost to Server URL
-        //console.log("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=15&kh=AKH&str=Gürtel 5&ort=1090 Wien&termin=07.10.2020 12:30&fb=Orthopädie, Mittelfuß&ebene=7D&tel=+4369911345176");
-        fetch("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
-        .then(response => response.json())
-        .then((jsonData) => {
-        //console.log(jsonData);
-        })
+        if(this.type == "email") {
+            fetch("http://localhost:3000/api/sendSummaryEmail?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
+            .then(response => response.json())
+            .then((jsonData) => {
+            console.log(jsonData);
+            })
+        } else {
+            fetch("http://localhost:3000/api/sendSummarySms?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
+            .then(response => response.json())
+            .then((jsonData) => {
+            //console.log(jsonData);
+            })
+        }
 
         if(this.props.history != null) {
             this.props.history.push('/AppointmentConfirm/' + this.appointmentOverView);

@@ -19,4 +19,4 @@ class NoTransfer extends Component{
         );
     }
 }
-export default withRouter(NoTransfer);
+export default NoTransfer;

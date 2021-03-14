@@ -40,16 +40,19 @@ class TanCheck extends Component {
         event.preventDefault();
         //console.log('clicked sendTan: ' + this.state.tan);
 
-        //TODO: Change URL localhost to Server URL
         fetch("http://localhost:3000/api/getTan")
         .then(response => response.json())
         .then((jsonData) => {
             //console.log(jsonData);
 
             if(jsonData.tan == this.state.tan) {
-                //TODO: Redirect to Url for Tan OK
-                this.props.history.push('/AppointmentInformation/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + "/" + this.type + "/" + this.to);
-                this.props.history.go();
+                if(this.parent == "AppointmentCancel") {
+                    this.props.history.push('/AppointmentCancelConfirm/' + this.appointmentOverView);
+                    this.props.history.go();
+                } else {
+                    this.props.history.push('/AppointmentInformation/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + "/" + this.type + "/" + this.to);
+                    this.props.history.go();
+                }
             } else {
                 //console.log("nok");
                 this.props.history.push('/TanNotOK/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + "/" + this.type + "/" + this.to);

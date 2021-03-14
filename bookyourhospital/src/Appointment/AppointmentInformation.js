@@ -9,18 +9,10 @@ import AppointmentOverview from "./AppointmentOverview";
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
 
 class AppointmentInformation extends Component{
-    state = {data: [], hospital: "", address: "", date: "", time: ""}
-    appointmentOverView = this.props.match.params.appointmentOverView
-
-    async componentDidMount() {
-        const url = "/api/appointment/" + this.appointmentOverView;
-        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
-        this.setState({date: this.state.data.Date})
-        this.setState({time: this.state.data.start})
-    }
 
     constructor(props) {
         super(props);
+        this.state = {data: [], hospital: "", address: "", date: "", time: ""};
 
         if(this.props.match != null) {
             this.appointmentView = this.props.match.params.appointmentView;
@@ -43,6 +35,12 @@ class AppointmentInformation extends Component{
         }
     }
 
+    async componentDidMount() {
+        const url = "/api/appointment/" + this.appointmentOverView;
+        const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
+        this.setState({date: this.state.data.Date})
+        this.setState({time: this.state.data.start})
+    }
 
     render() {
         return (

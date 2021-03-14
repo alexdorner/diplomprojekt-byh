@@ -7,8 +7,17 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet';
 
 class AppointmentView extends Component {
-    state = {data: [], hospital: "", address: "", date: "", time: ""}
-    appointmentOverView = this.props.match.params.appointmentOverView
+
+    constructor(props) {
+        super(props);
+        this.state = {data: [], hospital: "", address: "", date: "", time: ""};
+
+        if(this.props.match != null) {
+            this.appointmentOverView = this.props.match.params.appointmentOverView;
+        } else {
+            this.appointmentOverView = "appointmentOverView";
+        }
+    }
 
     async componentDidMount() {
         const url = "/api/appointment/" + this.appointmentOverView;

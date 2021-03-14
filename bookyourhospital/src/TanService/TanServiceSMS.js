@@ -37,7 +37,6 @@ class TanServiceSMS extends Component {
 
         //console.log('clicked sendSMS: ' + this.state.sms);
 
-        //Change URL localhost to Server URL
         fetch("http://localhost:3000/api/sendSms?to=" + this.state.sms)
         .then(response => response.json())
         .then((jsonData) => {
@@ -72,6 +71,10 @@ class TanServiceSMS extends Component {
                             </Form.Group>
                             <div className="d-flex justify-content-center">
                                 <Button size="lg" variant="dark" type="submit">Senden</Button>
+                            </div>
+                            <br></br>
+                            <div className="d-flex justify-content-center">
+                                <a href={"/TanServiceEmail/" + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent}>Tan per Email senden</a>
                             </div>
                         </Form>
                     </Col>

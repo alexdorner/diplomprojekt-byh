@@ -16,4 +16,4 @@ class WhatTransfer extends Component {
     }
 
 }
-export default withRouter(WhatTransfer);
+export default WhatTransfer;
