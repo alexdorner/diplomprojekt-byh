@@ -25,12 +25,16 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	public boolean send(String from, String to, String subject, String text, int tan) {
+    	return send(from, to, subject, text + tan);
+    }
+	
+	public boolean send(String from, String to, String subject, String text) {
 		SimpleMailMessage message = new SimpleMailMessage();
 	        
 		message.setFrom(from);
 		message.setTo(to);
 		message.setSubject(subject);
-		message.setText(text + tan);
+		message.setText(text);
 	 
 		try {
 			// Send Message
