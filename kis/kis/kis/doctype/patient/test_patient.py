@@ -1,25 +1,27 @@
-# -*- coding: utf-8 -*-
-# Copyright (c) 2015, ESS LLP and Contributors
-# See license.txt
-from __future__ import unicode_literals
-
-import unittest
 import frappe
-from kis.KIS.doctype.patient_appointment.test_patient_appointment import create_patient
-
-class TestPatient(unittest.TestCase):
-	def test_customer_created(self):
-		frappe.db.sql("""delete from `tabPatient`""")
-		frappe.db.set_value('kis Settings', None, 'link_customer_to_patient', 1)
-		patient = create_patient()
-		self.assertTrue(frappe.db.get_value('Patient', patient, 'customer'))
-
-	def test_patient_registration(self):
-		frappe.db.sql("""delete from `tabPatient`""")
-		settings = frappe.get_single('kis Settings')
-		settings.save()
-
-		patient = create_patient()
-		patient = frappe.get_doc('Patient', patient)
+import frappe.defaults
+import unittest
 
 
+class Test(unittest.TestCase):
+	def test(self):
+		res = []
+	
+		try:
+			frappe.set_user("Administrator")
+		
+			doc = frappe.get_doc({
+				"doctype": "Appointment Type",
+				"appointment_type": "test",
+				"default_duration": "1"
+			}).insert(ignore_permissions=True, ignore_mandatory=True, ignore_if_duplicate=True)	
+		
+			res = frappe.get_list("Appointment Type", filters=[["Appointment Type", "appointment_type", "=", "test"]], fields=["appointment_type", "default_duration"])
+			
+			frappe.db.rollback()
+		except:
+			frappe.db.rollback()
+			
+		self.assertEquals(len(res), 1)
+		entry = [r.appointment_type for r in res]
+		self.assertTrue("test" in entry)
