@@ -31,14 +31,15 @@ public class AppointmentControllerTest {
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
 	}
-	
+
+	@Test
 	public void stornoAppointment() throws Exception {
 		mockMvc
 			.perform(MockMvcRequestBuilders.get("/api/appointment/stornieren"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
 	}
-	
+	@Test
 	public void vormerkenAppointment() throws Exception {
 		mockMvc
 			.perform(MockMvcRequestBuilders.get("/api/appointment/vormerken?IdAppointment=1&phonenumber=431234567&mail=BookYourHospital@gmail.com"))

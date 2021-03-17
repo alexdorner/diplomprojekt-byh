@@ -9,7 +9,7 @@ class AppointmentOverview extends Component {
         super(props);
         this.state = {data: []}
 
-        if(this.props.match != null) {
+        if (this.props.match != null) {
             this.serviceUnit = this.props.match.params.serviceUnit;
             this.department = this.props.match.params.medicalDepartment;
         } else {
@@ -25,14 +25,13 @@ class AppointmentOverview extends Component {
         let actors = [];
         let filtered = [];
         this.state.data.map(el => actors.push(el))
+        let hospital = ""
+        //filtered = this.state.data.filter(el => console.log(el.participant.filter(e => e.id === "Location")));
+        //filtered = this.state.data.filter(el => el.participant.filter((e) => e.id === "Location").map(el => console.log(el.actor.id)));
 
-        filtered = this.state.data.filter(el => el.participant.map(par => par.id === "Device" && par.actor.id === "Audiometrie"));
 
-        console.log(filtered)
-        //(e.id === "Device" && e.actor.id === this.serviceUnit)
 
     }
-
 
 
     /*async componentDidMount(){
@@ -59,13 +58,12 @@ class AppointmentOverview extends Component {
         return (
             <Container>
                 <h1>Termine für: {this.department} - {this.serviceUnit}</h1>
-                <Col>
-                    <ListGroup>
-                        {this.state.data.length > 0 &&
-                        this.state.data.map(el => <ListGroup.Item action
-                                                                  href={"/AppointmentView/" + el.id}>{el.Date} {el.start}</ListGroup.Item>)}
-                    </ListGroup>
-                </Col>
+                <ListGroup>
+                    {this.state.data.length > 0 &&
+                    this.state.data.map(el => <ListGroup.Item action
+                                                              href={"/AppointmentView/" + el.id}>
+                        {el.Date} {el.start} || {el.participant.filter((e) => e.id === "Location").map(el => el.actor.id)}</ListGroup.Item>)}
+                </ListGroup>
             </Container>
         );
     }

@@ -47,7 +47,6 @@ class AppointmentView extends Component {
                             />
                             <Marker position={[48.196417,16.390882]}/>
                         </MapContainer>
-
                     </Col>
                 </Row>
                 <Button size="lg" variant="dark" action
