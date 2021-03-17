@@ -18,21 +18,31 @@ public class AppointmentControllerTest {
 	
 	@Test
 	public void getAllAppointments() throws Exception {
-	/*
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api/GetAll"))
+			.perform(MockMvcRequestBuilders.get("/api/appointment/GetAll"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
-	*/
 	}
 
 	@Test
 	public void getAppointments() throws Exception {
-		/*
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api"))
+			.perform(MockMvcRequestBuilders.get("/api/appointment/1b8f2dd081"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
-			*/
+	}
+	
+	public void stornoAppointment() throws Exception {
+		mockMvc
+			.perform(MockMvcRequestBuilders.get("/api/appointment/stornieren"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isOk()); 
+	}
+	
+	public void vormerkenAppointment() throws Exception {
+		mockMvc
+			.perform(MockMvcRequestBuilders.get("/api/appointment/vormerken?IdAppointment=1&phonenumber=431234567&mail=BookYourHospital@gmail.com"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isOk()); 
 	}
 }

@@ -18,21 +18,17 @@ public class OrganizationControllerTest {
 	
 	@Test
 	public void getAllOrganizations() throws Exception {
-		/*
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api/organization"))
+			.perform(MockMvcRequestBuilders.get("/api/organization/Get"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
-			*/
 	}
 
 	@Test
 	public void getOrganization() throws Exception {
-		/*
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api/organization/1"))
+			.perform(MockMvcRequestBuilders.get("/api/organization/Notfallmedizin"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk()); 
-*/
 	}
 }

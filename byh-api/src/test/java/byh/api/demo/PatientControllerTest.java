@@ -31,29 +31,18 @@ public class PatientControllerTest {
 	
 	@Autowired
 	MockMvc mockMvc;
-	
-	@Test
-	public void GetAllPatientsREAL() throws Exception {
-		/*
-		mockMvc
-			.perform(MockMvcRequestBuilders.get("/api/patient/getAll"))
-			.andDo(MockMvcResultHandlers.print())
-			.andExpect(MockMvcResultMatchers.status().isOk()); 
-	*/
-	}
 
 	@Test
-	public void createPatientFHIR() throws Exception {
+	public void createPatient() throws Exception {
 		
-		/*
 		
 		Set<Identifier> identifier = new HashSet<Identifier>();
 		identifier.add(new Identifier(Identifier_code.official));
 		
-		Set<ContactPoint> telecome = new HashSet<ContactPoint>();
-		telecome.add(new ContactPoint(CodeContactPoint_system.email, "test@test.at", ContactPoint_use.home));
+		//Set<ContactPoint> telecome = new HashSet<ContactPoint>();
+		//telecome.add(new ContactPoint(CodeContactPoint_system.email, "test@test.at", ContactPoint_use.home));
 		
-		Patient p = new Patient(identifier, telecome);
+		Patient p = new Patient();
 		p.setId("1");
 		
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -62,6 +51,7 @@ public class PatientControllerTest {
 		
 		String json = objectMapper.writeValueAsString(p);
 		
+		/*
 		mockMvc
 			.perform(MockMvcRequestBuilders.post("/api/patient")
 			.accept(MediaType.APPLICATION_JSON)
@@ -69,7 +59,6 @@ public class PatientControllerTest {
 			.content(json))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk());
-			
-			*/
+		*/
 	}	
 }
