@@ -31,9 +31,23 @@ class TanServiceEmail extends Component {
         this.setState({email: event.target.value});
     }
 
+    sendEmailVormerken() {
+        fetch("http://localhost:3000/api/appointment/vormerken?IdAppointment=" + this.appointmentOverView + "&mail=" + this.state.email)
+            .then(response => response.json())
+            .then((jsonData) => {
+                //console.log(jsonData);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
     sendEmail(event) {
         event.preventDefault();
         //console.log('clicked sendEmail: ' + this.state.email);
+
+        this.sendEmailVormerken();
 
         fetch("http://localhost:3000/api/sendMail?to=" + this.state.email)
             .then(response => response.json())
