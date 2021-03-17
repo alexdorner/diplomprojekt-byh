@@ -14,11 +14,11 @@ class AppointmentConfirm extends Component {
         }
     }
 
-    async componentWillMount() {
+    /*async componentWillMount() {
         const url = "http://localhost:8080/api/appointment/vormerken?termincode=" + this.appointmentView;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         // console.log(this.state.data);
-    }
+    }*/
 
     render() {
         return (
