@@ -33,7 +33,7 @@ class TanOK extends Component {
     sendSMS() {
         //Change URL localhost to Server URL
         if(this.type == "email") {
-            fetch("http://localhost:3000/api/sendSummaryEmail?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
+            fetch("http://localhost:3000/api/sendSummaryMail?to=" + this.to + "&tc=" + this.appointmentOverView + "&kh=" + this.hospital + "&addr=" + this.address + "&termin=" + this.date + " " + this.time)
             .then(response => response.json())
             .then((jsonData) => {
             console.log(jsonData);
