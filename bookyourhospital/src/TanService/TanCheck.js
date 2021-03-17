@@ -36,6 +36,42 @@ class TanCheck extends Component {
         this.setState({tan: event.target.value});
     }
 
+    sendSMSVormerken() {
+        fetch("http://localhost:3000/api/appointment/vormerken?IdAppointment=" + this.appointmentOverView + "&phonenumber=" + this.to)
+            .then(response => response.json())
+            .then((jsonData) => {
+                //console.log(jsonData);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
+    sendEmailVormerken() {
+        fetch("http://localhost:3000/api/appointment/vormerken?IdAppointment=" + this.appointmentOverView + "&mail=" + this.to)
+            .then(response => response.json())
+            .then((jsonData) => {
+                //console.log(jsonData);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
+    sendStorno() {
+        fetch("http://localhost:3000/api/appointment/stornieren?termincode=" + this.appointmentOverView)
+            .then(response => response.json())
+            .then((jsonData) => {
+                //console.log(jsonData);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
     sendTan(event) {
         event.preventDefault();
         //console.log('clicked sendTan: ' + this.state.tan);
@@ -47,9 +83,15 @@ class TanCheck extends Component {
 
             if(jsonData.tan == this.state.tan) {
                 if(this.parent == "AppointmentCancel") {
+                    this.sendStorno();
                     this.props.history.push('/AppointmentCancelConfirm/' + this.appointmentOverView);
                     this.props.history.go();
                 } else {
+                    if(this.type == "email") {
+                        this.sendEmailVormerken();
+                    } else {
+                        this.sendSMSVormerken();
+                    }
                     this.props.history.push('/AppointmentInformation/' + this.appointmentOverView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + "/" + this.type + "/" + this.to);
                     this.props.history.go();
                 }

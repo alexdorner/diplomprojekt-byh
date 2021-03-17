@@ -32,22 +32,9 @@ class TanServiceSMS extends Component {
         this.setState({sms: event.target.value});
     }
 
-    sendSMSVormerken() {
-        fetch("http://localhost:3000/api/appointment/vormerken?IdAppointment=" + this.appointmentOverView + "&phonenumber=" + this.state.sms)
-            .then(response => response.json())
-            .then((jsonData) => {
-                //console.log(jsonData);
-
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-    }
-
     sendSMS(event) {
         event.preventDefault();
 
-        this.sendSMSVormerken();
         //console.log('clicked sendSMS: ' + this.state.sms);
 
         fetch("http://localhost:3000/api/sendSms?to=" + this.state.sms)
