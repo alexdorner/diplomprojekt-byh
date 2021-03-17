@@ -17,10 +17,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @CrossOrigin
 public class AppointmentController {
 
-    //datum geht noch nicht, rest schon
+    //das ganze filtern geht. ABER KEINEN LEHREN STRING MITSCHICKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @GetMapping("/GetAll")
     public @ResponseBody
-    Iterable<Appointment> getAllAppointments(@RequestParam(required = false) String idKrankenhaus, @RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice, @RequestParam(required = false) String datum) throws JsonProcessingException {
+    ResponseEntity<Iterable<Appointment>>getAllAppointments(@RequestParam(required = false) String idKrankenhaus, @RequestParam(required = false) String idOrganization,@RequestParam(required = false) String idDevice, @RequestParam(required = false) String datum) throws JsonProcessingException {
+        Set<String> parameters = new HashSet<>();
+        parameters.add(idKrankenhaus);
+        parameters.add(idDevice);
+        parameters.add(idOrganization);
+        parameters.add(datum);
+        for (String p: parameters){
+            if(p!=null){
+                if(p.equals("")){
+                    return ResponseEntity.badRequest().build();
+                }
+            }
+        }
         final String allAppointments = "http://192.189.51.8/api/resource/Patient Appointment?" + LoginDataController.getAll();
         RestTemplate restTemplate = new RestTemplate();
         Set<Appointment> listAppointment = new HashSet<>();
@@ -34,62 +46,62 @@ public class AppointmentController {
             PatientAppointmentWrapper patientAppointmentWrapper = restTemplate.getForObject(detailAppointment, PatientAppointmentWrapper.class);
             appointments.add(appointmentMapper.FromPaToAppointment(patientAppointmentWrapper.getData()));});
 
-        Set<Appointment> filtered = new HashSet<>();
-
-        if (idOrganization == null || idOrganization == "" && idDevice == null || idDevice == "" && idKrankenhaus == null || idKrankenhaus == ""){
-            return appointments;
-        }
-        if(idOrganization != null|| idOrganization != "" && idDevice != null || idDevice != ""){
-            appointments.forEach(a ->{
-                a.getParticipant().forEach(participant -> {
-                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                    if (participant.getActor().getId().equals(idOrganization)){
-                        appointments.forEach(device ->{
-                            device.getParticipant().forEach(d ->{
-                                if(d.getActor() != null && d.getActor().getId() !=null){
-                                if(d.getActor().getId().equals(idDevice)){
-                                    filtered.add(a); } }}); } ); }  }});});
-        return filtered;}
-
-            if(idOrganization != null&& idDevice != null && idKrankenhaus != null){
-                appointments.forEach(a ->{
-                    a.getParticipant().forEach(participant -> {
-                        if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                        if (participant.getActor().getId().equals(idOrganization)){
-                            appointments.forEach(device ->{
-                                device.getParticipant().forEach(d ->{
-                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                                    if(d.getActor().getId().equals(idDevice)){
-                                        appointments.forEach(hospital->{
-                                            hospital.getParticipant().forEach(kh->{
-                                                if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                                                if(kh.getActor().getId().equals(idKrankenhaus)){
-                                                    filtered.add(a); } }}); } ); } }}); } ); } }}); });
-                return filtered;
+        Set<Appointment> myAppointments = new HashSet<>();
+        myAppointments = appointments;
+        if(idKrankenhaus != null)
+        {
+            Set<Appointment> filter = new HashSet<>();
+            myAppointments.forEach(kh -> {
+                kh.getParticipant().forEach(p ->{
+                if(p.getActor() != null && p.getActor().getId() != null){
+                    if(p.getActor().getId().equals(idKrankenhaus)){
+                        filter.add(kh);
+                    }
+                }
+                });
+            });
+            myAppointments = filter;
             }
-        if(idOrganization != null&& idDevice != null && idKrankenhaus != null && datum!= null){
-            appointments.forEach(a ->{
-                a.getParticipant().forEach(participant -> {
-                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                        if (participant.getActor().getId().equals(idOrganization)){
-                            appointments.forEach(device ->{
-                                device.getParticipant().forEach(d ->{
-                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                                        if(d.getActor().getType().equals(idDevice)){
-                                            appointments.forEach(hospital->{
-                                                hospital.getParticipant().forEach(kh->{
-                                                    if(participant.getActor() != null&& participant.getActor().getId()!=null){
-                                                        if(kh.getActor().getId().equals(idKrankenhaus)){
-                                                            appointments.forEach((date->{
-                                                                date.getParticipant().forEach(da->{
-                                                                    if(participant.getActor() != null && participant.getActor().getId() != null){
-                                                                        if(da.getActor().getId().equals(datum)){
-                                                                            filtered.add(a);
-                                                                        } } }); })); } }}); } ); } }}); } ); } }}); });
-            return filtered;
+
+        if(idOrganization != null ){
+            Set<Appointment> filter = new HashSet<>();
+            myAppointments.forEach((organisation ->{
+                organisation.getParticipant().forEach(p ->{
+                    if(p.getActor() != null && p.getActor().getId() != null){
+                        if(p.getActor().getId().equals(idOrganization)){
+                            filter.add(organisation);
+                        }
+                    }
+                });
+            }));
+            myAppointments = filter;
+        }
+        if(idDevice != null){
+            Set<Appointment> filter = new HashSet<>();
+            myAppointments.forEach(device ->{
+                device.getParticipant().forEach(p->{
+                    if(p.getActor() != null && p.getActor().getId() != null){
+                        if(p.getActor().getId().equals(idDevice)){
+                            filter.add(device);
+                        }
+                    }
+                });
+            });
+            myAppointments = filter;
+        }
+        if(datum != null){
+            Set<Appointment> filter = new HashSet<>();
+            myAppointments.forEach(date ->{
+                if(date.getCreated() != null){
+                    if(date.getCreated().equals(datum)){
+                        filter.add(date);
+                    }
+                }
+            });
+            myAppointments = filter;
         }
 
-        return appointments;
+        return ResponseEntity.ok().body(myAppointments);
     }
 
 
@@ -166,9 +178,10 @@ public class AppointmentController {
             PatientKWrapper wrapper = restTemplate.getForObject(detail, PatientKWrapper.class);
             patientDetail.add(wrapper.getData());
         });
+
         AtomicBoolean found = new AtomicBoolean(false);
        patientDetail.forEach(detail ->{ //hier kommt er rein wenn es schon einen patienten mit dieser mailadresse und telefonnummer gibt
-            if(detail.getEmail().equals(mail) && detail.getMobile().equals(phonenumber)){
+            if(detail.getEmail().equals(mail) || detail.getMobile().equals(phonenumber)){
                 String updateAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + IdAppointment;
                 PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
                 HttpHeaders headers2 = new HttpHeaders();
@@ -182,6 +195,8 @@ public class AppointmentController {
                 found.set(true);
             }
        });
+
+
         if(!found.get()){ //hier erstellt er zusätzlich einen neuen patienten
             ResponseEntity responseEntity = restTemplate.exchange(postPatient, HttpMethod.POST, requestEntity, PatientKWrapper.class);
             Set<PatientK> pList = new HashSet<>();
