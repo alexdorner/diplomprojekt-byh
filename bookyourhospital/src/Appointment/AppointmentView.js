@@ -20,7 +20,7 @@ class AppointmentView extends Component {
     }
 
     async componentDidMount() {
-        const url = "/api/appointment/" + this.appointmentOverView;
+        const url = "http://localhost:8080/api/appointment/" + this.appointmentOverView;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({hospital: el.actor.id.split('-')[0]}))
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({address:  el.actor.id.split('-')[1]}))

@@ -20,39 +20,9 @@ class AppointmentOverview extends Component {
 
     async componentWillMount() {
         //const url = "/api/appointment/GetAll?idOrganization=" + this.department + "&idDevice=" + this.serviceUnit + "&datum=" + "";
-        const url = "/api/appointment/GetAll";
+        const url = "http://localhost:8080/api/appointment/GetAll";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
-        let actors = [];
-        let filtered = [];
-        this.state.data.map(el => actors.push(el))
-        let hospital = ""
-        //filtered = this.state.data.filter(el => console.log(el.participant.filter(e => e.id === "Location")));
-        //filtered = this.state.data.filter(el => el.participant.filter((e) => e.id === "Location").map(el => console.log(el.actor.id)));
-
-
-
-    }
-
-
-    /*async componentDidMount(){
-        try {
-            let result = await fetch("http://localhost:8080/api", {
-                method: 'post',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    serviceUnit: this.serviceUnit
-                })
-            })
-        }
-        catch (e){
-            console.log(e);
-        }
-
-    }*/
+            }
 
     render() {
         return (

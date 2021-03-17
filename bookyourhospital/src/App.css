@@ -21,14 +21,7 @@
 
 }
 
-.list-group{
-  max-height: 400px;
-  margin-bottom: 10px;
-  overflow:scroll;
-  -webkit-overflow-scrolling: touch;
-  max-width: 100%;
-  overflow-x: hidden;
-}
+
 
 .leaflet-container {
   height: 300px;

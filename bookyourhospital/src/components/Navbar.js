@@ -82,7 +82,7 @@ const Navigation = (props) => {
                         <Nav.Link className="textContent" href="/Impressum">Impressum</Nav.Link>
                         <Nav.Link className="textContent" href="/About">Über uns</Nav.Link>
                         <Nav.Link className="textContent" href="/Contact">Kontakt</Nav.Link>
-                        <Nav.Link className="textContent" href="/DSGVO">DSGVO</Nav.Link>
+                        <Nav.Link className="textContent" href="/DSGVO">Datenschutzverordnung und AGB</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
