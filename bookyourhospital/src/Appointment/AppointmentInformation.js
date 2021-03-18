@@ -38,7 +38,7 @@ class AppointmentInformation extends Component {
     }
 
     async componentDidMount() {
-        const url = "http://localhost:8080/api/appointment/" + this.appointmentOverView;
+        const url = "http://localhost:8080/api/appointment/" + this.appointmentView;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({hospital: el.actor.id.split('-')[0]}))
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({address: el.actor.id.split('-')[1]}))
@@ -50,7 +50,7 @@ class AppointmentInformation extends Component {
         return (
             <center>
                 <h1>Ihr Termin</h1>
-                <h2>{this.appointmentOverView}</h2>
+                <h2>{this.appointmentView}</h2>
                 <Row>
                     <Col>
                         <p>Krankenhaus: {this.state.hospital}</p>
