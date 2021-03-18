@@ -48,7 +48,7 @@ class AppointmentInformation extends Component {
 
     render() {
         return (
-            <center>
+            <Container>
                 <h1>Ihr Termin</h1>
                 <h2>{this.appointmentView}</h2>
                 <Row>
@@ -73,7 +73,7 @@ class AppointmentInformation extends Component {
                             href={'/TanOK/' + this.appointmentView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + '/' + this.type + '/' + this.to}>Termin
                         vormerken beenden</Button>
                 </div>
-            </center>
+            </Container>
         );
     }
 

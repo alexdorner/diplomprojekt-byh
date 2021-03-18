@@ -15,11 +15,11 @@ class AppointmentCancelConfirm extends Component {
 
     render() {
         return (
-            <Container>
+            <center>
                 <h1>Individueller Termincode: {this.appointmentOverView/*Termincode hier anzeigen*/}</h1>
                 <h2>Ihr Termin wurde erfolgreich storniert</h2>
                 <Button size="lg" variant="dark" type="submit" action href={'/'}>Beenden</Button>
-            </Container>
+            </center>
         );
     }
 }
