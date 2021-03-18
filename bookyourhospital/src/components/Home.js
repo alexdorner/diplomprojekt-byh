@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Button, Image, ButtonGroup, Row, Col} from 'react-bootstrap';
-import history from "../history";
 import "./Home.css";
 import ByhLogo from '../byh_logo.svg';
 

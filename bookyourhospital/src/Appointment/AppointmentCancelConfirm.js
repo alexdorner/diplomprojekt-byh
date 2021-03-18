@@ -12,7 +12,6 @@ class AppointmentCancelConfirm extends Component {
             this.appointmentOverView = "appointmentOverView";
         }
     }
-
     render() {
         return (
             <center>

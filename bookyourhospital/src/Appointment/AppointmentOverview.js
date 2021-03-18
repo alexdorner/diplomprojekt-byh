@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Table, Container, Row, Col, Dropdown, ListGroup, ListGroupItem} from 'react-bootstrap';
-import history from "../history";
-import ServiceUnit from "../Selection/ServiceUnit";
 
 class AppointmentOverview extends Component {
 
@@ -19,7 +17,6 @@ class AppointmentOverview extends Component {
     }
 
     async componentWillMount() {
-        //const url = "/api/appointment/GetAll?idOrganization=" + this.department + "&idDevice=" + this.serviceUnit + "&datum=" + "";
         const url = "http://localhost:8080/api/appointment/GetAll";
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
             }

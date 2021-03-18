@@ -10,10 +10,10 @@ class NoTransfer extends Component{
         return (
             <center>
                 <div className="KeineUeberweisung" style={{ padding: 30 }}>
-                    <Button size={"lg"} variant="dark" onClick={() => history.push('/')}>Zurück zum Start</Button>
+                    <Button size={"lg"} variant="dark" action href={'/'}>Zurück zum Start</Button>
                 </div>
                 <div className="KeineUeberweisung" style={{ padding: 30 }}>
-                    <Button size={"lg"} variant="dark" onClick={() => history.push('/WasUeberweisung')}>Was ist eine Überweisung?</Button>
+                    <Button size={"lg"} variant="dark" action href={'/WasUeberweisung'}>Was ist eine Zuweisung?</Button>
                 </div>
             </center>
         );
