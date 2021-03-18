@@ -1,27 +1,9 @@
 import React, {Component} from 'react';
-import {InputGroup} from "react-bootstrap";
+import {Image, InputGroup} from "react-bootstrap";
 import {text} from './AboutBYH.txt';
+import ByhLogo from "../byh_logo.svg";
 
 class About extends Component {
-    /*
-        onLoad = function (event){
-            var file = fileInput.files[0];
-            var textType = /text.*/
-    //;
-
-    /*
-            if (file.type.match(textType)) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    var content = reader.result;
-                    //Here the content has been read successfully
-                    alert(content);
-                }
-
-                reader.readAsText(file);
-            }
-        }*/
 
     render() {
         return (
@@ -30,7 +12,13 @@ class About extends Component {
                     <h2>Über BookYourHospital!</h2>
                 </div>
                 <div>
-                    <input type="file" id="fileInput" onChange="onLoad(event)"></input>
+                    <a>
+                        "BookYourHospital" ist ein Diplomprojekt von vier Schülerinnen aus der HTL Spengergasse.
+                    </a>
+                    <a>
+                        Dies wurde in einer Zusammenarbeit mit Accenture GmbH geplant und entwickelt.
+                    </a>
+                    <Image height="200" width="500" src={ByhLogo}></Image>
                 </div>
             </center>
         );
