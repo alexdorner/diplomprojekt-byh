@@ -40,7 +40,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Reference ref3 = new Reference();
         ref3.setType("Location");
         ref3.setId(patientAppointmentK.getCompany());
-        ref3.setReference("http://localhost:8080/api/location/"+patientAppointmentK.getCompany());
+        ref3.setReference("http://192.189.51.8:8080/api/location/"+patientAppointmentK.getCompany());
         Participant pCompany = new Participant(ref3);
         pCompany.setId("Location");
         participant.add(pCompany);
@@ -50,7 +50,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Reference ref4 = new Reference();
         ref4.setId(patientAppointmentK.getDepartment());
         ref4.setType("Organization");
-        ref4.setReference("http://localhost:8080/api/organization/" + patientAppointmentK.getDepartment());
+        ref4.setReference("http://192.189.51.8:8080/api/organization/" + patientAppointmentK.getDepartment());
         Participant pOrganization = new Participant(ref4);
         pOrganization.setId("Organization");
         participant.add(pOrganization);
@@ -58,7 +58,7 @@ public class AppointmentMapperImpl implements AppointmentMapper {
         Reference ref5 = new Reference();
         ref5.setId(patientAppointmentK.getService_unit());
         ref5.setType("Device");
-        ref5.setReference("http://localhost:8080/api/device/" +patientAppointmentK.getService_unit());
+        ref5.setReference("http://192.189.51.8:8080/api/device/" +patientAppointmentK.getService_unit());
         Participant pDevice = new Participant(ref5);
         pDevice.setId("Device");
         participant.add(pDevice);

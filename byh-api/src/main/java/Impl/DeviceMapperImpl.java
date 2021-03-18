@@ -19,7 +19,7 @@ public class DeviceMapperImpl implements DeviceMapper {
         device.setDeviceName(deviceName);
         Reference reference = new Reference();
         reference.setType(serviceUnit.getDepartment());
-        reference.setReference("http://localhost:8080/api/organization/" + serviceUnit.getDepartment());
+        reference.setReference("http://192.189.51.8:8080/api/organization/" + serviceUnit.getDepartment());
         device.setOwner(reference);
         reference.setId(serviceUnit.getDepartment()+"_ref");
         deviceName.setId(serviceUnit.getName());
