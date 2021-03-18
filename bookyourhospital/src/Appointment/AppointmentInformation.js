@@ -7,6 +7,8 @@ import history from "../history";
 import ServiceUnit from "../Selection/ServiceUnit";
 import AppointmentOverview from "./AppointmentOverview";
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet';
 
 class AppointmentInformation extends Component {
 
