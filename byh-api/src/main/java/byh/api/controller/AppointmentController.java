@@ -191,6 +191,7 @@ public class AppointmentController {
        String finalMail = mail;
        String finalPhonenumber = phonenumber;
        patientDetail.forEach(detail ->{ //hier kommt er rein wenn es schon einen patienten mit dieser mailadresse und telefonnummer gibt
+
                if(detail.getEmail().equals(finalMail) || detail.getMobile().equals(finalPhonenumber)){
                    String updateAppointmentURL ="http://192.189.51.8/api/resource/Patient Appointment/" + IdAppointment;
                    PatientAppointmentK patientAppointmentK = new PatientAppointmentK();
