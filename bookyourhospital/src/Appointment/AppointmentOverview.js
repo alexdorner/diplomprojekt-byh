@@ -30,7 +30,7 @@ class AppointmentOverview extends Component {
     }
 
     async componentWillMount() {
-        const url = "192.189.51.8:8080/api/appointment?idOrganization="+this.department +"&idDevice="+this.serviceUnit;
+        const url = "http://192.189.51.8:8080/api/appointment/GetAll?idOrganization="+this.department +"&idDevice="+this.serviceUnit;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
     }
 
