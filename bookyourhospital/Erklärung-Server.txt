@@ -1,0 +1,16 @@
+1)vpn starten 
+
+2)Anmelden mit deinen Daten am Server:
+mit Putty 
+ServerName: byh.spengergasse.at
+
+3)in der Console eingeben:
+su root 
+root passwort: bookyourhospital
+/home/michelle/fe.build.sh
+
+zum neu starten einfach nochmal /home/michelle/fe.build.sh eingeben
+
+4)WARTEN bis alles fertig ist
+
+Dann funktioniert es Browser :)  

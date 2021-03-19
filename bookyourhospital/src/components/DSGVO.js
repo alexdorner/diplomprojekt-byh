@@ -6,13 +6,14 @@ class DSGVO extends Component {
     render() {
         return (
             <center>
+                <h2>AGB/DSGVO</h2>
                 <div>
-                    <a>
+                    <p>
                         Außerdem benötigt unsere Webseite auch eine Datenschutz – Grundverordnung (DSGVO),
-                    </a>
-                    <a>
-                        da wir persönliche Daten wie die Telefonnummer speichern.
-                    </a>
+                    </p>
+                    <p>
+                        da wir persönliche Daten wie die Telefonnummer oder E-Mail speichern.
+                    </p>
                 </div>
                 <div>Icons made by
                     <a href="https://www.freepik.com" title="Freepik"> Freepik </a> from

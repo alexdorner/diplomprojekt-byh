@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Container, ListGroup, Row} from "react-bootstrap";
+import {Button, Col, Container, ListGroup, Row} from "react-bootstrap";
 
 class AppointmentCancelConfirm extends Component {
 
@@ -12,15 +12,13 @@ class AppointmentCancelConfirm extends Component {
             this.appointmentOverView = "appointmentOverView";
         }
     }
-
     render() {
         return (
-            <Container>
+            <center>
                 <h1>Individueller Termincode: {this.appointmentOverView/*Termincode hier anzeigen*/}</h1>
                 <h2>Ihr Termin wurde erfolgreich storniert</h2>
-                <Col>
-                </Col>
-            </Container>
+                <Button size="lg" variant="dark" type="submit" action href={'/'}>Beenden</Button>
+            </center>
         );
     }
 }

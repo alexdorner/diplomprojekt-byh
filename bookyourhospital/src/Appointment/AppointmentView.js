@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Table, Container, Row, Col, Dropdown, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
-import history from "../history";
-import ServiceUnit from "../Selection/ServiceUnit";
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet';
 
@@ -18,7 +16,6 @@ class AppointmentView extends Component {
             this.appointmentOverView = "appointmentOverView";
         }
     }
-
     async componentDidMount() {
         const url = "http://localhost:8080/api/appointment/" + this.appointmentOverView;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
@@ -27,7 +24,6 @@ class AppointmentView extends Component {
         this.setState({date: this.state.data.Date})
         this.setState({time: this.state.data.start})
     }
-
     render() {
         return (
             <Container>
@@ -56,5 +52,4 @@ class AppointmentView extends Component {
         );
     }
 }
-
 export default AppointmentView;

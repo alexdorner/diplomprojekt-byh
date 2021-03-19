@@ -3,9 +3,6 @@
 //Wird per SMS gesendet --> Beenden Button (Kommt man auf Home)
 import React, {Component} from 'react';
 import {Button, Table, Container, Row, Col, Dropdown, ListGroup, ListGroupItem} from 'react-bootstrap';
-import history from "../history";
-import ServiceUnit from "../Selection/ServiceUnit";
-import AppointmentOverview from "./AppointmentOverview";
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet';
@@ -36,21 +33,19 @@ class AppointmentInformation extends Component {
             this.to = "to"
         }
     }
-
     async componentDidMount() {
-        const url = "http://localhost:8080/api/appointment/" + this.appointmentOverView;
+        const url = "http://localhost:8080/api/appointment/" + this.appointmentView;
         const response = await fetch(url).then(response => response.json()).then(recievedData => this.setState({data: recievedData}));
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({hospital: el.actor.id.split('-')[0]}))
         this.state.data.participant.filter((e) => e.id === "Location").map(el => this.setState({address: el.actor.id.split('-')[1]}))
         this.setState({date: this.state.data.Date})
         this.setState({time: this.state.data.start})
     }
-
     render() {
         return (
-            <center>
+            <Container>
                 <h1>Ihr Termin</h1>
-                <h2>{this.appointmentOverView}</h2>
+                <h2>{this.appointmentView}</h2>
                 <Row>
                     <Col>
                         <p>Krankenhaus: {this.state.hospital}</p>
@@ -73,7 +68,7 @@ class AppointmentInformation extends Component {
                             href={'/TanOK/' + this.appointmentView + '/' + this.hospital + '/' + this.address + '/' + this.date + '/' + this.time + '/' + this.parent + '/' + this.type + '/' + this.to}>Termin
                         vormerken beenden</Button>
                 </div>
-            </center>
+            </Container>
         );
     }
 

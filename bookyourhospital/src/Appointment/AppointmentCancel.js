@@ -11,11 +11,9 @@ class AppointmentCancel extends Component {
         this.changeCode = this.changeCode.bind(this);
         this.getTan = this.getTan.bind(this);
     }
-
     changeCode(event) {
         this.setState({code: event.target.value});
     }
-
     getTan(event) {
         event.preventDefault();
 
@@ -24,7 +22,6 @@ class AppointmentCancel extends Component {
             this.props.history.go();
         }
     }
-
     render() {
         return (
             <center>
