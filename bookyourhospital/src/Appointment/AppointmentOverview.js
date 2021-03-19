@@ -22,10 +22,10 @@ class AppointmentOverview extends Component {
 
         if (this.props.match != null) {
             this.serviceUnit = this.props.match.params.serviceUnit;
-            this.department = this.props.match.params.medicalDepartment;
+            this.department = this.props.match.params.department;
         } else {
             this.serviceUnit = "serviceUnit";
-            this.department = "medicalDepartment";
+            this.department = "department";
         }
     }
 
