@@ -58,8 +58,8 @@ const Navigation = (props) => {
                                 Barrierefreiheit
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-2">Kontrast 1</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Kontrast 2</Dropdown.Item>
+                                <Dropdown.Item href="/">Kontrast 1</Dropdown.Item>
+                                <Dropdown.Item href="/">Kontrast 2</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav>
