@@ -13,7 +13,7 @@ class NoTransfer extends Component{
                     <Button size={"lg"} variant="dark" action href={'/'}>Zurück zum Start</Button>
                 </div>
                 <div className="KeineUeberweisung" style={{ padding: 30 }}>
-                    <Button size={"lg"} variant="dark" action href={'/WasUeberweisung'}>Was ist eine Zuweisung?</Button>
+                    <Button size={"lg"} variant="dark" action href={'/WhatTransfer'}>Was ist eine Zuweisung?</Button>
                 </div>
             </center>
         );
